@@ -8,6 +8,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.utils import translation
 from django.template.response import TemplateResponse
+from django.conf import settings
+from django.http import HttpResponseRedirect
 
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField
@@ -183,8 +185,30 @@ class HomePage(Page):
     indexed_fields = ('body', )
     search_name = "Homepage"
 
+    def serve(self, request):
+        '''
+        Overriden to redirect based language settings. If browser/session/cookie
+        language setting is supported by this site, go to the home page for that
+        language. Otherwise, go to the home page for this site's default 
+        language (the first language listed in the LANGUAGES setting.
+        '''
+        supported_langs = settings.LANGUAGES
+        default_lang = supported_langs[0][0]
+        cur_lang = translation.get_language()
+        cur_lang_supported = False
+        for lang in supported_langs:
+            if lang[0] == cur_lang:
+                cur_lang_supported = True
+                break
+
+        if not cur_lang_supported:
+            cur_lang = default_lang
+
+        return HttpResponseRedirect(self.url + cur_lang)
+
+
     class Meta:
-        verbose_name = "Homepage"
+        verbose_name = "Multi-lingual Root"
 
 HomePage.content_panels = [
     FieldPanel('title', classname="full title"),
