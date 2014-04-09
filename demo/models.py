@@ -6,6 +6,8 @@ from django.core.management import call_command
 from django.dispatch import receiver
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.utils import translation
+from django.template.response import TemplateResponse
 
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField
@@ -36,6 +38,7 @@ COMMON_PANELS = (
     FieldPanel('show_in_menus'),
     FieldPanel('search_description'),
 )
+
 
 
 # A couple of abstract classes that contain commonly used fields
@@ -236,7 +239,52 @@ class StandardPageRelatedLink(Orderable, RelatedLink):
     page = ParentalKey('demo.StandardPage', related_name='related_links')
 
 
-class StandardPage(Page):
+
+class MultiLingualPage(Page):
+    """
+    Common implementation for common page fields such as the translation links.
+    """
+    spanish_link = models.ForeignKey(Page, null=True, blank=True, related_name='+')
+
+    def serve(self, request):
+        user_language = 'en'
+        if self.is_spanish():
+            user_language = 'es'
+        translation.activate(user_language)
+        #request.session[translation.LANGUAGE_SESSION_KEY] = user_language
+
+        return TemplateResponse(
+            request, 
+            self.get_template(request), 
+            self.get_context(request)
+        )
+
+    def is_english(self):
+        return not self.is_spanish()
+
+    def is_spanish(self):
+        return self.spanish_link is None
+
+    def english_page(self):
+        if self.is_english():
+            return self
+        elif self.is_spanish():
+            return self.__class__.objects.filter(spanish_link=self).first()
+
+    def spanish_page(self):
+        english_page = self.english_page()
+
+        if english_page and english_page.spanish_link_id:
+            return self.__class__.objects.get(id=english_page.spanish_link_id)
+
+    is_abstract = True
+
+    class Meta:
+        abstract = True
+
+
+
+class StandardPage(MultiLingualPage):
     intro = RichTextField(blank=True)
     body = RichTextField(blank=True)
     feed_image = models.ForeignKey(
@@ -251,6 +299,7 @@ class StandardPage(Page):
     search_name = None
 
 StandardPage.content_panels = [
+    FieldPanel('spanish_link', classname="spanish link"),
     FieldPanel('title', classname="full title"),
     FieldPanel('intro', classname="full"),
     InlinePanel(StandardPage, 'carousel_items', label="Carousel items"),

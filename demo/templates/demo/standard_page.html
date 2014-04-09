@@ -1,6 +1,19 @@
 {% extends "demo/base.html" %}
 
 {% block content %}
+	
+	{% with self.english_page as english_page %}
+	    {% if english_page %}
+	        <a class="english" href="{{ english_page.url }}">{{ english_page }}</a>
+	    {% endif %}
+	{% endwith %}
+	{% with self.spanish_page as spanish_page %}
+	    {% if spanish_page %}
+	        <a class="spanish" href="{{ spanish_page.url }}">{{ spanish_page }}</a>
+	    {% endif %}
+	{% endwith %}
+
+
     {% include "demo/includes/intro.html" with intro=self.intro only %}
 
     {% include "demo/includes/carousel.html" with carousel_items=self.carousel_items.all only %}

@@ -41,6 +41,9 @@ urlpatterns = patterns('',
 
     url(r'^documents/', include(wagtaildocs_urls)),
 
+    # For the set language form.
+    (r'^i18n/', include('django.conf.urls.i18n')),
+
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's serving mechanism
     url(r'', include(wagtail_urls)),
