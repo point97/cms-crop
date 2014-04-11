@@ -61,8 +61,8 @@
 
         <div class="container theme-showcase">
             <div class="jumbotron">
-                <h1>Wagtail Demo</h1>
-                <p>A set of demo templates to show you what Wagtail can do.</p>
+                <h1>{% trans "Test English" %}</h1>
+                <p>{% trans "A set of demo templates to show you what Wagtail can do." %}</p>
                 {% block search_box %}
                     {% include "demo/includes/search_box.html" only %}
                 {% endblock %}
@@ -87,7 +87,7 @@
                 {% adverts %}
             {% endblock %}
 
-            <p>current language is {{ LANGUAGE_CODE }}</p>
+            <!-- <p>current language is {{ LANGUAGE_CODE }}</p>
             <form action="{% url 'set_language' %}" method="post">
                 {% csrf_token %}
                 <input name="next" type="hidden" value="{{ redirect_to }}" />
@@ -100,7 +100,7 @@
                     {% endfor %}
                 </select>
                 <input type="submit" value="Go" />
-            </form>
+            </form> -->
 
         </div>
 

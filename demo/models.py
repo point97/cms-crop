@@ -270,6 +270,8 @@ class MultiLingualPage(Page):
     """
     spanish_link = models.ForeignKey(Page, null=True, blank=True, related_name='+')
 
+    is_abstract = True
+
     def serve(self, request):
         user_language = 'en'
         if self.is_spanish():
@@ -284,10 +286,12 @@ class MultiLingualPage(Page):
         )
 
     def is_english(self):
-        return not self.is_spanish()
+        # TODO: base this on the type of home page this page sits under (EngishHome)
+        return self.url.find('/en/') != -1
 
     def is_spanish(self):
-        return self.spanish_link is None
+        # TODO: base this on the type of home page this page sits under (SpanishHome)
+        return self.url.find('/es/') != -1
 
     def english_page(self):
         if self.is_english():
@@ -301,7 +305,49 @@ class MultiLingualPage(Page):
         if english_page and english_page.spanish_link_id:
             return self.__class__.objects.get(id=english_page.spanish_link_id)
 
-    is_abstract = True
+
+    #
+    # Search
+    #
+    @property
+    def search_url(self):
+        return self.url + 'search/'
+
+    search_template = 'demo/search_results.html'
+    def search_view(self, request):
+        # Search
+        query_string = request.GET.get('q', None)
+        if query_string is not None:
+            # Get list of live subpages of the homepage 
+            # for current language.
+            pages = Page.objects.descendant_of(self).live()
+
+            # TODO: Remove pages from PageQuerySet that don't stem 
+            # from current language's home page.
+
+            # Search them
+            
+            # Waiting on wagtail to push PageQuerySet.search() to 
+            # the public repo.
+            pages = pages.search(query_string)
+        else:
+            pages = Page.objects.none()
+
+        # Pagination
+        # TODO
+
+        # Update context
+        context = Page.get_context(self, request)
+        context['query_string'] = query_string
+        context['pages'] = pages
+        return TemplateResponse(request, self.search_template, context)
+
+    def route(self, request, path_components):
+        if self.live and len(path_components) > 0 and path_components[0] == 'search':
+            return self.search_view(request)
+        return super(MultiLingualPage, self).route(request, path_components)
+
+
 
     class Meta:
         abstract = True
