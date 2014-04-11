@@ -4,3 +4,4 @@
 *.pyc
 /media
 /Vagrantfile.local
+*.po
