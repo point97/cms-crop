@@ -117,11 +117,14 @@ MIDDLEWARE_CLASSES = (
     'wagtail.wagtailcore.middleware.SiteMiddleware',
 
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
+
+    'django.middleware.locale.LocaleMiddleware',
 )
 
 from django.conf import global_settings
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'django.core.context_processors.request',
+    'django.core.context_processors.i18n',
 )
 
 ROOT_URLCONF = 'wagtaildemo.urls'
@@ -160,6 +163,8 @@ INSTALLED_APPS = (
     'wagtail.wagtailembeds',
     'wagtail.wagtailsearch',
     'wagtail.wagtailredirects',
+
+    'modeltranslation',
 
     'demo',
 )
@@ -213,3 +218,15 @@ WAGTAIL_SITE_NAME = 'wagtaildemo'
 
 # Override the search results template for wagtailsearch
 WAGTAILSEARCH_RESULTS_TEMPLATE = 'demo/search_results.html'
+
+# Internationalization
+USE_I18N = True
+
+gettext = lambda s: s
+LANGUAGES = (
+    ('es', gettext('Spanish')),
+    ('en', gettext('English')),
+)
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'es'
+
+MODELTRANSLATION_DEBUG = True
