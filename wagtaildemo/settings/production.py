@@ -3,12 +3,15 @@ from .base import *
 DEBUG = False
 
 
-WAGTAILSEARCH_BACKENDS = {
-    'default': {
-        'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch.ElasticSearch',
-        'INDEX': 'wagtaildemo'
-    }
-}
+#
+# This has been causing issues. Maybe not necessary. Commenting out for now.
+#
+# WAGTAILSEARCH_BACKENDS = {
+#     'default': {
+#         'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch.ElasticSearch',
+#         'INDEX': 'wagtaildemo'
+#     }
+# }
 
 
 INSTALLED_APPS+= (
