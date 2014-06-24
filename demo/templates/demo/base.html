@@ -71,6 +71,19 @@
             {% block heading %}
                 <div class="page-header">
                     <h2>{{ self.title }}</h2>
+
+                    <ul id="language-toggle">
+                        <form action="/switchlang/en" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="requesting_page_id" value="{{self.id}}">
+                            <input type="submit" value="English" />
+                        </form>
+                        <form action="/switchlang/es" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="requesting_page_id" value="{{self.id}}">
+                            <input type="submit" value="Español" />
+                        </form>
+                    </ul>
                 </div>
             {% endblock %}
 
@@ -81,26 +94,6 @@
             {% block secondary_menu %}
                 {% secondary_menu calling_page=self %}
             {% endblock %}
-
-            {% block adverts %}
-                {# Uses a snippet - allows adverts to appear on every page #}
-                {% adverts %}
-            {% endblock %}
-
-            <!-- <p>current language is {{ LANGUAGE_CODE }}</p>
-            <form action="{% url 'set_language' %}" method="post">
-                {% csrf_token %}
-                <input name="next" type="hidden" value="{{ redirect_to }}" />
-                <select name="language">
-                    {% get_language_info_list for LANGUAGES as languages %}
-                    {% for language in languages %}
-                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
-                        {{ language.name_local }} ({{ language.code }})
-                    </option>
-                    {% endfor %}
-                </select>
-                <input type="submit" value="Go" />
-            </form> -->
 
         </div>
 
@@ -117,6 +110,6 @@
         {% endcompress %}
 
         {% block extra_js %}{% endblock %} {# Override this block in individual templates in order to add javascript on a template by template basis #}
-        
+
     </body>
 </html>

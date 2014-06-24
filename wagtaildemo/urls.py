@@ -16,6 +16,8 @@ from wagtail.wagtailsearch.urls import frontend as wagtailsearch_frontend_urls, 
 from wagtail.wagtailusers import urls as wagtailusers_urls
 from wagtail.wagtailredirects import urls as wagtailredirects_urls
 
+from demo import urls as demo_urls
+
 admin.autodiscover()
 
 
@@ -42,6 +44,7 @@ urlpatterns = patterns('',
     url(r'^documents/', include(wagtaildocs_urls)),
 
     # For the set language form.
+    (r'^switchlang/', include(demo_urls)),
     (r'^i18n/', include('django.conf.urls.i18n')),
 
     # For anything not caught by a more specific rule above, hand over to

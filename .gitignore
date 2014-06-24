@@ -5,3 +5,6 @@
 /media
 /Vagrantfile.local
 *.po
+backups
+logs
+*.dump
