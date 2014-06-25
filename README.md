@@ -1,5 +1,15 @@
-Wagtail demo
+CROP based on Wagtail demo
 =======================
+
+## Dumping live dat abase to local
+
+To dump the live databse and load into a vagrant dev site
+
+* go to devops and use the nornal ansible commands. This will dump the database to devops/backup
+
+* the from the cms-crop repo run `fab vagrant restore_db:DUMP_FILEN_NAME`
+
+
 
 [Wagtail](http://wagtail.io) is distributed as a Python package, to be incorporated into a Django project via the INSTALLED_APPS setting. To get you up and running quickly, we provide a demo site with all the configuration in place, including a set of example page types.
 
@@ -59,8 +69,5 @@ With PostgreSQL running (and configured to allow you to connect as the 'postgres
     ./manage.py createsuperuser
     ./manage.py runserver
 
-### SQLite support
 
-SQLite is supported as an alternative to PostgreSQL - update the DATABASES setting
-in wagtaildemo/settings/base.py to use 'django.db.backends.sqlite3', as you would
-with a regular Django project.
+

@@ -3,6 +3,14 @@
 {# Individual section - used on homepage for sections #}
 
 
-<a class="list-group-item" href="{% pageurl section %}">
+<a class="list-group-item" href="#{{section.slug}}">
+    {% if section.image %}
+        {% image section.image width-790 %}
+    {% else %}
+        <img src="http://placehold.it/790x440">
+    {% endif %}
     <h4 class="list-group-item-heading">{{ section.title }}</h4>
+    <div class="list-group-item-body">
+    {{ section.body|safe}}
+    </div>
 </a>

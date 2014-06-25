@@ -18,6 +18,7 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel, \
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailimages.models import Image
 from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
+from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 from wagtail.wagtailsnippets.models import register_snippet
 
 from modelcluster.fields import ParentalKey
@@ -26,6 +27,7 @@ from taggit.models import Tag, TaggedItemBase
 from south.signals import post_migrate
 
 from demo.utils import export_event
+from demo.snippets import LinkBlock
 
 
 EVENT_AUDIENCE_CHOICES = (
@@ -40,6 +42,10 @@ COMMON_PANELS = (
     FieldPanel('show_in_menus'),
     FieldPanel('search_description'),
 )
+
+
+
+
 
 
 # Multilingual Page
@@ -226,6 +232,7 @@ class EnglishHomePage(SectionedPage):
         verbose_name = "English Home Page"
 
 EnglishHomePage.content_panels = [
+    SnippetChooserPanel('linkBlock', LinkBlock),
     FieldPanel('title', classname="full title"),
 ]
 
@@ -261,14 +268,13 @@ SpanishHomePage.promote_panels = [
 
 class SectionPage(MultiLingualPage):
     body = RichTextField()
-    #order = models.AutoField()
-    # feed_image = models.ForeignKey(
-    #     'wagtailimages.Image',
-    #     null=True,
-    #     blank=True,
-    #     on_delete=models.SET_NULL,
-    #     related_name='+'
-    # )
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     indexed_fields = ('body', )
 
@@ -288,4 +294,5 @@ SectionPage.content_panels = [
 SectionPage.promote_panels = [
     FieldPanel('spanish_link', classname="spanish link"),
     MultiFieldPanel(Page.promote_panels, "Common page configuration"),
+    ImageChooserPanel('image'),
 ]

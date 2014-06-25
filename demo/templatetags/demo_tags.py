@@ -6,6 +6,17 @@ from demo.models import *
 register = template.Library()
 
 
+
+# LinkBlock snippets
+@register.inclusion_tag('crop/tags/link_block.html', takes_context=True)
+def linkBlocks(context):
+  return {
+    'linkBlocks': LinkBlock.objects.all(),
+    'request': context['request'],
+  }
+  
+
+
 # settings value
 @register.assignment_tag
 def get_googe_maps_key():
