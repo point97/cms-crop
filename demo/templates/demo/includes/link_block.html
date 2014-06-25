@@ -1,0 +1,12 @@
+{% load image_tags %}
+
+{% if obj.image %}
+    {% image obj.image height-220 %}
+{% else %}
+    <img src="http://placehold.it/380x220">
+{% endif %}
+
+<a href="{{ obj.url }}">
+  <h1>{{ obj.title }}</h1>
+  <p>{{ obj.text }}</p>
+</a>

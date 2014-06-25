@@ -26,13 +26,14 @@
             <form action="/switchlang/en" method="post">
                 {% csrf_token %}
                 <input type="hidden" name="requesting_page_id" value="{{self.id}}">
-                <input type="submit" value="English" />
+                <input class="btn" type="submit" value="English" />
             </form>
             <form action="/switchlang/es" method="post">
                 {% csrf_token %}
                 <input type="hidden" name="requesting_page_id" value="{{self.id}}">
-                <input type="submit" value="Español" />
+                <input class="btn" type="submit" value="Español" />
             </form>
+
         </ul>
     </div>
 </div>
