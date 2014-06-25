@@ -1,0 +1,38 @@
+{% load static i18n %}
+<div class="container header">
+    <div class="row">
+        <div class="col-sm-8 brand">
+            <a href="/">
+                <img src="{% static "demo/images/crop-logo-web-header-645x112.jpg" %}">
+            </a>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="clearfix">
+                <span class="pull-right social">
+                    SOCIAL
+                </span>
+            </div>
+            <div class="pull-right search-box">
+                {% block search_box %}
+                    {% include "demo/includes/search_box.html" only %}
+                {% endblock %}
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <ul id="language-toggle">
+            <form action="/switchlang/en" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="requesting_page_id" value="{{self.id}}">
+                <input type="submit" value="English" />
+            </form>
+            <form action="/switchlang/es" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="requesting_page_id" value="{{self.id}}">
+                <input type="submit" value="Español" />
+            </form>
+        </ul>
+    </div>
+</div>

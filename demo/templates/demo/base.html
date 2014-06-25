@@ -14,7 +14,6 @@
 
         {# External stylesheets #}
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
 
         {# Local static assets such as css, images and javascrpt should be stored at [yourapp]/static/[yourapp]/... #}
         {% compress css %}
@@ -23,7 +22,7 @@
 
             {# Custom stylesheets #}
             {# SCSS compilation relies on django compressor #}
-            <link rel="stylesheet" type="text/x-scss" href="{% static "demo/css/main.scss" %}" />
+            <link rel="stylesheet" type="text/x-scss" href="{% static "demo/css/base.scss" %}" />
 
         {% endcompress %}
 
@@ -54,48 +53,21 @@
 
         {% wagtailuserbar %}
 
-        {% block menu %}
-            {% get_site_root as site_root %}
-            {% top_menu parent=site_root calling_page=self %}
+        {% block header %}
+            {% include "demo/includes/header.html" %}
         {% endblock %}
 
         <div class="container theme-showcase">
-            <div class="jumbotron">
-                <h1>{% trans "Test English" %}</h1>
-                <p>{% trans "A set of demo templates to show you what Wagtail can do." %}</p>
-                {% block search_box %}
-                    {% include "demo/includes/search_box.html" only %}
-                {% endblock %}
-            </div>
-
-            {% block heading %}
-                <div class="page-header">
-                    <h2>{{ self.title }}</h2>
-
-                    <ul id="language-toggle">
-                        <form action="/switchlang/en" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="requesting_page_id" value="{{self.id}}">
-                            <input type="submit" value="English" />
-                        </form>
-                        <form action="/switchlang/es" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="requesting_page_id" value="{{self.id}}">
-                            <input type="submit" value="Español" />
-                        </form>
-                    </ul>
-                </div>
-            {% endblock %}
 
             {% block content %}
 
             {% endblock %}
 
-            {% block secondary_menu %}
-                {% secondary_menu calling_page=self %}
-            {% endblock %}
-
         </div>
+
+        {% block footer %}
+            {% include "demo/includes/footer.html" %}
+        {% endblock %}
 
         {# External javascript #}
         <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
