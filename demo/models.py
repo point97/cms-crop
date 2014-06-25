@@ -275,7 +275,7 @@ class SectionPage(MultiLingualPage):
     @property
     def section_index(self):
         # Find closest ancestor which is a blog index
-        return self.get_ancestors().type(EnglishHomePage).last()
+        return self.get_ancestors().type(SectionedPage).last()
 
     class Meta:
         verbose_name = "Page Section"
