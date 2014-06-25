@@ -180,21 +180,53 @@ LangRootPage.promote_panels = [
 
 
 #
-# English Home Page
+# Sectioned Page - acts as an index for any SectionPage that
+# is a direct child.
 #
+class SectionedPage(MultiLingualPage):
 
-class EnglishHomePage(MultiLingualPage):
-    body = RichTextField(blank=True)
+    @property
+    def sections(self):
+        # Get list of live SectionPages that are descendants of this page
+        sections = SectionPage.objects.live().descendant_of(self)
+        # Order by most recent date first
+        #sections = sections.order_by('order')
+        return sections
 
-    indexed_fields = ('body', )
-    search_name = "Homepage"
+    def get_context(self, request):
+        # Get sections
+        sections = self.sections
+        # Update template context
+        context = super(SectionedPage, self).get_context(request)
+        context['sections'] = sections
+        return context
+
+    class Meta:
+        verbose_name = "Sectioned Page"
+
+SectionedPage.content_panels = [
+    FieldPanel('title', classname="full title"),
+]
+
+SectionedPage.promote_panels = [
+    FieldPanel('spanish_link', classname="spanish link"),
+    MultiFieldPanel(COMMON_PANELS, "Common page configuration"),
+]
+
+
+
+#
+# English Home Page - acts as an index for any SectionPage that
+# is a direct child.
+#
+class EnglishHomePage(SectionedPage):
+    search_name = "Home"
 
     class Meta:
         verbose_name = "English Home Page"
 
 EnglishHomePage.content_panels = [
     FieldPanel('title', classname="full title"),
-    FieldPanel('body', classname="full"),
 ]
 
 EnglishHomePage.promote_panels = [
@@ -207,10 +239,7 @@ EnglishHomePage.promote_panels = [
 # Spanish Home Page
 #
 
-class SpanishHomePage(MultiLingualPage):
-    body = RichTextField(blank=True)
-
-    indexed_fields = ('body', )
+class SpanishHomePage(SectionedPage):
     search_name = u"Pagina Principal"
 
     class Meta:
@@ -218,7 +247,6 @@ class SpanishHomePage(MultiLingualPage):
 
 SpanishHomePage.content_panels = [
     FieldPanel('title', classname="full title"),
-    FieldPanel('body', classname="full"),
 ]
 
 SpanishHomePage.promote_panels = [
@@ -227,39 +255,37 @@ SpanishHomePage.promote_panels = [
 ]
 
 
-# # Signal handler to load demo data from fixtures after migrations have completed
-# @receiver(post_migrate)
-# def import_demo_data(sender, **kwargs):
-#     # post_migrate will be fired after every app is migrated; we only want to do the import
-#     # after demo has been migrated
-#     if kwargs['app'] != 'demo':
-#         return
+#
+# Section page
+#
 
-#     # Check that there isn't already meaningful data in the db that would be clobbered.
-#     # A freshly created databases should contain no images, tags or snippets
-#     # and just two page records: root and homepage.
-#     #if Image.objects.count() or Tag.objects.count() or Advert.objects.count() or Page.objects.count() > 2:
-#     if Image.objects.count() or Tag.objects.count() or Page.objects.count() > 2:
-#         return
+class SectionPage(MultiLingualPage):
+    body = RichTextField()
+    #order = models.AutoField()
+    # feed_image = models.ForeignKey(
+    #     'wagtailimages.Image',
+    #     null=True,
+    #     blank=True,
+    #     on_delete=models.SET_NULL,
+    #     related_name='+'
+    # )
 
-#     # furthermore, if any page has a more specific type than Page, that suggests that meaningful
-#     # data has been added
-#     for page in Page.objects.all():
-#         if page.specific_class != Page:
-#             return
+    indexed_fields = ('body', )
 
-#     import os, shutil
-#     from django.conf import settings
+    @property
+    def section_index(self):
+        # Find closest ancestor which is a blog index
+        return self.get_ancestors().type(EnglishHomePage).last()
 
-#     fixtures_dir = os.path.join(settings.PROJECT_ROOT, 'demo', 'fixtures')
-#     fixture_file = os.path.join(fixtures_dir, 'initial_data.json')
-#     image_src_dir = os.path.join(fixtures_dir, 'images')
-#     image_dest_dir = os.path.join(settings.MEDIA_ROOT, 'original_images')
+    class Meta:
+        verbose_name = "Page Section"
 
-#     call_command('loaddata', fixture_file, verbosity=0)
+SectionPage.content_panels = [
+    FieldPanel('title', classname="full title"),
+    FieldPanel('body', classname="full"),
+]
 
-#     # if not os.path.isdir(image_dest_dir):
-#     #     os.makedirs(image_dest_dir)
-
-#     # for filename in os.listdir(image_src_dir):
-#     #     shutil.copy(os.path.join(image_src_dir, filename), image_dest_dir)
+SectionPage.promote_panels = [
+    FieldPanel('spanish_link', classname="spanish link"),
+    MultiFieldPanel(Page.promote_panels, "Common page configuration"),
+]

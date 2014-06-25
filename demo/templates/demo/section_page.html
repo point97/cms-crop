@@ -1,0 +1,6 @@
+{% extends "demo/base.html" %}
+
+{% block content %}
+    <h4>{{ self.title }}</h4>
+    {% include "demo/includes/body.html" with body=self.body only %}
+{% endblock %}

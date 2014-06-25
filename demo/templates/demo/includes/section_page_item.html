@@ -1,0 +1,8 @@
+{% load pageurl image_tags %}
+
+{# Individual section - used on homepage for sections #}
+
+
+<a class="list-group-item" href="{% pageurl section %}">
+    <h4 class="list-group-item-heading">{{ section.title }}</h4>
+</a>
