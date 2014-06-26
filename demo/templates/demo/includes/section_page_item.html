@@ -17,5 +17,15 @@
 </div>
 
 <div class="col-md-3 col-sm-3 sidebar">
-    {% include "demo/includes/sidebar.html" %}
+    {{section.wtf}}
+    {% if section.get_children %}
+        <h2>Key Data Sectors</h2>
+        {% for topic in section.get_children %}    
+        <strong>{{topic.title}}</strong>
+        
+        <p>{{topic.body}}</p>
+        <p>{{topic.long_description|safe}}</p>
+        {% endfor %}
+    {% endif %}
+
 </div>

@@ -371,3 +371,48 @@ SectionPage.promote_panels = [
     MultiFieldPanel(Page.promote_panels, "Common page configuration"),
     ImageChooserPanel('image'),
 ]
+
+
+class ExploreCarouselItem(Orderable, CarouselItem):
+    page = ParentalKey('demo.ExploreSectionPage', related_name='carousel_items')
+
+class ExploreSectionPage(SectionPage):
+
+    @property
+    def wtf(self):
+        return "WTF"
+
+    @property
+    def topics(self):
+        # Get list of live SectionPages that are descendants of this page
+        topics = ExploreTopics.objects.live().descendant_of(self)
+        # Order by most recent date first
+        #topics = topics.order_by('order')
+        return topics
+
+
+
+class ExploreTopics(MultiLingualPage):
+    short_description = models.CharField(max_length=255, null=True, blank=True)
+    long_description = RichTextField(null=True, blank=True)
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    @property
+    def topic_index(self):
+        # Find closest ancestor which is a blog index
+        return self.get_ancestors().type(ExploreSectionPage).last()
+
+
+ExploreTopics.content_panels = [
+    FieldPanel('title'),
+    FieldPanel('short_description'),
+    FieldPanel('long_description'),
+    ImageChooserPanel('image'),
+
+]
