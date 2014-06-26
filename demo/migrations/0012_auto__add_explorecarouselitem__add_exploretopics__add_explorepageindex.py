@@ -8,6 +8,20 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
+        # Adding model 'ExploreCarouselItem'
+        db.create_table(u'demo_explorecarouselitem', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('sort_order', self.gf('django.db.models.fields.IntegerField')(null=True, blank=True)),
+            ('link_external', self.gf('django.db.models.fields.URLField')(max_length=200, blank=True)),
+            ('link_page', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name='+', null=True, to=orm['wagtailcore.Page'])),
+            ('link_document', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name='+', null=True, to=orm['wagtaildocs.Document'])),
+            ('image', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name='+', null=True, on_delete=models.SET_NULL, to=orm['wagtailimages.Image'])),
+            ('embed_url', self.gf('django.db.models.fields.URLField')(max_length=200, blank=True)),
+            ('caption', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
+            ('page', self.gf('modelcluster.fields.ParentalKey')(related_name='carousel_items', to=orm['demo.ExploreSectionPage'])),
+        ))
+        db.send_create_signal(u'demo', ['ExploreCarouselItem'])
+
         # Adding model 'ExploreTopics'
         db.create_table(u'demo_exploretopics', (
             (u'multilingualpage_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['demo.MultiLingualPage'], unique=True, primary_key=True)),
@@ -17,10 +31,31 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal(u'demo', ['ExploreTopics'])
 
+        # Adding model 'ExplorePageIndex'
+        db.create_table(u'demo_explorepageindex', (
+            (u'multilingualpage_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['demo.MultiLingualPage'], unique=True, primary_key=True)),
+        ))
+        db.send_create_signal(u'demo', ['ExplorePageIndex'])
+
+        # Adding model 'ExploreSectionPage'
+        db.create_table(u'demo_exploresectionpage', (
+            (u'explorepageindex_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['demo.ExplorePageIndex'], unique=True, primary_key=True)),
+        ))
+        db.send_create_signal(u'demo', ['ExploreSectionPage'])
+
 
     def backwards(self, orm):
+        # Deleting model 'ExploreCarouselItem'
+        db.delete_table(u'demo_explorecarouselitem')
+
         # Deleting model 'ExploreTopics'
         db.delete_table(u'demo_exploretopics')
+
+        # Deleting model 'ExplorePageIndex'
+        db.delete_table(u'demo_explorepageindex')
+
+        # Deleting model 'ExploreSectionPage'
+        db.delete_table(u'demo_exploresectionpage')
 
 
     models = {
@@ -94,9 +129,13 @@ class Migration(SchemaMigration):
             'page': ('modelcluster.fields.ParentalKey', [], {'related_name': "'carousel_items'", 'to': u"orm['demo.ExploreSectionPage']"}),
             'sort_order': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'})
         },
+        u'demo.explorepageindex': {
+            'Meta': {'object_name': 'ExplorePageIndex', '_ormbases': [u'demo.MultiLingualPage']},
+            u'multilingualpage_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['demo.MultiLingualPage']", 'unique': 'True', 'primary_key': 'True'})
+        },
         u'demo.exploresectionpage': {
-            'Meta': {'object_name': 'ExploreSectionPage', '_ormbases': [u'demo.SectionPage']},
-            u'sectionpage_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['demo.SectionPage']", 'unique': 'True', 'primary_key': 'True'})
+            'Meta': {'object_name': 'ExploreSectionPage', '_ormbases': [u'demo.ExplorePageIndex']},
+            u'explorepageindex_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['demo.ExplorePageIndex']", 'unique': 'True', 'primary_key': 'True'})
         },
         u'demo.exploretopics': {
             'Meta': {'object_name': 'ExploreTopics', '_ormbases': [u'demo.MultiLingualPage']},

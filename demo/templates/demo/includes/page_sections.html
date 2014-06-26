@@ -5,3 +5,11 @@
 {% empty %}
     No sections found
 {% endfor %}
+
+{% for section in explore_sections %}
+    <div class="row">
+        {% include "demo/includes/section_page_item.html" %}
+    </div>
+{% empty %}
+    No sections found
+{% endfor %}

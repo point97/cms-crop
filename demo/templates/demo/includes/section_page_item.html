@@ -17,14 +17,12 @@
 </div>
 
 <div class="col-md-3 col-sm-3 sidebar">
-    {{section.wtf}}
-    {% if section.get_children %}
+    {% if section.topics %}
         <h2>Key Data Sectors</h2>
-        {% for topic in section.get_children %}    
+        {% for topic in section.topics %}    
         <strong>{{topic.title}}</strong>
-        
-        <p>{{topic.body}}</p>
-        <p>{{topic.long_description|safe}}</p>
+        <p>{{topic.short_description|safe}}</p>
+
         {% endfor %}
     {% endif %}
 

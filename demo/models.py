@@ -262,12 +262,23 @@ class SectionedPage(MultiLingualPage):
         #sections = sections.order_by('order')
         return sections
 
+    @property
+    def explore_sections(self):
+        # Get list of live SectionPages that are descendants of this page
+        sections = ExploreSectionPage.objects.live().descendant_of(self)
+        # Order by most recent date first
+        #sections = sections.order_by('order')
+        return sections
+
     def get_context(self, request):
         # Get sections
         sections = self.sections
+        explore_sections = self.explore_sections
+
         # Update template context
         context = super(SectionedPage, self).get_context(request)
         context['sections'] = sections
+        context['explore_sections'] = explore_sections
         return context
 
     class Meta:
@@ -354,6 +365,10 @@ class SectionPage(MultiLingualPage):
     indexed_fields = ('body', )
 
     @property
+    def wtf(self):
+        return "WTF charlie"
+
+    @property
     def section_index(self):
         # Find closest ancestor which is a blog index
         return self.get_ancestors().type(SectionedPage).last()
@@ -373,23 +388,39 @@ SectionPage.promote_panels = [
 ]
 
 
-class ExploreCarouselItem(Orderable, CarouselItem):
-    page = ParentalKey('demo.ExploreSectionPage', related_name='carousel_items')
-
-class ExploreSectionPage(SectionPage):
-
-    @property
-    def wtf(self):
-        return "WTF"
-
+class ExplorePageIndex(MultiLingualPage):
+    """
+    Acts as an index life SectionedPage for English and 
+    Spanish HomePage's
+    """
     @property
     def topics(self):
         # Get list of live SectionPages that are descendants of this page
         topics = ExploreTopics.objects.live().descendant_of(self)
         # Order by most recent date first
-        #topics = topics.order_by('order')
+        # topics = topics.order_by('order')
         return topics
 
+    def get_context(self, request):
+        # Get sections
+        topics = self.topics
+        # Update template context
+        context = super(ExplorePageIndex, self).get_context(request)
+        context['topics'] = topics
+        return context
+
+    class Meta:
+        verbose_name = "Explorer Page Index"
+
+
+class ExploreCarouselItem(Orderable, CarouselItem):
+    page = ParentalKey('demo.ExploreSectionPage', related_name='carousel_items')
+
+
+class ExploreSectionPage(ExplorePageIndex):
+
+    class Meta:
+        verbose_name = "Explorer Section Page"
 
 
 class ExploreTopics(MultiLingualPage):
