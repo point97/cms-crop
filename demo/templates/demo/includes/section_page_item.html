@@ -18,7 +18,7 @@
 
 <div class="col-md-3 col-sm-3 sidebar">
     {% if section.topics %}
-        <h2>Key Data Sectors</h2>
+        <h2>{{ section.sidebar_title }}</h2>
         {% for topic in section.topics %}    
         <strong>{{topic.title}}</strong>
         <p>{{topic.short_description|safe}}</p>

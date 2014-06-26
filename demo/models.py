@@ -390,13 +390,15 @@ SectionPage.promote_panels = [
 
 class ExplorePageIndex(MultiLingualPage):
     """
-    Acts as an index life SectionedPage for English and 
+    Acts as an index life SectionedPage for English and
     Spanish HomePage's
     """
+    sidebar_title = models.CharField(max_length=255, null=True, blank=True)
+
     @property
     def topics(self):
         # Get list of live SectionPages that are descendants of this page
-        topics = ExploreTopics.objects.live().descendant_of(self)
+        topics = ExploreTopic.objects.live().descendant_of(self)
         # Order by most recent date first
         # topics = topics.order_by('order')
         return topics
@@ -410,7 +412,7 @@ class ExplorePageIndex(MultiLingualPage):
         return context
 
     class Meta:
-        verbose_name = "Explorer Page Index"
+        verbose_name = "Explore Page Indexes - DO NOT USE"
 
 
 class ExploreCarouselItem(Orderable, CarouselItem):
@@ -420,10 +422,15 @@ class ExploreCarouselItem(Orderable, CarouselItem):
 class ExploreSectionPage(ExplorePageIndex):
 
     class Meta:
-        verbose_name = "Explorer Section Page"
+        verbose_name = "Explore Section Page"
+
+ExploreSectionPage.content_panels = [
+        FieldPanel('title'),
+        FieldPanel('sidebar_title'),
+    ]
 
 
-class ExploreTopics(MultiLingualPage):
+class ExploreTopic(MultiLingualPage):
     short_description = models.CharField(max_length=255, null=True, blank=True)
     long_description = RichTextField(null=True, blank=True)
     image = models.ForeignKey(
@@ -439,8 +446,10 @@ class ExploreTopics(MultiLingualPage):
         # Find closest ancestor which is a blog index
         return self.get_ancestors().type(ExploreSectionPage).last()
 
+    class Meta:
+        verbose_name = "Explore Topics - you can edit these"
 
-ExploreTopics.content_panels = [
+ExploreTopic.content_panels = [
     FieldPanel('title'),
     FieldPanel('short_description'),
     FieldPanel('long_description'),

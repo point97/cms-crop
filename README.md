@@ -1,7 +1,7 @@
 CROP based on Wagtail demo
 =======================
 
-## Dumping live dat abase to local
+## Dumping live database to local
 
 To dump the live databse and load into a vagrant dev site
 
@@ -9,6 +9,19 @@ To dump the live databse and load into a vagrant dev site
 
 * the from the cms-crop repo run `fab vagrant restore_db:DUMP_FILEN_NAME`
 
+
+## Dropping and recreating local vagrant database
+
+```
+vagrant ssh
+psql -Upostgres 
+
+# Once in postgres
+DROP DATABASE wagtaildemo;
+\q
+
+# Recreate it from command line
+createdb -Upostgres wagtaildemo
 
 
 [Wagtail](http://wagtail.io) is distributed as a Python package, to be incorporated into a Django project via the INSTALLED_APPS setting. To get you up and running quickly, we provide a demo site with all the configuration in place, including a set of example page types.
