@@ -1,0 +1,24 @@
+{% load image_tags %}
+
+{% if self.linkblock_placements %}
+  <div class="row margin-top">
+  {% for linkblock_placement in self.linkblock_placements.all %}
+    <div class="col-md-6 col-sm-6">
+        {% with linkblock_placement.linkBlock as obj %}
+            <div class="link-block">
+              {% if obj.image %}
+                  {% image obj.image height-220 %}
+              {% else %}
+                  <img src="http://placehold.it/380x220">
+              {% endif %}
+              <a href="{{ obj.url }}">
+                <h1>{{ obj.title }}</h1>
+                <p>{{ obj.text }}</p>
+              </a>
+          </div>
+        {% endwith %}
+    </div>
+  {% endfor %}
+  </div>
+{% endif %}
+

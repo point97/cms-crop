@@ -38,7 +38,9 @@ class LinkBlock(models.Model):
 register_snippet(LinkBlock)
 
 
-class LinkBlockPlacement(models.Model):
+
+
+class EnglishLinkBlockPlacement(models.Model):
   page = ParentalKey('demo.EnglishHomePage', related_name='linkblock_placements')
   linkBlock = models.ForeignKey('demo.LinkBlock', related_name='+')
 
@@ -47,15 +49,32 @@ class LinkBlockPlacement(models.Model):
     verbose_name_plural = "English Home Page links"
 
   panels = [
-    PageChooserPanel('page'),
+    PageChooserPanel('page', 'demo.EnglishHomePage'),
     SnippetChooserPanel('linkBlock', LinkBlock),
   ]
 
   def __unicode__(self):
     return self.page.title + " -> " + self.linkBlock.text
 
-register_snippet(LinkBlockPlacement)
+register_snippet(EnglishLinkBlockPlacement)
 
+class SpanishLinkBlockPlacement(models.Model):
+  page = ParentalKey('demo.SpanishHomePage', related_name='linkblock_placements')
+  linkBlock = models.ForeignKey('demo.LinkBlock', related_name='+')
+
+  class Meta:
+    verbose_name = "Spanish Home Page link"
+    verbose_name_plural = "Spanish Home Page links"
+
+  panels = [
+    PageChooserPanel('page', 'demo.SpanishHomePage'),
+    SnippetChooserPanel('linkBlock', LinkBlock),
+  ]
+
+  def __unicode__(self):
+    return self.page.title + " -> " + self.linkBlock.text
+
+register_snippet(SpanishLinkBlockPlacement)
 
 
 

@@ -285,10 +285,16 @@ SectionedPage.promote_panels = [
 
 
 
+
+
 #
 # English Home Page - acts as an index for any SectionPage that
 # is a direct child.
 #
+class EnglishHomePageCarouselItem(Orderable, CarouselItem):
+    page = ParentalKey('demo.EnglishHomePage', related_name='carousel_items')
+
+
 class EnglishHomePage(SectionedPage):
     search_name = "Home"
 
@@ -296,8 +302,8 @@ class EnglishHomePage(SectionedPage):
         verbose_name = "English Home Page"
 
 EnglishHomePage.content_panels = [
-    SnippetChooserPanel('linkBlock', LinkBlock),
     FieldPanel('title', classname="full title"),
+    InlinePanel(EnglishHomePage, 'carousel_items', label="Carousel items"),
 ]
 
 EnglishHomePage.promote_panels = [
@@ -309,6 +315,8 @@ EnglishHomePage.promote_panels = [
 #
 # Spanish Home Page
 #
+class SpanishHomePageCarouselItem(Orderable, CarouselItem):
+    page = ParentalKey('demo.SpanishHomePage', related_name='carousel_items')
 
 class SpanishHomePage(SectionedPage):
     search_name = u"Pagina Principal"
@@ -318,6 +326,7 @@ class SpanishHomePage(SectionedPage):
 
 SpanishHomePage.content_panels = [
     FieldPanel('title', classname="full title"),
+    InlinePanel(SpanishHomePage, 'carousel_items', label="Carousel items"),
 ]
 
 SpanishHomePage.promote_panels = [

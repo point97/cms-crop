@@ -6,22 +6,9 @@
 
 {% block content %}
 
-<div>
-    <img src="http://placehold.it/790x440">    
-</div>
+    {% include "demo/includes/carousel.html" with carousel_items=self.carousel_items.all only %}
 
-{% if self.linkblock_placements %}
-  <div class="row">
-  {% for linkblock_placement in self.linkblock_placements.all %}
-    <div class="col-md-6 col-sm-6">
-        {% with linkblock_placement.linkBlock as obj %}
-            {% include "demo/includes/link_block.html" %}
-        {% endwith %}
-    </div>
-  {% endfor %}
-  </div>
-{% endif %}
-
+    {% include "demo/includes/link_blocks.html" %}
 
     {% include "demo/includes/page_sections.html" %}
 {% endblock %}
