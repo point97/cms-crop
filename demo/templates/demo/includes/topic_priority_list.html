@@ -1,0 +1,8 @@
+<div id="{{topic.slug}}-priority-list">
+    {% for priority in obj.catalogs %}
+        <div class="priority-item">
+            <h1>{{priority.title}}<h1>
+            <p>{{priority.body}}</p>
+        </div>
+    {% endfor %}
+</div>

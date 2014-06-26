@@ -3,7 +3,7 @@
 {# Individual section - used on homepage for sections #}
 
 <div class="col-md-9 col-sm-9 main-content">
-    <a class="list-group-item" href="#{{section.slug}}">
+    <div id="#{{section.slug}}" >
         {% if section.image %}
             {% image section.image width-790 %}
         {% else %}
@@ -13,16 +13,35 @@
         <div class="list-group-item-body">
         {{ section.body|safe}}
         </div>
-    </a>
+        
+
+        {% if section.data_catalogs %}
+        <h1 class="blue">Data Catalogs</h1>
+            {% for obj in section.data_catalogs %}
+                {% include "demo/includes/topic_catalog_list.html" %}
+            {% endfor %}
+        {% endif %}
+
+        {% if section.data_priorities %}
+            <h1 class="green">See Data Priorites</h1>
+            {% for obj in section.data_priorities %}
+                {% include "demo/includes/topic_priority_list.html" %}
+            {% endfor %}
+        {% endif %}
+    </div>
+
 </div>
+
+
 
 <div class="col-md-3 col-sm-3 sidebar">
     {% if section.topics %}
-        <h2>{{ section.sidebar_title }}</h2>
-        {% for topic in section.topics %}    
-        <strong>{{topic.title}}</strong>
-        <p>{{topic.short_description|safe}}</p>
-
+        <div class="header">{{ section.sidebar_title }}</div>
+        <div class="content">
+            {% for topic in section.topics %}    
+            <strong>{{topic.title}}</strong>
+            <p>{{topic.short_description|safe}}</p>
+        </div>
         {% endfor %}
     {% endif %}
 

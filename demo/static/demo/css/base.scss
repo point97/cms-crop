@@ -1,8 +1,36 @@
 @import 'variables';
 
+
 body {
   font: $font-stack;
   color: $primary-color;
+  background-color:$crop-background-blue;
+}
+
+h1 {
+    font-size:26px;
+    color:$crop-med-blue;
+}
+
+.blue {
+    @extend h1;
+    color:$crop-blue;
+}
+.green {
+    @extend h1;
+    color:$crop-green;
+}
+
+.white {
+    @extend h1;
+    color:$crop-green;
+}
+
+
+h2 {
+    font-size:17px;
+    color:$crop-blue;
+    text-transform:uppercase;
 }
 
 @import 'crop';

@@ -388,6 +388,14 @@ SectionPage.promote_panels = [
 ]
 
 
+"""
+Explore Pages
+ - Topics
+ -- DataPriorities 
+ -- DataCatalogs
+"""
+
+
 class ExplorePageIndex(MultiLingualPage):
     """
     Acts as an index life SectionedPage for English and
@@ -403,12 +411,25 @@ class ExplorePageIndex(MultiLingualPage):
         # topics = topics.order_by('order')
         return topics
 
+    @property
+    def data_catalogs(self):
+        """
+        Returns a list of topics (ordered according to self.topics). 
+        Each item contains a dict with the kollowing keywords
+        - topic
+        - catalogs
+        """
+        out = [ {"topic": topic, "catalogs": topic.catalogs} for topic in self.topics]
+        print out
+        return out
+
     def get_context(self, request):
-        # Get sections
-        topics = self.topics
         # Update template context
         context = super(ExplorePageIndex, self).get_context(request)
-        context['topics'] = topics
+        context.update({
+            'topics': self.topics,
+            'data_catalogs': self.data_catalogs
+        })
         return context
 
     class Meta:
@@ -446,6 +467,17 @@ class ExploreTopic(MultiLingualPage):
         # Find closest ancestor which is a blog index
         return self.get_ancestors().type(ExploreSectionPage).last()
 
+    @property
+    def catalogs(self):
+        out = DataCatalogPage.objects.live().descendant_of(self)
+        return out
+
+    def get_context(self, request):
+        context = super(ExplorePageIndex, self).get_context(request)
+        context['catalogs'] = self.catalogs
+        return context
+
+
     class Meta:
         verbose_name = "Explore Topics - you can edit these"
 
@@ -456,3 +488,49 @@ ExploreTopic.content_panels = [
     ImageChooserPanel('image'),
 
 ]
+
+
+class DataCatalogIndex(MultiLingualPage):
+    """
+    Acts as an index for the DataCatelogs which are subpages of ExploreTopics
+
+    """
+
+
+
+    def get_context(self, request):
+        # Update template context
+        context = super(DataCatalogIndex, self).get_context(request)
+        
+        context.update({})
+        return context
+
+    class Meta:
+        verbose_name = "Data Catalog Indexes - DO NOT USE"
+
+
+class DataCatalogPage(DataCatalogIndex):
+
+    class Meta:
+        verbose_name = "Data Catalog Page"
+
+DataCatalogPage.content_panels = [
+    FieldPanel('title'),
+]
+
+class DataCatalogItem(MultiLingualPage):
+    """
+    I don't need
+    """
+    @property
+    def _index(self):
+        # Find closest ancestor which is a blog index
+        return self.get_ancestors().type(DataCatalogPage).last()
+
+    class Meta:
+        verbose_name = "Data Catalog Items - you can edit these"
+
+ExploreTopic.content_panels = [
+    FieldPanel('title'),
+]
+

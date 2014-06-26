@@ -18,6 +18,14 @@ Surgical Classes
     margin-top:$gutter;
 }
 
+.padding-left {
+    padding-left:$gutter;
+}
+
+.padding-top {
+    padding-top:$gutter;
+}
+
 
 
 /***********************************************
@@ -26,4 +34,54 @@ Link Block Styles
 
 .link-block:nth-child(2){
     margin-left:$gutter;
+    background-color:$crop-blue;
 }
+
+
+/***********************************************
+Explore Sidebar Styles
+************************************************/
+
+.sidebar {
+    font:$crop-green;
+}
+
+.sidebar .header {
+    @extend .padding-left;
+    @extend .padding-top;
+
+    background-color:$crop-green;
+    color:#FFF;
+    font-size:16px;
+    text-transform:uppercase;
+}
+.sidebar .content {
+    @extend .padding-left;
+    @extend .padding-top;
+
+    background-color:#FFF;
+    color:$crop-green;
+}
+
+
+
+/***********************************************
+Data Catalog Styles
+************************************************/
+
+.catalog-item {
+    background-color:#FFF;
+    padding-top:20px;
+    padding-bottom:20px;
+    margin-top:10px;
+    font-size:15px;
+    color:$crop-gray;
+}
+
+.catalog-item h2 {
+    margin:0;
+}
+
+
+
+

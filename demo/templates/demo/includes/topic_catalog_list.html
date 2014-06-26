@@ -1,0 +1,17 @@
+<div id="{{topic.slug}}-catalog-list">
+    {% for catalog in obj.catalogs %}
+        <div class="catalog-item">
+            <h2>{{catalog.title}}</h2>
+            <p>{{catalog.body}}</p>
+            <div class="row">
+                <div class="col-md-2 col-sm-2"><a href="">Map</a></div>
+                <div class="col-md-2 col-sm-2"><a href="">KML</a></div>
+                <div class="col-md-2 col-sm-2"><a href="">Data</a></div>
+                <div class="col-md-2 col-sm-2"><a href="">Tiles</a></div>
+                <div class="col-md-2 col-sm-2"><a href="">Meta</a></div>
+            </div>
+
+        </div>
+    {% endfor %}
+
+</div>
