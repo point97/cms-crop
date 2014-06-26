@@ -2,7 +2,7 @@
 
 
 body {
-  font: $font-stack;
+  font-family: $font-stack;
   color: $primary-color;
   background-color:$crop-background-blue;
 }
@@ -33,4 +33,59 @@ h2 {
     text-transform:uppercase;
 }
 
+
 @import 'crop';
+
+//
+// h e a d e r  /  f o o t e r
+//
+#header { margin-bottom: 30px; }
+#footer { margin-top: 30px; }
+
+#header .brand {
+	padding-top: 20px;
+	height: 140px;
+}
+
+.menu-bar {
+	background-color: $crop-med-blue;
+	height: $menu-bar-height;
+}
+
+.menu-bar .menu {
+	display: inline;
+	margin-top: 20px;
+	font-size: 16px;
+	font-weight: 700;
+	letter-spacing: 1px;
+}
+.menu-bar .menu-right {
+	text-align: right;
+}
+
+.menu-bar .menu a,
+.menu-bar .menu a:visited {
+	color: white;
+	margin-right: 25px;
+}
+
+.menu-bar .menu a:hover {
+	text-decoration: none;
+	color: $crop-blue;
+}
+
+.language-toggle form {
+	display: inline;
+}
+
+
+#header .container {
+	position: relative;
+}
+.search-wrapper {
+	position: absolute;
+	right: 0;
+	top: 40px;
+	text-align: right;
+}
+
