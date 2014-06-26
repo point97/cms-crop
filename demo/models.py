@@ -307,6 +307,7 @@ class EnglishHomePageCarouselItem(Orderable, CarouselItem):
 
 class EnglishHomePage(SectionedPage):
     search_name = "Home"
+    subpage_types = ['demo.SectionPage', 'demo.ExploreSectionPage']
 
     class Meta:
         verbose_name = "English Home Page"
@@ -332,6 +333,7 @@ class SpanishHomePageCarouselItem(Orderable, CarouselItem):
 
 class SpanishHomePage(SectionedPage):
     search_name = u"Pagina Principal"
+    subpage_types = ['demo.SectionPage', 'demo.ExploreSectionPage']
 
     class Meta:
         verbose_name = "Spanish Home Page"
@@ -362,11 +364,9 @@ class SectionPage(MultiLingualPage):
         related_name='+'
     )
 
+    subpage_types = ['demo.ExploreSectionPage']
     indexed_fields = ('body', )
 
-    @property
-    def wtf(self):
-        return "WTF charlie"
 
     @property
     def section_index(self):
@@ -441,7 +441,7 @@ class ExploreCarouselItem(Orderable, CarouselItem):
 
 
 class ExploreSectionPage(ExplorePageIndex):
-
+    subpage_types = ['demo.ExploreTopic']
     class Meta:
         verbose_name = "Explore Section Page"
 
@@ -461,6 +461,7 @@ class ExploreTopic(MultiLingualPage):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+    subpage_types = ['demo.DataCatalogPage']
 
     @property
     def topic_index(self):
@@ -479,10 +480,10 @@ class ExploreTopic(MultiLingualPage):
 
 
     class Meta:
-        verbose_name = "Explore Topics - you can edit these"
+        verbose_name = "Explore Topic"
+
 
 ExploreTopic.content_panels = [
-    FieldPanel('title'),
     FieldPanel('short_description'),
     FieldPanel('long_description'),
     ImageChooserPanel('image'),
@@ -495,9 +496,6 @@ class DataCatalogIndex(MultiLingualPage):
     Acts as an index for the DataCatelogs which are subpages of ExploreTopics
 
     """
-
-
-
     def get_context(self, request):
         # Update template context
         context = super(DataCatalogIndex, self).get_context(request)
