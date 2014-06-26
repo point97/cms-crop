@@ -46,3 +46,14 @@ body {
 .language-toggle form {
 	display: inline;
 }
+
+
+#header .container {
+	position: relative;
+}
+.search-wrapper {
+	position: absolute;
+	right: 0;
+	top: 40px;
+	text-align: right;
+}

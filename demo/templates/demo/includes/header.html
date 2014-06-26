@@ -8,13 +8,13 @@
                 </a>
             </div>
 
-            <div class="col-sm-4">
-                <div class="clearfix">
-                    <span class="pull-right social">
-                        SOCIAL
-                    </span>
-                </div>
-                <div class="pull-right search-box">
+            <div class="search-wrapper">
+                <ul class="list-unstyled list-inline social">
+                    <li><a href="#">F</a></li>
+                    <li><a href="#">T</a></li>
+                    <li><a href="#">R</a></li>
+                </ul>
+                <div class="search-box">
                     {% block search_box %}
                         {% include "demo/includes/search_box.html" only %}
                     {% endblock %}
@@ -40,7 +40,7 @@
                     </form>
                 </div>
                 <div class="col-sm-9 menu menu-right">
-                    <ul class="menu list-unstyled list-inline">
+                    <ul class="list-unstyled list-inline">
                         <li><a href="#">LEARN</a></li>
                         <li><a href="#">EXPLORE</a></li>
                         <li><a href="#">NAVIGATE</a></li>
