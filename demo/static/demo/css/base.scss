@@ -23,11 +23,19 @@ body {
 
 .menu-bar .menu {
 	display: inline;
+	margin-top: 20px;
+	font-size: 16px;
+	font-weight: 700;
+	letter-spacing: 1px;
+}
+.menu-bar .menu-right {
+	text-align: right;
 }
 
 .menu-bar .menu a,
 .menu-bar .menu a:visited {
 	color: white;
+	margin-right: 25px;
 }
 
 .menu-bar .menu a:hover {
