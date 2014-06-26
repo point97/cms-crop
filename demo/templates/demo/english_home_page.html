@@ -1,5 +1,27 @@
+
 {% extends "demo/base.html" %}
 
+{% load demo_tags %}
+
+
 {% block content %}
+
+<div>
+    <img src="http://placehold.it/790x440">    
+</div>
+
+{% if self.linkblock_placements %}
+  <div class="row">
+  {% for linkblock_placement in self.linkblock_placements.all %}
+    <div class="col-md-6 col-sm-6">
+        {% with linkblock_placement.linkBlock as obj %}
+            {% include "demo/includes/link_block.html" %}
+        {% endwith %}
+    </div>
+  {% endfor %}
+  </div>
+{% endif %}
+
+
     {% include "demo/includes/page_sections.html" %}
 {% endblock %}

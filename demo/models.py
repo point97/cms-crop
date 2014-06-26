@@ -18,6 +18,7 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel, \
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailimages.models import Image
 from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
+from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 from wagtail.wagtailsnippets.models import register_snippet
 
 from modelcluster.fields import ParentalKey
@@ -26,6 +27,7 @@ from taggit.models import Tag, TaggedItemBase
 from south.signals import post_migrate
 
 from demo.utils import export_event
+from demo.snippets import LinkBlock
 
 
 EVENT_AUDIENCE_CHOICES = (
@@ -40,6 +42,74 @@ COMMON_PANELS = (
     FieldPanel('show_in_menus'),
     FieldPanel('search_description'),
 )
+
+
+
+
+
+class LinkFields(models.Model):
+    """
+    A link field that acts as a base class to the Carousel Item.
+    This is not related to the link blocks.
+    """
+    link_external = models.URLField("External link", blank=True)
+    link_page = models.ForeignKey(
+        'wagtailcore.Page',
+        null=True,
+        blank=True,
+        related_name='+'
+    )
+    link_document = models.ForeignKey(
+        'wagtaildocs.Document',
+        null=True,
+        blank=True,
+        related_name='+'
+    )
+
+    @property
+    def link(self):
+        if self.link_page:
+            return self.link_page.url
+        elif self.link_document:
+            return self.link_document.url
+        else:
+            return self.link_external
+
+    panels = [
+        FieldPanel('link_external'),
+        PageChooserPanel('link_page'),
+        DocumentChooserPanel('link_document'),
+    ]
+
+    class Meta:
+        abstract = True
+
+
+
+
+# Carousel items
+
+class CarouselItem(LinkFields):
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    embed_url = models.URLField("Embed URL", blank=True)
+    caption = models.CharField(max_length=255, blank=True)
+
+    panels = [
+        ImageChooserPanel('image'),
+        FieldPanel('embed_url'),
+        FieldPanel('caption'),
+        MultiFieldPanel(LinkFields.panels, "Link"),
+    ]
+
+    class Meta:
+        abstract = True
+
 
 
 # Multilingual Page
@@ -226,6 +296,7 @@ class EnglishHomePage(SectionedPage):
         verbose_name = "English Home Page"
 
 EnglishHomePage.content_panels = [
+    SnippetChooserPanel('linkBlock', LinkBlock),
     FieldPanel('title', classname="full title"),
 ]
 
@@ -261,14 +332,13 @@ SpanishHomePage.promote_panels = [
 
 class SectionPage(MultiLingualPage):
     body = RichTextField()
-    #order = models.AutoField()
-    # feed_image = models.ForeignKey(
-    #     'wagtailimages.Image',
-    #     null=True,
-    #     blank=True,
-    #     on_delete=models.SET_NULL,
-    #     related_name='+'
-    # )
+    image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     indexed_fields = ('body', )
 
@@ -288,4 +358,5 @@ SectionPage.content_panels = [
 SectionPage.promote_panels = [
     FieldPanel('spanish_link', classname="spanish link"),
     MultiFieldPanel(Page.promote_panels, "Common page configuration"),
+    ImageChooserPanel('image'),
 ]

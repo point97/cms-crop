@@ -2,9 +2,13 @@
 
 {# Individual section - used on homepage for sections #}
 
-<!-- <div id="{{ section.slug }}" class="row page-section"> -->
-<div class="row page-section">
-    <div class="col-sm-12">
-        <h4 class="list-group-item-heading">{{ section.title }}</h4>
-    </div>
+<a name="{{section.slug}}"></a>
+{% if section.image %}
+    {% image section.image width-790 %}
+{% else %}
+    <img src="http://placehold.it/790x440">
+{% endif %}
+<h4 class="list-group-item-heading">{{ section.title }}</h4>
+<div class="list-group-item-body">
+{{ section.body|safe}}
 </div>

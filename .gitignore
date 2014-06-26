@@ -8,3 +8,4 @@
 backups
 logs
 *.dump
+.DS_Store
