@@ -5,3 +5,35 @@ body {
   color: $primary-color;
 }
 
+//
+// h e a d e r  /  f o o t e r
+//
+#header { margin-bottom: 30px; }
+#footer { margin-top: 30px; }
+
+#header .brand {
+	padding-top: 20px;
+	height: 140px;
+}
+
+.menu-bar {
+	background-color: $crop-med-blue;
+}
+
+.menu-bar .menu {
+	display: inline;
+}
+
+.menu-bar .menu a,
+.menu-bar .menu a:visited {
+	color: white;
+}
+
+.menu-bar .menu a:hover {
+	text-decoration: none;
+	color: $crop-blue;
+}
+
+.language-toggle form {
+	display: inline;
+}
