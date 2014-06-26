@@ -49,7 +49,7 @@ class EnglishLinkBlockPlacement(models.Model):
     verbose_name_plural = "English Home Page links"
 
   panels = [
-    PageChooserPanel('page', 'demo.EnglishHomePage'),
+    #PageChooserPanel('page', 'demo.EnglishHomePage'),
     SnippetChooserPanel('linkBlock', LinkBlock),
   ]
 
@@ -75,6 +75,4 @@ class SpanishLinkBlockPlacement(models.Model):
     return self.page.title + " -> " + self.linkBlock.text
 
 register_snippet(SpanishLinkBlockPlacement)
-
-
 

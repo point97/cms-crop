@@ -1,5 +1,7 @@
 {% for section in sections %}
-    {% include "demo/includes/section_page_item.html" %}
+    <div class="row">
+        {% include "demo/includes/section_page_item.html" %}
+    </div>
 {% empty %}
     No sections found
 {% endfor %}

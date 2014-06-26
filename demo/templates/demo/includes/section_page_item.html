@@ -2,15 +2,20 @@
 
 {# Individual section - used on homepage for sections #}
 
+<div class="col-md-9 col-sm-9 main-content">
+    <a class="list-group-item" href="#{{section.slug}}">
+        {% if section.image %}
+            {% image section.image width-790 %}
+        {% else %}
+            <img src="http://placehold.it/790x440">
+        {% endif %}
+        <h4 class="list-group-item-heading">{{ section.title }}</h4>
+        <div class="list-group-item-body">
+        {{ section.body|safe}}
+        </div>
+    </a>
+</div>
 
-<a class="list-group-item" href="#{{section.slug}}">
-    {% if section.image %}
-        {% image section.image width-790 %}
-    {% else %}
-        <img src="http://placehold.it/790x440">
-    {% endif %}
-    <h4 class="list-group-item-heading">{{ section.title }}</h4>
-    <div class="list-group-item-body">
-    {{ section.body|safe}}
-    </div>
-</a>
+<div class="col-md-3 col-sm-3 sidebar">
+    {% include "demo/includes/sidebar.html" %}
+</div>
