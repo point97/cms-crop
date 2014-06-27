@@ -5,7 +5,13 @@
 
 
 {% block content %}
-    <div class="row">
+    <div class="row" ng-controller="homepagectrl">
+
+        {% verbatim %}
+        Nothing here {{'yet' + '!'}}
+        Test = {{test}}
+        {% endverbatim %}
+
         <div class="col-md-9 col-sm-9 main-content">
         {% include "demo/includes/carousel.html" with carousel_items=self.carousel_items.all only %}
 
@@ -22,3 +28,4 @@
 
     
 {% endblock %}
+
