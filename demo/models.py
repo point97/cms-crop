@@ -420,7 +420,17 @@ class ExplorePageIndex(MultiLingualPage):
         - catalogs
         """
         out = [ {"topic": topic, "catalogs": topic.catalogs} for topic in self.topics]
-        print out
+        return out
+
+    @property
+    def data_priorities(self):
+        """
+        Returns a list of priorities (ordered according to self.topics). 
+        Each item contains a dict with the kollowing keywords
+        - topic
+        - priorities
+        """
+        out = [ {"topic": topic, "priorities": topic.priorities} for topic in self.topics]
         return out
 
     def get_context(self, request):
@@ -428,7 +438,8 @@ class ExplorePageIndex(MultiLingualPage):
         context = super(ExplorePageIndex, self).get_context(request)
         context.update({
             'topics': self.topics,
-            'data_catalogs': self.data_catalogs
+            'data_catalogs': self.data_catalogs,
+            'data_priorities': self.data_priorities
         })
         return context
 
@@ -461,7 +472,7 @@ class ExploreTopic(MultiLingualPage):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-    subpage_types = ['demo.DataCatalogPage']
+    subpage_types = ['demo.DataCatalogPage', 'demo.DataPriorityPage']
 
     @property
     def topic_index(self):
@@ -473,9 +484,17 @@ class ExploreTopic(MultiLingualPage):
         out = DataCatalogPage.objects.live().descendant_of(self)
         return out
 
+    @property
+    def priorities(self):
+        out = DataPriorityPage.objects.live().descendant_of(self)
+        return out
+
     def get_context(self, request):
         context = super(ExplorePageIndex, self).get_context(request)
-        context['catalogs'] = self.catalogs
+        context.update({
+            'catalogs': self.catalogs,
+            'priorities': self.priorities
+        })
         return context
 
 
@@ -484,6 +503,7 @@ class ExploreTopic(MultiLingualPage):
 
 
 ExploreTopic.content_panels = [
+    FieldPanel('title'),
     FieldPanel('short_description'),
     FieldPanel('long_description'),
     ImageChooserPanel('image'),
@@ -499,7 +519,6 @@ class DataCatalogIndex(MultiLingualPage):
     def get_context(self, request):
         # Update template context
         context = super(DataCatalogIndex, self).get_context(request)
-        
         context.update({})
         return context
 
@@ -508,27 +527,44 @@ class DataCatalogIndex(MultiLingualPage):
 
 
 class DataCatalogPage(DataCatalogIndex):
+    body = RichTextField(blank=True, null=True)
 
     class Meta:
         verbose_name = "Data Catalog Page"
 
 DataCatalogPage.content_panels = [
     FieldPanel('title'),
+    FieldPanel('body')
+
 ]
 
-class DataCatalogItem(MultiLingualPage):
+
+
+class DataPriorityIndex(MultiLingualPage):
     """
-    I don't need
+    Acts as an index for the DataCatelogs which are subpages of ExploreTopics
+
     """
-    @property
-    def _index(self):
-        # Find closest ancestor which is a blog index
-        return self.get_ancestors().type(DataCatalogPage).last()
+    def get_context(self, request):
+        # Update template context
+        context = super(DataPriorityIndex, self).get_context(request)
+        
+        context.update({})
+        return context
 
     class Meta:
-        verbose_name = "Data Catalog Items - you can edit these"
+        verbose_name = "Data Priority Indexes - DO NOT USE"
 
-ExploreTopic.content_panels = [
+
+class DataPriorityPage(DataPriorityIndex):
+    body = RichTextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name = "Data Priority"
+        verbose_name_plural = "Data Priorities"
+
+DataPriorityPage.content_panels = [
     FieldPanel('title'),
+    FieldPanel('body')
 ]
 

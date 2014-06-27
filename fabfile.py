@@ -11,14 +11,14 @@ branch = 'master'
 project = "wagtaildemo"
 app = "wagtaildemo"
 
-env.code_dir = '~/%s' % (app)
+env.code_dir = '/home/vagrant/wagtaildemo'
 
 
 env.root_dir = "/usr/local/apps/%s" % project
 env.venvs = '/usr/local/venv'
-env.virtualenv = '%s/%s' % (env.venvs, project)
+env.virtualenv = '/home/vagrant/.virtualenvs/wagtaildemo'
 env.activate = 'source %s/bin/activate ' % env.virtualenv
-env.code_dir = '%s/%s' % (env.root_dir, app)
+
 env.media_dir = '%s/media' % env.root_dir
 env.key_filename = '~/.ssh/id_rsa'
 
@@ -111,6 +111,13 @@ def restore_db(dump_name):
 
 
 @task
+def runserver():
+    set_env_for_user('vagrant')
+    with cd(env.code_dir):
+        with _virtualenv():
+            _manage_py('runserver 0.0.0.0:8000')
+
+@task
 def restart():
     """
     Reload nginx/gunicorn
@@ -131,9 +138,9 @@ def vagrant(username='vagrant'):
     env.branch = branch
     env.host = '127.0.0.1'
     env.port = data['Port']
-    env.code_dir = '/vagrant/%s' % app
+    env.code_dir = '/home/vagrant/wagtaildemo'
     env.app_dir = '/vagrant'
-    env.venv = '/usr/local/venv/wagtaildemo'
+    env.venv = '/home/vagrant/.virtualenvs/wagtaildemo'
     env.settings = 'config.environments.development'
     env.db_user = 'vagrant'
 

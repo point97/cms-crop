@@ -3,7 +3,7 @@
 {# Individual section - used on homepage for sections #}
 
 <div class="col-md-9 col-sm-9 main-content">
-    <div id="#{{section.slug}}" >
+    <div id="{{section.slug}}" >
         {% if section.image %}
             {% image section.image width-790 %}
         {% else %}
@@ -41,7 +41,7 @@
             {% for topic in section.topics %}    
             <strong>{{topic.title}}</strong>
             <p>{{topic.short_description|safe}}</p>
+            {% endfor %}
         </div>
-        {% endfor %}
     {% endif %}
 </div>
