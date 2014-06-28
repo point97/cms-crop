@@ -5,24 +5,27 @@
 
 
 {% block content %}
-    <div class="row" ng-controller="homepagectrl">
+    <div ng-controller="HomePageCtrl">
+        <div class="row">
 
-        {% verbatim %}
-        Nothing here {{'yet' + '!'}}
-        Test = {{test}}
-        {% endverbatim %}
+            {% verbatim %}
+            $routeParams - {{$routeParams}}
+            $location - {{$location.hash}}
 
-        <div class="col-md-9 col-sm-9 main-content">
-        {% include "demo/includes/carousel.html" with carousel_items=self.carousel_items.all only %}
+            {% endverbatim %}
 
-        {% include "demo/includes/link_blocks.html" %}
+            <div class="col-md-9 col-sm-9 main-content">
+            {% include "demo/includes/carousel.html" with carousel_items=self.carousel_items.all only %}
+
+            {% include "demo/includes/link_blocks.html" %}
+            </div>
+            <div class="col-md-3 col-sm-3 sidebar">
+                Sidebar goes here
+            </div>
+
+
         </div>
-        <div class="col-md-3 col-sm-3 sidebar">
-            Sidebar goes here
-        </div>
 
-    </div>
-    
 
     {% include "demo/includes/page_sections.html" %}
 

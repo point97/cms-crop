@@ -1,7 +1,24 @@
-angular.module('cropApp', [] )
-    .config(function($httpProvider) {
+angular.module('cropApp', ['ngRoute'] )
+    .config(function($httpProvider, $routeProvider, $locationProvider) {
         $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     
-    }).controller('homepagectrl', ['$scope', function ($scope) {
-        $scope.test ="WTF I'm a test";
-}]);
+        $routeProvider
+           .when('/', {
+            templateUrl: ' ',
+            controller: 'HomPageCtrl',
+          })
+           .when('/:section', {
+            template: ' ',
+            controller: 'HomPageCtrl',
+          })
+           .when('/:section/:topic', {
+            template: ' ',
+            controller: 'HomPageCtrl',
+          })
+
+
+
+          
+    
+
+});

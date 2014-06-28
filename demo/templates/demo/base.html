@@ -15,7 +15,8 @@
 
         {# External stylesheets #}
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        
         {# Local static assets such as css, images and javascrpt should be stored at [yourapp]/static/[yourapp]/... #}
         {% compress css %}
             {# Vendor stylesheets stored locally #}
@@ -74,10 +75,10 @@
         <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
-
+         <script src="https://code.angularjs.org/1.2.18/angular-route.min.js"></script>
         {# We don't want to compres the angular stuff #}
         <script src="/static/demo/js/app.js"></script>
-        <!-- <script src="/static/demo/js/HomePageCtrl.js"></script> -->
+        <script src="/static/demo/js/HomePageCtrl.js"></script>
 
         {% compress js %}
             <script src="{% static "demo/js/vendor/jquery.bxslider.min.js" %}"></script>

@@ -1,4 +1,7 @@
-<div id="{{obj.topic.slug}}-catalog-list">
+{% verbatim %}
+{{$routeParams.topic}}
+{% endverbatim %}
+<div id="{{obj.topic.slug}}-priority-list" ng-show="(topic === '{{obj.topic.slug}}' && showDataPriorities)" >
     {% for priority in obj.priorities %}
         <div class="priority-item">
             <h2>{{priority.title}}<small>{{obj.topic.title}}</small></h2>
