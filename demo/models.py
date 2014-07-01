@@ -399,6 +399,7 @@ class ExplorePageIndex(MultiLingualPage):
     Acts as an index life SectionedPage for English and
     Spanish HomePage's
     """
+    body = RichTextField(blank=True, null=True)
     sidebar_title = models.CharField(max_length=255, null=True, blank=True)
 
     @property
@@ -410,8 +411,15 @@ class ExplorePageIndex(MultiLingualPage):
         return topics
 
     @property
-    def pics(self):
-        pics = [topic.image for topic in self.topics]
+    def topic_pics(self):
+        pics = []
+        for topic in self.topics:
+            obj = {'image':topic.image,
+                   'link':"#", 
+                   'caption':topic.title,
+
+                   }
+            pics.append(obj)
         return pics
 
     @property
@@ -463,6 +471,7 @@ class ExploreSectionPage(ExplorePageIndex):
 
 ExploreSectionPage.content_panels = [
         FieldPanel('title'),
+        FieldPanel('body'),
         FieldPanel('sidebar_title'),
     ]
 

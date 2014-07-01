@@ -77,15 +77,21 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
          <script src="https://code.angularjs.org/1.2.18/angular-route.min.js"></script>
         {# We don't want to compres the angular stuff #}
-        <script src="/static/demo/js/app.js"></script>
+<!--         <script src="/static/demo/js/app.js"></script>
         <script src="/static/demo/js/HomePageCtrl.js"></script>
+ -->
+        <script src="{% static "demo/js/app.js" %}"></script>
+        <!-- <script src="{% static "demo/js/directives.js" %}"></script> -->
+        <script src="{% static "demo/js/HomePageCtrl.js" %}"></script>
 
         {% compress js %}
             <script src="{% static "demo/js/vendor/jquery.bxslider.min.js" %}"></script>
             <script src="{% static "demo/js/vendor/fluidvids.js" %}"></script>
+
             {# Custom javascript #}
             {# Local static assets such as css, images and javascrpt should be stored at [yourapp]/static/[yourapp]/... #}
             <script src="{% static "demo/js/main.js" %}"></script>
+            
 
         {% endcompress %}
 

@@ -16,9 +16,4 @@ angular.module('cropApp', ['ngRoute'] )
             controller: 'HomPageCtrl',
           })
 
-
-
-          
-    
-
 });
