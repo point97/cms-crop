@@ -170,6 +170,8 @@ INSTALLED_APPS = (
 )
 
 EMAIL_SUBJECT_PREFIX = '[wagtaildemo] '
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 
 INTERNAL_IPS = ('127.0.0.1', '10.0.2.2')
 
