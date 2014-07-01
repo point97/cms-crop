@@ -13,7 +13,7 @@
             {% endif %}
         {% endif %}
 
-        <div >{% include "demo/includes/carousel.html" with carousel_items=section.topic_pics %}</div>
+        <div carousel >{% include "demo/includes/carousel.html" with carousel_items=section.topic_pics %}</div>
 
         <h4 class="list-group-item-heading">{{ section.title }}</h4>
         <div class="list-group-item-body">{{ section.body|safe}}</div>

@@ -25,4 +25,36 @@ angular.module('cropApp')
             console.log(topic)
             $scope.topic = topic;
         }
-}]);
+}]).directive('carousel', function(){
+    
+    function link(scope, elt, attr){
+        
+        /* Initialise bxSlider */
+        $(elt.find(".bxslider")).bxSlider({
+            captions: true,
+            onSliderLoad: function(){
+                console.log("Slider loaded");
+                scope.nextBtn = elt.find(".bx-next");
+                scope.prevBtn = elt.find(".bx-prev");
+                
+                scope.nextBtn.bind('click', function(e){
+                    console.log('hello from', scope.nextBtn);
+                });
+
+                scope.prevBtn.bind('click', function(e){
+                    console.log('hello from', scope.prevBtn); 
+                });
+            },
+            onSlideNext : function(slideElement, oldIndex, newIndex){
+                console.log(slideElement);
+                console.log(oldIndex);
+                console.log(newIndex);
+            }
+        });    
+    };
+
+    return {
+        
+        link:link
+    };
+});
