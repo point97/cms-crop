@@ -2,14 +2,19 @@
     <div class="row">
         {% include "demo/includes/section_page_item.html" %}
     </div>
+
+    {# This is a hack to get the explore_section bewtween the Learn and Navigate section #}
+    {% if forloop.counter == 1 %}
+        {% for section in explore_sections %}
+            <div class="row">
+                {% include "demo/includes/section_page_item.html" %}
+            </div>
+        {% empty %}
+            No sections found
+        {% endfor %}
+    {% endif %}
+
 {% empty %}
     No sections found
 {% endfor %}
 
-{% for section in explore_sections %}
-    <div class="row">
-        {% include "demo/includes/section_page_item.html" %}
-    </div>
-{% empty %}
-    No sections found
-{% endfor %}

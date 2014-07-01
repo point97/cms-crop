@@ -5,7 +5,9 @@
 <div class="col-md-9 col-sm-9 main-content">
     <div id="{{section.slug}}" >
         
-        {% if not section.topic_pics %}
+        {% if section.topic_pics %}
+            <div carousel topics='topics'>{% include "demo/includes/carousel.html" with carousel_items=section.topic_pics %}</div>
+        {% else %}
             {% if section.image %}
                 {% image section.image width-790 %}
             {% else %}
@@ -13,10 +15,11 @@
             {% endif %}
         {% endif %}
 
-        <div carousel >{% include "demo/includes/carousel.html" with carousel_items=section.topic_pics %}</div>
+
 
         <h4 class="list-group-item-heading">{{ section.title }}</h4>
-        <div class="list-group-item-body">{{ section.body|safe}}</div>
+
+        <div ng-hide='topics.active' class="list-group-item-body">{{ section.body|safe}}</div>
 
         {% if section.data_catalogs %}
         <h1 class="blue" ng-click="showDataCatalogs = (showDataCatalogs === false); ">
@@ -36,18 +39,20 @@
             {% endfor %}
         {% endif %}
     </div>
-
 </div>
 
 
 <div class="col-md-3 col-sm-3 sidebar">
     {% if section.topics %}
         <div class="header">{{ section.sidebar_title }}</div>
-        
+        {% verbatim %}
+        WTF {{ topics.active }}
+        {% endverbatim %}
+
         <div class="content">
             {% for topic in section.topics %}    
-            <div ng-click="setTopic('{{topic.slug}}')" ng-class="{'active':topic === '{{topic.slug}}'}">
-                <i class="fa fa-angle-right" ng-show="topic === '{{ topic.slug }}' " ></i><strong>{{topic.title}}</strong>
+            <div id="{{topic.slug}}" class="topic-menu-item" ng-click="setTopic('{{topic.slug}}')" ng-class="{'active':topics.active === '{{topic.slug}}'}">
+                <i class="fa fa-angle-right" ng-show="topics.active === '{{ topic.slug }}' " ></i><strong>{{topic.title}}</strong>
                 <p>{{topic.short_description|safe}}</p>
             </div>
             {% endfor %}

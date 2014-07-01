@@ -1,5 +1,5 @@
 
-<div id="{{obj.topic.slug}}-catalog-list" ng-show="(topic === '{{obj.topic.slug}}' && showDataCatalogs)">
+<div id="{{obj.topic.slug}}-catalog-list" ng-show="(topics.active === '{{obj.topic.slug}}' && showDataCatalogs)">
     {% for catalog in obj.catalogs %}
         <div class="catalog-item">
             <h2>{{catalog.title}}<small>{{obj.topic.title}}</small></h2>
