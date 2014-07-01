@@ -4,18 +4,21 @@
 
 <div class="col-md-9 col-sm-9 main-content">
     <div id="{{section.slug}}" >
-        {% if section.image %}
-            {% image section.image width-790 %}
-        {% else %}
-            <img src="http://placehold.it/790x440" width="100%">
-        {% endif %}
-        <h4 class="list-group-item-heading">{{ section.title }}</h4>
-        <div class="list-group-item-body">
-        {{ section.body|safe}}
-        </div>
-
         
-        {% include "demo/includes/carousel.html" with carousel_items=self.carousel_items.all only %}
+        {% if not section.pics %}
+            {% if section.image %}
+                {% image section.image width-790 %}
+            {% else %}
+                <img src="http://placehold.it/790x440" width="100%">
+            {% endif %}
+            <h4 class="list-group-item-heading">{{ section.title }}</h4>
+            <div class="list-group-item-body">
+            {{ section.body|safe}}
+            </div>
+        {% endif %}
+
+        {% include "demo/includes/carousel.html" with carousel_items=section.pics %}
+
 
         {% if section.data_catalogs %}
         <h1 class="blue" ng-click="showDataCatalogs = (showDataCatalogs === false); ">
@@ -37,7 +40,6 @@
     </div>
 
 </div>
-
 
 
 <div class="col-md-3 col-sm-3 sidebar">

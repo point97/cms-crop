@@ -45,8 +45,6 @@ COMMON_PANELS = (
 
 
 
-
-
 class LinkFields(models.Model):
     """
     A link field that acts as a base class to the Carousel Item.
@@ -405,11 +403,16 @@ class ExplorePageIndex(MultiLingualPage):
 
     @property
     def topics(self):
-        # Get list of live SectionPages that are descendants of this page
+        # Get list of live ExploreTopic pages that are descendants of this page
         topics = ExploreTopic.objects.live().descendant_of(self)
         # Order by most recent date first
         # topics = topics.order_by('order')
         return topics
+
+    @property
+    def pics(self):
+        pics = [topic.image for topic in self.topics]
+        return pics
 
     @property
     def data_catalogs(self):
@@ -439,7 +442,9 @@ class ExplorePageIndex(MultiLingualPage):
         context.update({
             'topics': self.topics,
             'data_catalogs': self.data_catalogs,
-            'data_priorities': self.data_priorities
+            'data_priorities': self.data_priorities,
+            'pics': self.pics,
+
         })
         return context
 
@@ -565,6 +570,7 @@ class DataPriorityPage(DataPriorityIndex):
 
 DataPriorityPage.content_panels = [
     FieldPanel('title'),
-    FieldPanel('body')
+    FieldPanel('body'),
+    FieldPanel('spanish_link', classname="spanish link")
 ]
 
