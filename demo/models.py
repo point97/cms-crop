@@ -377,12 +377,13 @@ class SectionPage(MultiLingualPage):
 SectionPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('body', classname="full"),
+    ImageChooserPanel('image'),
 ]
 
 SectionPage.promote_panels = [
     FieldPanel('spanish_link', classname="spanish link"),
     MultiFieldPanel(Page.promote_panels, "Common page configuration"),
-    ImageChooserPanel('image'),
+    
 ]
 
 
