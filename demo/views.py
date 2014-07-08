@@ -20,7 +20,7 @@ def _switch_to_lang(request, dest_lang):
     Loading a MultilingualPage is expected to set the session's
     language so that static translations also take affect.
     '''
-    import pdb; pdb.set_trace()
+
     if request.method == 'POST':
         page_id = request.POST.get('requesting_page_id', None)
         if page_id is None:
