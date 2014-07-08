@@ -92,3 +92,10 @@ With PostgreSQL running (and configured to allow you to connect as the 'postgres
 
 
 
+### Wagtail versions
+
+Stable version on cms-crop - -e git://github.com/torchbox/wagtail.git@ccad0d96ed7f87e2b8be290321ae981df893e7c9#egg=wagtail-dev
+
+
+Old version on Wil's vagrant 
+-e git://github.com/torchbox/wagtail.git@765657329e529f828e0bbf0185c162570301a539#egg=wagtail-master
