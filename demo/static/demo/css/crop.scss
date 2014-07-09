@@ -93,27 +93,3 @@ Data Priority Styles
     border-top:2px solid white;
 }
 
-/***********************************************
-Event Calendar Styles
-************************************************/
-
-
-
-.event-calendar {
-    @extend .padding-left;
-    @extend .padding-top;
-
-    th button.btn {
-        border:none;
-        color:$crop-blue;
-    }
-
-    td .btn {
-        background-color: $crop-med-blue;
-        border:none;
-        color:#FFF;
-    }
-}
-
-
-
