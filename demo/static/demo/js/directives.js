@@ -6,7 +6,7 @@ angular.module('cropApp')
     };
 
     return {
-        templateUrl: "/demo/widgets/event_calendar.html",
+        templateUrl: "/static/demo/views/event_calendar.html",
         scope :{},
         link:link
     };
