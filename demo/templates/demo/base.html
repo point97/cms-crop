@@ -88,7 +88,8 @@
         <!-- Angular Directives -->
         
         <script src="{% static "demo/js/directives/AnimateScrollTo.js" %}"></script>
-        <script src="{% static "demo/js/directives.js" %}"></script>
+        <script src="{% static "demo/js/directives/ExploreCarousel.js" %}"></script>
+        <script src="{% static "demo/js/directives/directives.js" %}"></script>
         <!-- Angular Services -->
         <!-- Angular Controllers -->
         <script src="{% static "demo/js/HomePageCtrl.js" %}"></script>
@@ -97,7 +98,7 @@
 
         {% compress js %}
             <script src="{% static "demo/js/vendor/jquery.bxslider.min.js" %}"></script>
-            <!-- <script src="{% static "demo/js/vendor/fluidvids.js" %}"></script> -->
+            <script src="{% static "demo/js/vendor/fluidvids.js" %}"></script>
             <script src="{% static "demo/js/main.js" %}"></script>
         {% endcompress %}
 

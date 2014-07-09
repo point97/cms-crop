@@ -2,12 +2,19 @@
 
 {# Individual section - used on homepage for sections #}
 
-<div class="col-md-9 col-sm-9 main-content">
+<div class="col-md-8 col-sm-8 main-content">
     <div id="{{section.slug}}" name="{{section.slug}}">
 
         {% if section.topic_pics %}
-            <div carousel topics='topics'>{% include "demo/includes/carousel.html" with carousel_items=section.topic_pics %}</div>
+            {# Used on the Explore page #}
+            <div class="explore-carousel" explore-carousel topics='topics'>{% include "demo/includes/carousel.html" with carousel_items=section.topic_pics %}</div>
+        {% elif section.carousel_items %}
+            {# Used on the Learn page #}
+            <div class="not-explore-carousel">
+            {% include "demo/includes/carousel.html" with carousel_items=section.carousel_items.all only %}
+            </div>
         {% else %}
+            {# Used on the Navigation page #}
             {% if section.image %}
                 {% image section.image width-790 %}
             {% else %}
@@ -40,7 +47,7 @@
 </div>
 
 
-<div class="col-md-3 col-sm-3 sidebar">
+<div class="col-md-4 col-sm-4 sidebar">
     {% if section.topics %}
         <div class="header">{{ section.sidebar_title }}</div>
         {% verbatim %}
