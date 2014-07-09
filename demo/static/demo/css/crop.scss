@@ -26,6 +26,10 @@ Surgical Classes
     padding-top:$gutter;
 }
 
+.section-margin {
+    margin-bottom:90px;
+}
+
 
 
 /***********************************************
@@ -44,6 +48,7 @@ Explore Sidebar Styles
 
 .sidebar {
     font:$crop-green;
+    background-color: #fff;
 }
 
 .sidebar .header {
@@ -89,3 +94,4 @@ Data Priority Styles
 .priority-item {
     border-top:2px solid white;
 }
+

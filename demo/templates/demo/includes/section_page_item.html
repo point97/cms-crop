@@ -50,9 +50,6 @@
 <div class="col-md-4 col-sm-4 sidebar">
     {% if section.topics %}
         <div class="header">{{ section.sidebar_title }}</div>
-        {% verbatim %}
-        WTF {{ topics.active }}
-        {% endverbatim %}
 
         <div class="content">
             {% for topic in section.topics %}    
@@ -62,7 +59,7 @@
             </div>
             {% endfor %}
         </div>
-    {% else %}
+    {% elif section.slug == 'learn' %}
 
         <div eventcalendar></div>
 

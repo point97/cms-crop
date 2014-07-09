@@ -1,0 +1,46 @@
+/***********************************************
+Event Calendar Styles
+************************************************/
+
+.event-calendar {
+    @extend .padding-left;
+    @extend .padding-top;
+
+    th button.btn {
+        border:none;
+        color:$crop-blue;
+    }
+
+    td {
+        padding:1px;
+        .btn {
+            background-color: $crop-med-blue;
+            border:none;
+            color:#FFF;
+            border-radius:0;
+        }
+        .btn.active {
+                background-color: $crop-green;
+        }
+    }
+
+    .events {
+        p {
+            margin-bottom:0;
+        }
+
+        .event-list-item {
+            margin-bottom: $small-gutter;
+        
+        }
+
+        .event-link {
+            color:$crop-green;
+        }
+
+        .event-date {
+            color:$crop-gray;
+        }
+    }
+}
+
