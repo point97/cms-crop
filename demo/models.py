@@ -689,6 +689,7 @@ class EventPage(MultiLingualPage):
     audience = models.CharField(max_length=255, choices=EVENT_AUDIENCE_CHOICES, default="public")
     location = models.CharField(max_length=255, blank=True, help_text="help me")
     body = RichTextField(blank=True)
+    short_description = models.CharField(max_length=255, blank=True, help_text="")
     cost = models.CharField(max_length=255, blank=True)
     signup_link = models.URLField(blank=True)
     feed_image = models.ForeignKey(
@@ -726,12 +727,13 @@ class EventPage(MultiLingualPage):
 
 EventPage.content_panels = [
     FieldPanel('title', classname="full title"),
+    FieldPanel('short_description'),
     FieldPanel('date_from'),
     FieldPanel('date_to'),
     FieldPanel('time_from'),
     FieldPanel('time_to'),
     FieldPanel('location'),
-    FieldPanel('audience'),
+    #FieldPanel('audience'),
     FieldPanel('cost'),
     FieldPanel('signup_link'),
     InlinePanel(EventPage, 'carousel_items', label="Carousel items"),

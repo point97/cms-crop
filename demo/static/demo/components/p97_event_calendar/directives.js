@@ -1,8 +1,7 @@
 angular.module('cropApp')
-    .directive('eventcalendar', function(){
+    .directive('eventcalendar', function($http){
 
-
-    function calCtrl($scope){
+    function calCtrl($scope, $http){
         $scope.cal = {}
         $scope.cal.active_date = '';
 
@@ -32,7 +31,16 @@ angular.module('cropApp')
             }
         ];
 
+        $scope.get_events = function(date) {
+            $http({method:'GET', url:'/api/v1/event/?format=json' })
+                .success(function(data){
+                    $scope.events = data.objects;
+                }).error(function(data, status){
+                    console.log("Opps we errored out on events.")
+                });
+        }
         
+        $scope.get_events('');
     }
 
     return {

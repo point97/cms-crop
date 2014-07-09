@@ -23,8 +23,8 @@ angular.module('cropApp')
             $scope.setTopic(topic_slug);
         });
 
-        $scope.$watch('topics.activeTopic', function(newValue){
-            console.log("[HomeCtrl]" + newValue)
-        });
+        // $scope.$watch('topics.activeTopic', function(newValue){
+        //     console.log("[HomeCtrl]" + newValue)
+        // });
 
 }]);
