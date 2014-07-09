@@ -93,17 +93,44 @@ h2 {
 	text-align: right;
 }
 
-// footer social links
-#footer .menu.social a {
+// header/footer social links
+.social a img {
+    // Hide the img tag knowing that it will be turned into an svg
+    // tag that is stylable (done in javascript for any img tag with
+    // 'svg' in the class attribute).
+    display: none;
+}
+.social a {
     margin-right: 5px;
 }
-#footer .menu.social a svg {
+.social a svg,
+.social a img {
     height: 20px;
     width: 20px;
 }
-#footer .menu.social a svg path {
+.social a svg path {
     fill: white;
 }
-#footer .menu.social a:hover svg path {
-    fill: $crop-blue;
+
+#header .social a svg,
+#header .social a img {
+    height: 25px;
+    width: 25px;
 }
+#header .social a.twitter svg path {
+    fill: #55ACEE;
+}
+#header .social a.facebook svg path {
+    fill: #4C66A4;
+}
+#header .social a.google-plus svg path {
+    fill: #D73D32;
+}
+#header .social a.rss svg path {
+    fill: #FF6600;
+}
+
+.social a:hover svg path {
+    fill: $crop-blue !important;
+}
+

@@ -10,9 +10,30 @@
 
             <div class="search-wrapper">
                 <ul class="list-unstyled list-inline social">
-                    <li><a href="javascript:void(0)">F</a></li>
-                    <li><a href="javascript:void(0)">T</a></li>
-                    <li><a href="javascript:void(0)">R</a></li>
+                    <li>
+                        <a href="http://twitter.com" class="twitter">
+                            <img class="svg svg-link"
+                                 src="{% static "demo/images/social-icons-svg/43-twitter.svg" %}">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://facebook.com" class="facebook">
+                            <img class="svg svg-link"
+                                 src="{% static "demo/images/social-icons-svg/46-facebook.svg" %}">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://googleplus.com" class="google-plus">
+                            <img class="svg svg-link"
+                                 src="{% static "demo/images/social-icons-svg/80-google-plus.svg" %}">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="rss">
+                            <img class="svg svg-link"
+                                 src="{% static "demo/images/social-icons-svg/60-rss.svg" %}">
+                        </a>
+                    </li>
                 </ul>
                 <div class="search-box">
                     {% block search_box %}
