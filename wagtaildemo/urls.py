@@ -18,6 +18,14 @@ from wagtail.wagtailredirects import urls as wagtailredirects_urls
 
 from demo import urls as demo_urls
 
+from tastypie.api import Api
+from demo.api import EventPageResource
+v1_api = Api(api_name='v1')
+v1_api.register(EventPageResource())
+
+
+
+
 admin.autodiscover()
 
 
@@ -46,7 +54,7 @@ urlpatterns = patterns('',
     # For the set language form.
     (r'^switchlang/', include(demo_urls)),
     (r'^i18n/', include('django.conf.urls.i18n')),
-
+    (r'^api/', include(v1_api.urls)),
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's serving mechanism
     url(r'', include(wagtail_urls)),

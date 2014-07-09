@@ -366,6 +366,9 @@ SpanishHomePage.promote_panels = [
 # Section page
 #
 
+class SectionPageCarouselItem(Orderable, CarouselItem):
+    page = ParentalKey('demo.SectionPage', related_name='carousel_items')
+
 class SectionPage(MultiLingualPage):
     body = RichTextField()
     image = models.ForeignKey(
@@ -392,6 +395,7 @@ SectionPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('body', classname="full"),
     ImageChooserPanel('image'),
+    InlinePanel(SpanishHomePage, 'carousel_items', label="Carousel items"),
 ]
 
 SectionPage.promote_panels = [
