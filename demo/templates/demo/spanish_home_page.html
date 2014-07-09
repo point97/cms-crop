@@ -1,11 +1,2 @@
-{% extends "demo/base.html" %}
 
-{% block content %}
-
-    {% include "demo/includes/carousel.html" with carousel_items=self.carousel_items.all only %}
-
-    {% include "demo/includes/link_blocks.html" %}
-
-
-    {% include "demo/includes/page_sections.html" %}
-{% endblock %}
+{% extends "demo/base_sectioned_home_page.html" %}

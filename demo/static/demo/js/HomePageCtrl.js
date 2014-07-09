@@ -1,11 +1,6 @@
 angular.module('cropApp')
-    .controller('HomePageCtrl', [  '$scope', '$route', '$routeParams', '$location', '$anchorScroll',
-                                 function ($scope, $route, $routeParams, $location, $anchorScroll) {  
+    .controller('HomePageCtrl', [  '$scope', function ($scope) {
         $scope.test ="WTF I'm a test 2";
-        
-        $scope.$route = $route;
-        $scope.$location = $location;
-        $scope.$routeParams = $routeParams;
 
         $scope.topics = {};
         $scope.topics.active = '';
@@ -15,16 +10,6 @@ angular.module('cropApp')
 
         $scope.showDataCatalogs = false;
         $scope.showDataPriorities = false;
-
-
-        $scope.$watch('$routeParams', function(newValue){
-            console.log(newValue)
-            if (newValue.section){
-                $location.hash(newValue.section);
-                $anchorScroll();
-            }
-
-        }, 'true');
 
         $scope.setTopic = function(topic){
             console.log("Changing to "+topic);
@@ -43,9 +28,9 @@ angular.module('cropApp')
         });
 
 }]).directive('carousel', function(){
-    
+
     function link(scope, elt, attr){
-        
+
         /* Initialise bxSlider */
         window.slider = $(elt.find(".bxslider")).bxSlider({
             captions: true,
@@ -53,13 +38,13 @@ angular.module('cropApp')
                 console.log("Slider loaded");
                 scope.nextBtn = elt.find(".bx-next");
                 scope.prevBtn = elt.find(".bx-prev");
-                
+
                 scope.nextBtn.bind('click', function(e){
                     console.log('hello from', scope.nextBtn);
                 });
 
                 scope.prevBtn.bind('click', function(e){
-                    console.log('hello from', scope.prevBtn); 
+                    console.log('hello from', scope.prevBtn);
                 });
             },
             onSlideNext : function(slideElement, oldIndex, newIndex){
@@ -69,17 +54,17 @@ angular.module('cropApp')
                 scope.$emit('sdlideChange', newIndex)
             }
         });
-        debugger
+
 
         scope.$watch('topics.active', function(newValue){
-            
+
             if (newValue){
                 console.log("Active topic changed "+newValue);
                 var index = _.indexOf(scope.topics.slugs, newValue);
                 console.log("Changing to slide "+index);
                 window.slider.goToSlide(index);
             }
-            
+
         });
     };
 
