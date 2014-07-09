@@ -69,7 +69,6 @@ angular.module('cropApp')
                 scope.$emit('sdlideChange', newIndex)
             }
         });
-        debugger
 
         scope.$watch('topics.active', function(newValue){
             

@@ -167,6 +167,7 @@ INSTALLED_APPS = (
     'wagtail.wagtailredirects',
 
     'demo',
+    'tastypie'
 )
 
 EMAIL_SUBJECT_PREFIX = '[wagtaildemo] '
