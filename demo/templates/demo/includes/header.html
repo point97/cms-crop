@@ -52,12 +52,24 @@
                     <form id="switchlang-en" action="/switchlang/en" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="requesting_page_id" value="{{self.id}}">
-                        <a href="javascript:document.getElementById('switchlang-en').submit();">English</a>
+                        <a class="switchlang"
+                            href="javascript:document.getElementById('switchlang-en').submit();">
+                            <svg class="switchlang-circle">
+                                <circle cx="9" cy="12" r="6"/>
+                            </svg>
+                            English
+                        </a>
                     </form>
                     <form id="switchlang-es" action="/switchlang/es" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="requesting_page_id" value="{{self.id}}">
-                        <a href="javascript:document.getElementById('switchlang-es').submit();">Español</a>
+                        <a class="switchlang"
+                            href="javascript:document.getElementById('switchlang-es').submit();">
+                            <svg class="switchlang-circle">
+                                <circle cx="9" cy="12" r="6"/>
+                            </svg>
+                            Español
+                        </a>
                     </form>
                 </div>
                 <div class="col-sm-9 menu menu-right">

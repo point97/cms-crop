@@ -78,8 +78,23 @@ h2 {
 	color: $crop-blue;
 }
 
+// Language switch links
 .language-toggle form {
 	display: inline;
+}
+a.switchlang {
+    font-size: 14px;
+    font-weight: 100;
+}
+a.switchlang svg.switchlang-circle {
+    height: 18px;
+    width: 18px;
+}
+a.switchlang svg.switchlang-circle circle {
+    fill: white;
+}
+a.switchlang:hover svg.switchlang-circle circle {
+    fill: $crop-blue;
 }
 
 
@@ -111,7 +126,6 @@ h2 {
 .social a svg path {
     fill: white;
 }
-
 #header .social a svg,
 #header .social a img {
     height: 25px;
@@ -129,7 +143,6 @@ h2 {
 #header .social a.rss svg path {
     fill: #FF6600;
 }
-
 .social a:hover svg path {
     fill: $crop-blue !important;
 }
