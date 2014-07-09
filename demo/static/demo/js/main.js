@@ -69,3 +69,36 @@ $(document).ready(function () {
 
     });
 });
+
+$(window).bind("load", function() {
+    // Window load event used just in case window height is dependant upon images
+    // From http://css-tricks.com/snippets/jquery/jquery-sticky-footer/
+
+       var footerHeight = 0,
+           footerTop = 0,
+           $footer = $("#footer");
+
+       positionFooter();
+
+       function positionFooter() {
+
+                footerHeight = $footer.height();
+                footerTop = ($(window).height()-footerHeight)+"px";
+
+               if ( ($(document.body).height()+footerHeight) < $(window).height()) {
+                   $footer.css({
+                        position: "absolute",
+                        top: footerTop,
+                        left: 0,
+                        right: 0
+                   });
+               } else {
+                   $footer.css({
+                        position: "static"
+                   })
+               }
+
+       }
+
+       $(window).resize(positionFooter)
+});
