@@ -80,8 +80,7 @@
         <script src="{% static "demo/js/vendor/ui-bootstrap-tpls-0.11.0.min.js" %}"></script>
         
         {# Custom javascript #}
-        {# Local static assets such as css, images and javascrpt
-           should be stored at [yourapp]/static/[yourapp]/... #}
+        {# Local static assets such as css, images and javascrpt should be stored at [yourapp]/static/[yourapp]/... #}
         {# ...we don't want to compres the angular stuff for now #}
         <!-- Angular App -->
         <script src="{% static "demo/js/app.js" %}"></script>
@@ -97,7 +96,7 @@
         
 
         {% compress js %}
-            <!-- <script src="{% static "demo/js/vendor/jquery.bxslider.min.js" %}"></script> -->
+            <script src="{% static "demo/js/vendor/jquery.bxslider.min.js" %}"></script>
             <!-- <script src="{% static "demo/js/vendor/fluidvids.js" %}"></script> -->
             <script src="{% static "demo/js/main.js" %}"></script>
         {% endcompress %}
