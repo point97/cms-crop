@@ -3,8 +3,8 @@
 {# Individual section - used on homepage for sections #}
 
 <div class="col-md-9 col-sm-9 main-content">
-    <div id="{{section.slug}}" name="{{section.slug}}" >
-        
+    <div id="{{section.slug}}" name="{{section.slug}}">
+
         {% if section.topic_pics %}
             <div carousel topics='topics'>{% include "demo/includes/carousel.html" with carousel_items=section.topic_pics %}</div>
         {% else %}
