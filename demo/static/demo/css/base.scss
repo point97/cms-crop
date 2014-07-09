@@ -93,3 +93,17 @@ h2 {
 	text-align: right;
 }
 
+// footer social links
+#footer .menu.social a {
+    margin-right: 5px;
+}
+#footer .menu.social a svg {
+    height: 20px;
+    width: 20px;
+}
+#footer .menu.social a svg path {
+    fill: white;
+}
+#footer .menu.social a:hover svg path {
+    fill: $crop-blue;
+}
