@@ -26,7 +26,9 @@ Surgical Classes
     padding-top:$gutter;
 }
 
-
+.section-margin {
+    margin-bottom:90px;
+}
 
 /***********************************************
 Link Block Styles
@@ -44,6 +46,7 @@ Explore Sidebar Styles
 
 .sidebar {
     font:$crop-green;
+    background-color: #fff;
 }
 
 .sidebar .header {
@@ -88,6 +91,28 @@ Data Priority Styles
 
 .priority-item {
     border-top:2px solid white;
+}
+
+/***********************************************
+Event Calendar Styles
+************************************************/
+
+
+
+.event-calendar {
+    @extend .padding-left;
+    @extend .padding-top;
+
+    th button.btn {
+        border:none;
+        color:$crop-blue;
+    }
+
+    td .btn {
+        background-color: $crop-med-blue;
+        border:none;
+        color:#FFF;
+    }
 }
 
 

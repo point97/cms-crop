@@ -91,6 +91,12 @@ With PostgreSQL running (and configured to allow you to connect as the 'postgres
     ./manage.py runserver
 
 
+## Troubleshooting
+
+### CSS files not updating.
+Django comrpessor should autmoatically recompress css files on page load. If your CSS changes are not showing up, this may be becuase there duplicates of the css files in the /static/. To fix delete everything in /static/ and then refresh your browser. There should only be CACHE/css in there. 
+
+
 
 ### Wagtail versions
 

@@ -1,3 +1,5 @@
+
+
 @import 'variables';
 
 
@@ -5,6 +7,7 @@ body {
   font-family: $font-stack;
   color: $primary-color;
   background-color:$crop-background-blue;
+  
 }
 
 h1 {
@@ -33,8 +36,6 @@ h2 {
     text-transform:uppercase;
 }
 
-
-@import 'crop';
 
 //
 // h e a d e r  /  f o o t e r
@@ -93,3 +94,5 @@ h2 {
 	text-align: right;
 }
 
+
+@import 'crop';

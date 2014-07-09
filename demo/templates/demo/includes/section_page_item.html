@@ -43,9 +43,6 @@
 <div class="col-md-3 col-sm-3 sidebar">
     {% if section.topics %}
         <div class="header">{{ section.sidebar_title }}</div>
-        {% verbatim %}
-        WTF {{ topics.active }}
-        {% endverbatim %}
 
         <div class="content">
             {% for topic in section.topics %}    
