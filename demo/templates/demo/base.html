@@ -77,21 +77,24 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
         <script src="https://code.angularjs.org/1.2.18/angular-route.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
-        {# We don't want to compres the angular stuff #}
 
+        {# Custom javascript #}
+        {# Local static assets such as css, images and javascrpt
+           should be stored at [yourapp]/static/[yourapp]/... #}
+        {# ...we don't want to compres the angular stuff for now #}
+        <!-- Angular App -->
         <script src="{% static "demo/js/app.js" %}"></script>
+        <!-- Angular Directives -->
+        <script src="{% static "demo/js/directives/AnimateScrollTo.js" %}"></script>
         <!-- <script src="{% static "demo/js/directives.js" %}"></script> -->
+        <!-- Angular Services -->
+        <!-- Angular Controllers -->
         <script src="{% static "demo/js/HomePageCtrl.js" %}"></script>
 
         {% compress js %}
-            <script src="{% static "demo/js/vendor/jquery.bxslider.min.js" %}"></script>
-            <script src="{% static "demo/js/vendor/fluidvids.js" %}"></script>
-
-            {# Custom javascript #}
-            {# Local static assets such as css, images and javascrpt should be stored at [yourapp]/static/[yourapp]/... #}
+            <!-- <script src="{% static "demo/js/vendor/jquery.bxslider.min.js" %}"></script> -->
+            <!-- <script src="{% static "demo/js/vendor/fluidvids.js" %}"></script> -->
             <script src="{% static "demo/js/main.js" %}"></script>
-            
-
         {% endcompress %}
 
         {% block extra_js %}{% endblock %} {# Override this block in individual templates in order to add javascript on a template by template basis #}
