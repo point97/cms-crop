@@ -52,7 +52,7 @@ h2 {
         padding-top: 20px;
         height: 140px;
 
-        @media (max-width: 991px) {
+        @media (max-width: $sm-max) {
             height: 110px;
             img {
                 width: 450px;
