@@ -1,7 +1,7 @@
 <div class="events">
     <div class="event-date">{{date | date:'fullDate' }}</div>
     <div ng-repeat="event in events" class="event-list-item" >
-        <a class="event-link" >
+        <a class="event-link" href="{{event.url_path}}">
         <p><strong>{{ event.title }}</strong></p>
         <p>{{ event.short_description }}</p>
         </a>

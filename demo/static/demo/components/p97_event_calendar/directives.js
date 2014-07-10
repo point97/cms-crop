@@ -1,5 +1,5 @@
 angular.module('cropApp')
-    .directive('eventcalendar', function($http){
+    .directive('eventCalendar', function($http){
 
     function calCtrl($scope, $http){
         $scope.cal = {}
@@ -13,23 +13,7 @@ angular.module('cropApp')
         $scope.cal.active_date = $scope.dt;
 
         // Get the first 5 events.
-        $scope.events = [
-            {
-                date_from:'2014-07-17', 
-                date_to:'2014-07-18', 
-                title:'Title goes here', 
-                short_description :'Short description goes here', 
-                location:'It happens here', 
-                body: "Body text goes here."
-            },{
-                date_from:'2014-07-19', 
-                date_to:'2014-07-18', 
-                title:'Title goes here 2', 
-                short_description :'Short description goes here 2', 
-                location:'It happens here 2', 
-                body: "Body text goes here. 2"
-            }
-        ];
+        $scope.events = [];
 
         $scope.get_events = function(date) {
             $http({method:'GET', url:'/api/v1/event/?format=json' })
@@ -48,9 +32,18 @@ angular.module('cropApp')
         scope :{},
         controller:calCtrl
     };
-}).directive('eventslist', function(){
+}).directive('eventsList', function(){
+    /*
+    Inputs:
+        date - [String] ISO 8601 Date
+        events - A list of event objects to display. Each event has keywords:
+                title
+                short_description
+                url_path: A link to the event page.
+
+    */
     return {
-        require: '^eventcalendar',
+        require: '^eventCalendar',
         restrict: 'AE',
         transclude: true,
         scope: {
