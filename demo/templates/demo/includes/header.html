@@ -72,13 +72,43 @@
                         </a>
                     </form>
                 </div>
-                <div class="col-sm-9 menu menu-right">
-                    <ul class="list-unstyled list-inline">
+                <div class="col-sm-9 menu-right">
+                    <ul class="menu list-unstyled list-inline">
                         <li><a animate-scroll-to="learn" href="">LEARN</a></li>
                         <li><a animate-scroll-to="explore" href="">EXPLORE</a></li>
                         <li><a animate-scroll-to="navigate" href="">NAVIGATE</a></li>
                         <li><a href="{% home_url %}/signup">SIGN UP / LOGIN</a></li>
                     </ul>
+                    <div id="cropDropdownMenuWrapper" class="dropdown">
+                        <!-- <button
+                            type="button"
+                            id="cropDropdownMenuLink"
+                            class="dropdown-toggle"
+                            data-toggle="dropdown">
+                            <span class="sr-only">Toggle Navigation</span>
+                            <span class="hamburger-char">&#9776;</span>
+                        </button> -->
+                        <a  id="cropDropdownMenuLink"
+                            class="dropdown-toggle"
+                            href="javascript:void(0)">
+                            <span class="sr-only">Toggle Navigation</span>
+                            <span class="hamburger-char">&#9776;</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            <li><a href="{% home_url %}/about">ABOUT US</a></li>
+                            <li><a href="{% home_url %}/contact">CONTACT US</a></li>
+                            <li><a href="{% home_url %}/#learn">LEARN</a></li>
+                            <li><a href="{% home_url %}/#explore">EXPLORE</a></li>
+                            <li><a href="{% home_url %}/#navigate">NAVIGATE</a></li>
+                            <li><a href="#">DATA</a></li>
+                            <li><a href="{% home_url %}/calendar">CALENDAR</a></li>
+                            <li><a href="{% home_url %}/news">NEWS</a></li>
+                            <li><a href="{% home_url %}/search">SEARCH</a></li>
+                            <li><a href="#">SIGN UP / LOGIN</a></li>
+                            <li><a href="#">SITE MAP</a></li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </div>

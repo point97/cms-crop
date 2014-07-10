@@ -52,6 +52,7 @@ h2 {
 	height: 140px;
 }
 
+// header and footer menu
 .menu-bar {
 	background-color: $crop-med-blue;
 	height: $menu-bar-height;
@@ -59,13 +60,19 @@ h2 {
 
 .menu-bar .menu {
 	display: inline;
-	margin-top: 20px;
 	font-size: 16px;
 	font-weight: 700;
 	letter-spacing: 1px;
+    padding-top: $menu-margin-top;
+    white-space: nowrap;
 }
 .menu-bar .menu-right {
 	text-align: right;
+    white-space: nowrap;
+    padding-right: 0;
+}
+.menu-bar .menu-right > ul {
+    display: inline-block;
 }
 
 .menu-bar .menu a,
@@ -79,7 +86,60 @@ h2 {
 	color: $crop-blue;
 }
 
+// Hamburger Menu
+#cropDropdownMenuWrapper {
+    background-color: $crop-blue;
+    color: $crop-gray;
+    height: $menu-bar-height;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+
+    a.dropdown-toggle {
+        color: $crop-background-blue;
+        text-decoration: none;
+
+        .hamburger-char {
+            font-size: 55px;
+            line-height: 60px;
+            padding-left:10px;
+            padding-right: 10px;
+        }
+
+        &:hover {
+            // color: $crop-cyan;
+            color: $crop-med-blue;
+            text-decoration: none;
+        }
+    }
+
+    .dropdown-menu {
+        width: 400px;
+        background-color: $crop-menu-blue;
+        border-radius: 0;
+        margin-top: 0;
+        padding-top: 30px;
+        padding-bottom: 20px;
+        a {
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 45px;
+            color: $crop-blue;
+            padding-left: 50px;
+
+            &:hover {
+                background-color: $crop-med-blue;
+                color: white;
+            }
+        }
+    }
+}
+
+
 // Language switch links
+.language-toggle {
+    white-space: nowrap;
+}
 .language-toggle form {
 	display: inline;
 }
