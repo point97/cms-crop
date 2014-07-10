@@ -3,21 +3,37 @@
 {% if self.linkblock_placements %}
   <div class="row margin-top">
   {% for linkblock_placement in self.linkblock_placements.all %}
-    <div class="col-md-6 col-sm-6">
+    <!-- <div class="col-md-6 col-sm-6"> -->
         {% with linkblock_placement.linkBlock as obj %}
-            <div class="link-block">
-              {% if obj.image %}
-                  {% image obj.image height-220 %}
-              {% else %}
-                  <img src="http://placehold.it/380x220">
-              {% endif %}
+            <div class="link-block col-md-6 col-sm-6 col-xs-12">
               <a href="{{ obj.url }}">
+
+                <div class="hidden-xs">
+                  {% if obj.image %}
+                    {% image obj.image fill-365x220 as imgdata %}
+                    <img class="img-responsive" src="{{ imgdata.url }}">
+                    <!-- width="{{ imgdata.width }}" height="{{ imgdata.height }}" -->
+                  {% else %}
+                    <img src="http://placehold.it/380x220">
+                  {% endif %}
+                </div>
+
+                <div class="visible-xs-inline-block">
+                  {% if obj.image %}
+                    {% image obj.image width-700 as imgdata %}
+                    <img class="img-responsive" src="{{ imgdata.url }}">
+                  {% else %}
+                    <img src="http://placehold.it/380x220">
+                  {% endif %}
+                </div>
+
                 <h1>{{ obj.title }}</h1>
                 <p>{{ obj.text }}</p>
+
               </a>
           </div>
         {% endwith %}
-    </div>
+    <!-- </div> -->
   {% endfor %}
   </div>
 {% endif %}
