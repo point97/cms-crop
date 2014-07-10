@@ -1,5 +1,6 @@
-<div class="events">
-    <div class="event-date">{{date | date:'fullDate' }}</div>
+<div class="events" >
+    <div class="event-date">{{dt | date:'fullDate' }}</div>
+    {{cal.range[0] | date:'fullDate' }} - {{cal.range[1] | date:'fullDate' }}
     <div ng-repeat="event in events" class="event-list-item" >
         <a class="event-link" href="{{event.url_path}}">
         <p><strong>{{ event.title }}</strong></p>

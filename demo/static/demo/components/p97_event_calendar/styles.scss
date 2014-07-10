@@ -6,6 +6,9 @@ Event Calendar Styles
     @extend .padding-left;
     @extend .padding-top;
 
+    table {
+        width:100%;
+    }
     th button.btn {
         border:none;
         color:$crop-blue;
@@ -28,6 +31,9 @@ Event Calendar Styles
     }
 
     .events {
+        border-top:2px solid $crop-med-blue;
+        padding-top:$small-gutter;
+        margin-top:$small-gutter;
         p {
             margin-bottom:0;
         }
@@ -43,6 +49,8 @@ Event Calendar Styles
 
         .event-date {
             color:$crop-gray;
+            text-transform:uppercase;
+
         }
     }
 }
