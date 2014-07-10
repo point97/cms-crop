@@ -3,16 +3,16 @@
     <div class="menu-bar"> {# menu-bar spans the full width of the browser #}
         <div class="container">
             <div class="row">
-                <div class="col-sm-9 menu hidden-xs ">
+                <div class="col-sm-9 menu hidden-xs">
                     <ul class="menu list-unstyled list-inline">
                         <li><a href="{% home_url %}/about">ABOUT US</a></li>
                         <li><a href="{% home_url %}/contact">CONTACT US</a></li>
                         <li><a href="{% home_url %}/data">DATA</a></li>
                         <li><a href="{% home_url %}/calendar">CALENDAR</a></li>
-                        <li><a href="{% home_url %}/marine-planner">MARINE PLANNER</a></li>
+                        <li class="hidden-sm"><a href="{% home_url %}/marine-planner">MARINE PLANNER</a></li>
                     </ul>
                 </div>
-                <div class="col-sm-3 col-xs-12 menu-right">
+                <div class="col-md-3 col-sm-3 col-xs-12 menu-right">
                     <ul class="menu list-unstyled list-inline social">
                         <li>
                             <a href="http://twitter.com">

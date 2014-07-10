@@ -49,23 +49,20 @@ h2 {
     .brand {
         padding-top: 20px;
         height: 140px;
-    }
-}
 
-@media (max-width: 991px) {
-    #header .brand {
-        height: 110px;
-    }
-    #header .brand img {
-        width: 450px;
-    }
-}
-@media (max-width: 468px) {
-    #header .brand {
-        height: 95px;
-    }
-    #header .brand img {
-        width: 380px;
+        @media (max-width: 991px) {
+            height: 110px;
+            img {
+                width: 450px;
+            }
+        }
+
+        @media (max-width: 468px) {
+            height: 95px;
+            img {
+                width: 380px;
+            }
+        }
     }
 }
 
@@ -165,28 +162,18 @@ h2 {
 a.switchlang {
     font-size: 14px;
     font-weight: 100;
-}
-a.switchlang svg.switchlang-circle {
-    height: 18px;
-    width: 18px;
-}
-a.switchlang svg.switchlang-circle circle {
-    fill: white;
-}
-a.switchlang:hover svg.switchlang-circle circle {
-    fill: $crop-blue;
+    svg.switchlang-circle {
+        height: 18px;
+        width: 18px;
+        circle {
+            fill: white;
+        }
+    }
+    &:hover svg.switchlang-circle circle {
+        fill: $crop-blue;
+    }
 }
 
-
-#header .container {
-	position: relative;
-}
-.search-wrapper {
-	position: absolute;
-	right: 0;
-	top: 40px;
-	text-align: right;
-}
 
 // header/footer social links
 .social a img {
@@ -208,8 +195,8 @@ a.switchlang:hover svg.switchlang-circle circle {
 }
 #header .social a svg,
 #header .social a img {
-    height: 25px;
-    width: 25px;
+    height: 30px;
+    width: 30px;
 }
 #header .social a.twitter svg path {
     fill: #55ACEE;
@@ -225,6 +212,52 @@ a.switchlang:hover svg.switchlang-circle circle {
 }
 .social a:hover svg path {
     fill: $crop-blue !important;
+}
+
+#header .container {
+    position: relative;
+}
+.search-wrapper {
+    position: absolute;
+    right: 0;
+    top: 30px;
+    @media (max-width: 991px) {
+        top: 10px;
+    }
+    text-align: right;
+
+    .search-box {
+        text-align: right;
+        width: 360px;
+        @media (max-width: 1199px) {
+            width: 220px;
+        }
+        input[type="text"] {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            // width: 240px;
+        }
+        button {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+
+    .social {
+        margin-bottom: 2px;
+        li {
+            padding-left: 1px;
+            padding-right: 0;
+        }
+        a {
+            margin-right: 0;
+        }
+    }
+
+}
+.search-box-in-body {
+    max-width: 500px;
+    margin-bottom: 20px;
 }
 
 

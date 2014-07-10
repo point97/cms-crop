@@ -1,15 +1,15 @@
 {% extends "demo/base.html" %}
 {% load pageurl %}
 
-{% block title %}Search{% if search_results %} Results{% endif %}{% endblock %}
-
-{% block search_box %}
-    {% include "demo/includes/search_box.html" with query_string=query_string only %}
-{% endblock %}
-
 {% block content %}
-    <h2>Search Results{% if request.GET.q %} for {{ request.GET.q }}{% endif %}</h2>
+    <h1>Search</h1>
+    <div class="search-box-in-body">
+        {% block search_box %}
+            {% include "demo/includes/search_box.html" with query_string=query_string only %}
+        {% endblock %}
+    </div>
 
+    <h4>Results {% if request.GET.q %} for "{{ request.GET.q }}{% endif %}"</h4>
     {% with query.editors_picks.all as editors_picks %}
         {% if editors_picks %}
             <div class="well">
