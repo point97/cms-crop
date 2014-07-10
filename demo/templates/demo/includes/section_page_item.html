@@ -53,8 +53,8 @@
 
         <div class="content">
             {% for topic in section.topics %}    
-            <div id="{{topic.slug}}" class="topic-menu-item" ng-click="setTopic('{{topic.slug}}')" ng-class="{'active':topics.active === '{{topic.slug}}'}">
-                <i class="fa fa-angle-right" ng-show="topics.active === '{{ topic.slug }}' " ></i><strong>{{topic.title}}</strong>
+            <div id="{{topic.slug}}" class="topic-menu-item" ng-click="setTopic('{{topic.slug}}')" ng-class="{'active':topics.active == '{{topic.slug}}'}">
+                <i class="fa fa-angle-right" ng-show="topics.active == '{{ topic.slug }}' " ></i><strong>{{topic.title}}</strong>
                 <p>{{topic.short_description|safe}}</p>
             </div>
             {% endfor %}

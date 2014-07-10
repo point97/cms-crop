@@ -21,6 +21,9 @@ Event Calendar Styles
         }
         .btn.active {
                 background-color: $crop-green;
+                span {
+                    color:#fff;
+                }
         }
     }
 
