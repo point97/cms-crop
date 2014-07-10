@@ -728,23 +728,24 @@ class EventPage(MultiLingualPage):
 EventPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('short_description'),
+    FieldPanel('body', classname="full"),
     FieldPanel('date_from'),
     FieldPanel('date_to'),
     FieldPanel('time_from'),
     FieldPanel('time_to'),
     FieldPanel('location'),
-    #FieldPanel('audience'),
     FieldPanel('cost'),
-    FieldPanel('signup_link'),
-    InlinePanel(EventPage, 'carousel_items', label="Carousel items"),
-    FieldPanel('body', classname="full"),
-    InlinePanel(EventPage, 'speakers', label="Speakers"),
+    #FieldPanel('signup_link'),
+    #InlinePanel(EventPage, 'carousel_items', label="Carousel items"),
+    #InlinePanel(EventPage, 'speakers', label="Speakers"),
     InlinePanel(EventPage, 'related_links', label="Related links"),
 ]
 
 EventPage.promote_panels = [
     MultiFieldPanel(Page.promote_panels, "Common page configuration"),
     ImageChooserPanel('feed_image'),
+    FieldPanel('spanish_link', classname="spanish link"),
+    FieldPanel('audience'),
 ]
 
 

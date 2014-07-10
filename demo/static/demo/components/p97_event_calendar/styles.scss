@@ -5,7 +5,13 @@ Event Calendar Styles
 .event-calendar {
     @extend .padding-left;
     @extend .padding-top;
+    @extend .padding-bottom;
 
+    overflow:hidden;
+
+    table {
+        width:100%;
+    }
     th button.btn {
         border:none;
         color:$crop-blue;
@@ -28,6 +34,11 @@ Event Calendar Styles
     }
 
     .events {
+        height:200px;
+        overflow-y:scroll;
+        border-top:2px solid $crop-med-blue;
+        padding-top:$small-gutter;
+        margin-top:$small-gutter;
         p {
             margin-bottom:0;
         }
@@ -43,6 +54,8 @@ Event Calendar Styles
 
         .event-date {
             color:$crop-gray;
+            text-transform:uppercase;
+
         }
     }
 }
