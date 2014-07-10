@@ -13,7 +13,7 @@ class EventPageResource(ModelResource):
         resource_name = 'event'
         allowed_methods = ['get']
         filtering = {
-            'date_from':ALL
+            'date_from':ALL,
         }
     def dehydrate_url_path(self, bundle):
         """

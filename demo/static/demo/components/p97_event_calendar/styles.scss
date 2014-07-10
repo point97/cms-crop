@@ -6,6 +6,8 @@ Event Calendar Styles
     @extend .padding-left;
     @extend .padding-top;
 
+    overflow:hidden;
+
     table {
         width:100%;
     }
@@ -31,6 +33,8 @@ Event Calendar Styles
     }
 
     .events {
+        height:200px;
+        overflow-y:scroll;
         border-top:2px solid $crop-med-blue;
         padding-top:$small-gutter;
         margin-top:$small-gutter;

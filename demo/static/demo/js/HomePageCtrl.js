@@ -1,5 +1,5 @@
 angular.module('cropApp')
-    .controller('HomePageCtrl', [  '$scope', function ($scope) {
+    .controller('HomePageCtrl', [  '$scope', '$http', function ($scope, $http) {
         $scope.test ="WTF I'm a test 2";
 
         $scope.topics = {};
@@ -26,5 +26,27 @@ angular.module('cropApp')
         // $scope.$watch('topics.activeTopic', function(newValue){
         //     console.log("[HomeCtrl]" + newValue)
         // });
+
+        $scope.get_events = function(date) {
+            var url = '/api/v1/event/?format=json'
+            if ($scope.cal.range[0] && $scope.cal.range[1]) {
+                var strString = $scope.cal.range[0].toISOString().split('T')[0];
+                var endString = $scope.cal.range[1].toISOString().split('T')[0];
+                url += '&date_from__gte=' + strString + '&date_from__lte=' + endString;
+
+            } else if ($scope.cal.range[0]) {
+                var strString = $scope.cal.range[0].toISOString().split('T')[0];
+                url += '&date_from__exact=' + strString;
+            }
+
+            $http({method:'GET', url:url })
+                .success(function(data){
+                    $scope.events = data.objects;
+                }).error(function(data, status){
+                    console.log("Opps we errored out on events.")
+                });
+        };
+
+
 
 }]);
