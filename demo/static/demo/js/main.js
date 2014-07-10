@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    /* Initialise bxSlider */
+    /* Initialise bxSlider(s) */
     $('.not-explore-carousel .bxslider').bxSlider({
         captions: true
     });

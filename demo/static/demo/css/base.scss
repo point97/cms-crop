@@ -5,33 +5,35 @@
 
 body {
   font-family: $font-stack;
-  color: $primary-color;
+  color: $body-background-color;
   background-color:$crop-background-blue;
-  
 }
 
 h1 {
-    font-size:26px;
-    color:$crop-med-blue;
+    font-size: 26px;
+    line-height: 36px;
+    color: $crop-med-blue;
+    font-family: $h1-font-stack;
 }
 
 .blue {
     @extend h1;
-    color:$crop-blue;
+    color: $crop-blue;
 }
 .green {
     @extend h1;
-    color:$crop-green;
+    color: $crop-green;
 }
 
 .white {
     @extend h1;
-    color:$crop-green;
+    color: white;
 }
 
 
 h2 {
     font-size:17px;
+    line-height: 22px;
     color:$crop-blue;
     text-transform:uppercase;
 }
@@ -263,4 +265,5 @@ a.switchlang {
 
 
 @import 'crop';
+@import 'link-blocks';
 @import '../components/p97_event_calendar/styles.scss';
