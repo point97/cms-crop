@@ -45,12 +45,30 @@ h2 {
 
 #header {
     background-color: white;
+
+    .brand {
+        padding-top: 20px;
+        height: 140px;
+    }
 }
 
-#header .brand {
-	padding-top: 20px;
-	height: 140px;
+@media (max-width: 991px) {
+    #header .brand {
+        height: 110px;
+    }
+    #header .brand img {
+        width: 450px;
+    }
 }
+@media (max-width: 468px) {
+    #header .brand {
+        height: 95px;
+    }
+    #header .brand img {
+        width: 380px;
+    }
+}
+
 
 // header and footer menu
 .menu-bar {
@@ -120,6 +138,7 @@ h2 {
         margin-top: 0;
         padding-top: 30px;
         padding-bottom: 20px;
+        z-index: 10000;
         a {
             font-size: 16px;
             font-weight: bold;

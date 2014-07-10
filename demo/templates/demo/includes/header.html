@@ -2,13 +2,13 @@
 <div id="header">
     <div class="container">
         <div class="row">
-            <div class="col-sm-8 brand">
+            <div class="col-md-8 col-sm-6 col-xs-6 brand">
                 <a href="{% home_url %}/">
                     <img src="{% static "demo/images/crop-logo-web-header-645x112.jpg" %}">
                 </a>
             </div>
 
-            <div class="search-wrapper">
+            <div class="search-wrapper hidden-xs">
                 <ul class="list-unstyled list-inline social">
                     <li>
                         <a href="http://twitter.com" class="twitter">
@@ -48,7 +48,7 @@
     <div class="menu-bar"> {# menu-bar spans the full width of the browser #}
         <div class="container">
             <div class="row">
-                <div class="col-sm-3 language-toggle menu">
+                <div class="col-sm-3 col-xs-3 language-toggle menu">
                     <form id="switchlang-en" action="/switchlang/en" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="requesting_page_id" value="{{self.id}}">
@@ -72,22 +72,14 @@
                         </a>
                     </form>
                 </div>
-                <div class="col-sm-9 menu-right">
-                    <ul class="menu list-unstyled list-inline">
+                <div class="col-sm-9 col-sm-offset-0    col-xs-2 col-xs-offset-7   menu-right">
+                    <ul class="menu hidden-xs list-unstyled list-inline">
                         <li><a animate-scroll-to="learn" href="">LEARN</a></li>
                         <li><a animate-scroll-to="explore" href="">EXPLORE</a></li>
                         <li><a animate-scroll-to="navigate" href="">NAVIGATE</a></li>
                         <li><a href="{% home_url %}/signup">SIGN UP / LOGIN</a></li>
                     </ul>
                     <div id="cropDropdownMenuWrapper" class="dropdown">
-                        <!-- <button
-                            type="button"
-                            id="cropDropdownMenuLink"
-                            class="dropdown-toggle"
-                            data-toggle="dropdown">
-                            <span class="sr-only">Toggle Navigation</span>
-                            <span class="hamburger-char">&#9776;</span>
-                        </button> -->
                         <a  id="cropDropdownMenuLink"
                             class="dropdown-toggle"
                             href="javascript:void(0)">
