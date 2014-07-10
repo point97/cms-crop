@@ -5,6 +5,7 @@ Event Calendar Styles
 .event-calendar {
     @extend .padding-left;
     @extend .padding-top;
+    @extend .padding-bottom;
 
     overflow:hidden;
 

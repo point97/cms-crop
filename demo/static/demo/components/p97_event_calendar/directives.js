@@ -58,8 +58,7 @@ angular.module('cropApp')
                 date = Date.parse(newValue);
                 $scope.cal.range = [newValue, null];
                 $scope.get_events();
-            }
-            
+            } 
         });
 
     }

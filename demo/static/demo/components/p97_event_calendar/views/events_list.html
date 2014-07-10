@@ -1,10 +1,20 @@
-<div class="events" >
-    <div class="event-date">{{dt | date:'fullDate' }}</div>
-    {{cal.range[0] | date:'fullDate' }} - {{cal.range[1] | date:'fullDate' }}
-    <div ng-repeat="event in events" class="event-list-item" >
-        <a class="event-link" href="{{event.url_path}}">
-        <p><strong>{{ event.title }}</strong></p>
-        <p>{{ event.short_description }}</p>
-        </a>
+<div>
+    <div ng-show="events" class="events" >
+        <div class="event-date">{{dt | date:'fullDate' }}</div>
+        {{cal.range[0] | date:'fullDate' }} - {{cal.range[1] | date:'fullDate' }}
+        <div ng-repeat="event in events" class="event-list-item" >
+            <a class="event-link" href="{{event.url_path}}">
+            <p><strong>{{ event.title }}</strong></p>
+            <p>{{ event.short_description }}</p>
+            </a>
+        </div>
     </div>
+    <div ng-show="events" class="events-control" >
+        {{(events.meta.offset) + 1}} - {{ (events.meta.offset) + events.length}} of {{events.meta.total_count}}
+        <button ng-disabled="!events.meta.previous" ng-click="prevBtnCallback()"><--</button>
+        <button ng-disabled="!events.meta.next" ng-click="nextBtnCallback()">--></button>
+    </div>
+
+    <div ng-hide="events">No events for this time period</div>
+
 </div>
