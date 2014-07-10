@@ -5,7 +5,10 @@ angular.module('cropApp')
 
         /* Initialise bxSlider */
         window.slider = $(".explore-carousel .bxslider").bxSlider({
-            captions: true,
+            captions: false,
+            captions: false,
+            nextText: '<i class="fa fa-angle-right"></i>',
+            prevText: '<i class="fa fa-angle-left"></i>',
             onSliderLoad: function(){
                 console.log("Slider loaded");
                 scope.nextBtn = elt.find(".bx-next");

@@ -1,0 +1,109 @@
+/***********************************************
+Overrides of bxSlider carousel
+************************************************/
+
+.bx-wrapper {
+    margin-bottom: 30px;
+}
+
+.bx-viewport {
+    border: 0 !important;
+}
+
+.bx-pager {
+    bottom: 18px !important;
+    right: 25px !important;
+    width: auto !important;
+}
+
+.bx-pager-link {
+    background-color: $crop-med-blue  !important;
+    border: 2px solid $crop-blue !important;
+}
+
+.bx-pager-link.active,
+.bx-pager-link:hover {
+    background-color: white !important;
+}
+
+.bx-wrapper .bx-pager.bx-default-pager a {
+    width: 16px;
+    height: 16px;
+    margin: 0 4px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+}
+
+.bx-wrapper .bx-controls-direction a {
+    text-indent: 0 !important;
+    background: none;
+    font-size: 55px;
+    font-weight: bold;
+    margin-top: -40px;
+    color: white;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 1);
+
+    &:hover {
+        color: $crop-med-blue;
+    }
+}
+
+
+// Font layout
+.bx-wrapper {
+    h1, p {
+        position: absolute;
+        left: 15;
+        margin: 0;
+        padding: 30px; padding-right: 45px;
+
+        color: white;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+    }
+
+    h1 {
+        top: 0;
+        font-size: 55px;
+        line-height: 68px;
+    }
+
+    p {
+        bottom: 0;
+        font-size: 22px;
+        line-height: 30px;
+    }
+
+    &:hover {
+        h1, p { color: $crop-cyan; }
+    }
+
+    @media (max-width: $md-max) {
+        h1, p { padding: 20px; padding-right: 35px; }
+        h1 { font-size: 48px; line-height: 58px; }
+        p { font-size: 16px; line-height: 20px; }
+    }
+    @media (max-width: $sm-max) {
+        h1, p { padding: 20px; padding-right: 35px; }
+        h1 { font-size: 30px; line-height: 38px; }
+        p { font-size: 14px; line-height: 18px; }
+    }
+    @media (max-width: $xs-max) {
+        // Sidebar goes away at the xs size, leaving this element,
+        // wider so we adjust sizes up a bit during the wider 
+        // portion of the xs range.
+        h1, p { padding: 20px; padding-right: 35px; }
+        h1 { font-size: 48px; line-height: 58px; }
+        p { font-size: 16px; line-height: 20px; }
+    }
+    @media (max-width: 600px) {
+        h1, p { padding: 20px; padding-right: 35px; }
+        h1 { font-size: 30px; line-height: 38px; }
+        p { font-size: 16px; line-height: 20px; }
+    }
+    @media (max-width: 460px) {
+        h1, p { padding: 20px; padding-right: 35px; }
+        h1 { font-size: 24px; line-height: 32px; }
+        p { font-size: 16px; line-height: 20px; }
+    }
+}

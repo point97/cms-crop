@@ -1,7 +1,9 @@
 $(document).ready(function(){
     /* Initialise bxSlider(s) */
     $('.not-explore-carousel .bxslider').bxSlider({
-        captions: true
+        captions: false,
+        nextText: '<i class="fa fa-angle-right"></i>',
+        prevText: '<i class="fa fa-angle-left"></i>'
     });
 });
 
