@@ -9,9 +9,9 @@ angular.module('cropApp')
         element.bind('click', function(event) {
             /* Prevent the standard click action */
             event.stopPropagation();
-            // scope.$on('$locationChangeStart', function(ev) {
-            //   ev.preventDefault();
-            // });
+            scope.$on('$locationChangeStart', function(ev) {
+              ev.preventDefault();
+            });
 
             /* Animate scroll */
             var speed = 300;

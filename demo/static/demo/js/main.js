@@ -14,13 +14,13 @@ $(document).ready(function(){
 /**
  * Animate scrolling to mid-page anchors on initial load.
  */
-$(document).ready(function () {
-    var hash = window.location.hash,
-        speed = 300;
-    if (hash !== '') {
-      //$('html,body').animate({scrollTop: $(hash).offset().top}, speed);
-    }
-});
+// $(document).ready(function () {
+//     var hash = window.location.hash,
+//         speed = 300;
+//     if (hash !== '') {
+//       $('html,body').animate({scrollTop: $(hash).offset().top}, speed);
+//     }
+// });
 
 
 /**

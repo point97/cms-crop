@@ -45,13 +45,29 @@ h2 {
 
 #header {
     background-color: white;
+
+    .brand {
+        padding-top: 20px;
+        height: 140px;
+
+        @media (max-width: 991px) {
+            height: 110px;
+            img {
+                width: 450px;
+            }
+        }
+
+        @media (max-width: 468px) {
+            height: 95px;
+            img {
+                width: 380px;
+            }
+        }
+    }
 }
 
-#header .brand {
-	padding-top: 20px;
-	height: 140px;
-}
 
+// header and footer menu
 .menu-bar {
 	background-color: $crop-med-blue;
 	height: $menu-bar-height;
@@ -59,13 +75,19 @@ h2 {
 
 .menu-bar .menu {
 	display: inline;
-	margin-top: 20px;
 	font-size: 16px;
 	font-weight: 700;
 	letter-spacing: 1px;
+    padding-top: $menu-margin-top;
+    white-space: nowrap;
 }
 .menu-bar .menu-right {
 	text-align: right;
+    white-space: nowrap;
+    padding-right: 0;
+}
+.menu-bar .menu-right > ul {
+    display: inline-block;
 }
 
 .menu-bar .menu a,
@@ -79,35 +101,79 @@ h2 {
 	color: $crop-blue;
 }
 
+// Hamburger Menu
+#cropDropdownMenuWrapper {
+    background-color: $crop-blue;
+    color: $crop-gray;
+    height: $menu-bar-height;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+
+    a.dropdown-toggle {
+        color: $crop-background-blue;
+        text-decoration: none;
+
+        .hamburger-char {
+            font-size: 55px;
+            line-height: 60px;
+            padding-left:10px;
+            padding-right: 10px;
+        }
+
+        &:hover {
+            // color: $crop-cyan;
+            color: $crop-med-blue;
+            text-decoration: none;
+        }
+    }
+
+    .dropdown-menu {
+        width: 400px;
+        background-color: $crop-menu-blue;
+        border-radius: 0;
+        margin-top: 0;
+        padding-top: 30px;
+        padding-bottom: 20px;
+        z-index: 10000;
+        a {
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 45px;
+            color: $crop-blue;
+            padding-left: 50px;
+
+            &:hover {
+                background-color: $crop-med-blue;
+                color: white;
+            }
+        }
+    }
+}
+
+
 // Language switch links
+.language-toggle {
+    white-space: nowrap;
+}
 .language-toggle form {
 	display: inline;
 }
 a.switchlang {
     font-size: 14px;
     font-weight: 100;
-}
-a.switchlang svg.switchlang-circle {
-    height: 18px;
-    width: 18px;
-}
-a.switchlang svg.switchlang-circle circle {
-    fill: white;
-}
-a.switchlang:hover svg.switchlang-circle circle {
-    fill: $crop-blue;
+    svg.switchlang-circle {
+        height: 18px;
+        width: 18px;
+        circle {
+            fill: white;
+        }
+    }
+    &:hover svg.switchlang-circle circle {
+        fill: $crop-blue;
+    }
 }
 
-
-#header .container {
-	position: relative;
-}
-.search-wrapper {
-	position: absolute;
-	right: 0;
-	top: 40px;
-	text-align: right;
-}
 
 // header/footer social links
 .social a img {
@@ -129,8 +195,8 @@ a.switchlang:hover svg.switchlang-circle circle {
 }
 #header .social a svg,
 #header .social a img {
-    height: 25px;
-    width: 25px;
+    height: 30px;
+    width: 30px;
 }
 #header .social a.twitter svg path {
     fill: #55ACEE;
@@ -146,6 +212,52 @@ a.switchlang:hover svg.switchlang-circle circle {
 }
 .social a:hover svg path {
     fill: $crop-blue !important;
+}
+
+#header .container {
+    position: relative;
+}
+.search-wrapper {
+    position: absolute;
+    right: 0;
+    top: 30px;
+    @media (max-width: 991px) {
+        top: 10px;
+    }
+    text-align: right;
+
+    .search-box {
+        text-align: right;
+        width: 360px;
+        @media (max-width: 1199px) {
+            width: 220px;
+        }
+        input[type="text"] {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            // width: 240px;
+        }
+        button {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+
+    .social {
+        margin-bottom: 2px;
+        li {
+            padding-left: 1px;
+            padding-right: 0;
+        }
+        a {
+            margin-right: 0;
+        }
+    }
+
+}
+.search-box-in-body {
+    max-width: 500px;
+    margin-bottom: 20px;
 }
 
 
