@@ -30,7 +30,8 @@ angular.module('cropApp')
 
     return {
         scope :{
-            topics : "="
+            topics : "=",
+            test: '='
         },
         link:link,
     };
