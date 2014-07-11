@@ -1,7 +1,5 @@
 angular.module('cropApp')
     .controller('HomePageCtrl', [  '$scope', '$http', function ($scope, $http) {
-        $scope.test ="WTF I'm a test 2";
-
         $scope.topics = {};
         $scope.topics.active = '';
         $scope.topics.slugs = _.map(angular.element(".topic-menu-item"), function(el){
@@ -13,6 +11,7 @@ angular.module('cropApp')
 
         $scope.setTopic = function(topic){
             $scope.topics.active = topic;
+            console.log("Set topic to " + $scope.topics.active);
         };
 
         $scope.$on('slideChange', function(rs, index){

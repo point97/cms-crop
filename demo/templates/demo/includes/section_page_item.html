@@ -3,11 +3,12 @@
 {# Individual section - used on homepage for sections #}
 
 <div class="col-md-8 col-sm-8 main-content">
+    
     <div id="{{section.slug}}" name="{{section.slug}}">
 
         {% if section.topic_pics %}
             {# Used on the Explore page #}
-            <div class="explore-carousel" explore-carousel topics='topics'>{% include "demo/includes/carousel.html" with carousel_items=section.topic_pics %}</div>
+            <div class="explore-carousel" explore-carousel topics='topics.active'>{% include "demo/includes/carousel.html" with carousel_items=section.topic_pics %}</div>
         {% elif section.carousel_items %}
             {# Used on the Learn page #}
             <div class="not-explore-carousel">
@@ -21,33 +22,35 @@
                 <img src="http://placehold.it/790x440" width="100%">
             {% endif %}
         {% endif %}
-
+        <div class="margin-left">
         <h4 class="list-group-item-heading">{{ section.title }}</h4>
 
         <div ng-hide='topics.active' class="list-group-item-body">{{ section.body|safe}}</div>
 
         {% if section.data_catalogs %}
-        <h1 class="blue" ng-click="showDataCatalogs = (showDataCatalogs === false); ">
-            Preview Data Catalogs <i ng-class="{'fa fa-angle-right':!showDataCatalogs, 'fa fa-angle-down':showDataCatalogs}"></i>
-        </h1>
+            <h1 ng-show="topics.active" class="blue" ng-click="showDataCatalogs = (showDataCatalogs === false); ">
+                Preview Data Catalogs <i ng-class="{'fa fa-angle-right':!showDataCatalogs, 'fa fa-angle-down':showDataCatalogs}"></i>
+            </h1>
             {% for obj in section.data_catalogs %}
                 {% include "demo/includes/topic_catalog_list.html" %}
             {% endfor %}
         {% endif %}
 
         {% if section.data_priorities %}
-            <h1 class="green" ng-click="showDataPriorities = (showDataPriorities === false); " >
+            <h1 ng-show="topics.active" class="green" ng-click="showDataPriorities = (showDataPriorities === false); " >
                 See Data Priorities <i ng-class="{'fa fa-angle-right':!showDataPriorities, 'fa fa-angle-down':showDataPriorities}"></i>
             </h1>
             {% for obj in section.data_priorities %}
                 {% include "demo/includes/topic_priority_list.html" %}
             {% endfor %}
         {% endif %}
+        </div>
     </div>
 </div>
-
+    
 
 <div class="col-md-4 col-sm-4 sidebar">
+    
     {% if section.topics %}
         <div class="header">{{ section.sidebar_title }}</div>
 
@@ -56,8 +59,8 @@
             <div id="{{topic.slug}}" 
                 class="topic-menu-item" 
                 ng-click="setTopic('{{topic.slug}}')" 
-                ng-class="{'active':topics.active == '{{topic.slug}}'}">
-                <i class="fa fa-angle-right active-arrow" ng-show="topics.active == '{{ topic.slug }}' " ></i>
+                ng-class="{'active':topics.active === '{{topic.slug}}'}">
+                <i class="fa fa-angle-right active-arrow" ng-show="topics.active === '{{ topic.slug }}' " ></i>
                 <h2>{{topic.title}}</h2>
                 <p>{{topic.short_description|safe}}</p>
             </div>
@@ -68,8 +71,5 @@
         </div><img src="{% static "demo/images/info_graphic.png" %}" width="250"></div>
 
     {% endif %}
-
-
-
 
 </div>
