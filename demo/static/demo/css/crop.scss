@@ -43,27 +43,53 @@ Explore Sidebar Styles
 ************************************************/
 
 .sidebar {
-    font:$crop-green;
     background-color: #fff;
+
+    // Positioning of arrow for active item.
+    .topic-menu-item {
+        position: relative;
+        .active-arrow {
+            position: absolute;
+            left: -13px;
+            top: 0;
+        }
+    }
+
+    .topic-menu-item.active,
+    .topic-menu-item:hover {
+        cursor: pointer;
+        h2, p {
+            color: $crop-gray;
+        }
+    }
+
+    i {
+        font-weight: bold;
+        font-size: 20px;
+    }
+    h2 {
+        color: $crop-green;
+        margin-bottom: 0;
+        font-weight: bold;
+    }
 }
 
 .sidebar .header {
-    @extend .padding-left;
-    @extend .padding-top;
-
     background-color:$crop-green;
     color:#FFF;
     font-size:16px;
     text-transform:uppercase;
+    padding: ($gutter / 2);
+    padding-left: $gutter;
+    margin-left: -($gutter/2);
+    margin-right: -($gutter/2);
 }
 .sidebar .content {
-    @extend .padding-left;
-    @extend .padding-top;
-
     background-color:#FFF;
     color:$crop-green;
+    padding-left: ($gutter / 2);
+    padding-bottom: $gutter;
 }
-
 
 
 /***********************************************

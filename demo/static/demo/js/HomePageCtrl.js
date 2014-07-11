@@ -12,20 +12,17 @@ angular.module('cropApp')
         $scope.showDataPriorities = false;
 
         $scope.setTopic = function(topic){
-            console.log("Changing to "+topic);
             $scope.topics.active = topic;
-            console.log($scope.topics.active);
-
         };
 
         $scope.$on('slideChange', function(rs, index){
             var topic_slug = angular.element(".topic-menu-item").eq(index).attr("id");
-            $scope.setTopic(topic_slug);
+            $scope.$apply(function () {
+                // Without $apply() this changed variable doesn't trigger a $watch()
+                // needed to keep the UI in sync.
+                $scope.setTopic(topic_slug);
+            });
         });
-
-        // $scope.$watch('topics.activeTopic', function(newValue){
-        //     console.log("[HomeCtrl]" + newValue)
-        // });
 
         $scope.get_events = function(date, offset_url) {
 
@@ -60,9 +57,5 @@ angular.module('cropApp')
         $scope.prevBtnCallback = function () {
             $scope.get_events([], $scope.events.meta.previous);  
         };
-
-
-
-
 
 }]);
