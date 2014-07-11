@@ -24,12 +24,10 @@ angular.module('cropApp')
         // Leave second entry null for single day queries
         $scope.cal.range = [null,null]; 
 
-        $scope.today = function() {
-            $scope.dt = new Date();
-        };
-        $scope.today();
+        $scope.dt=null;
         
-        $scope.minDate = $scope.dt;
+        //$scope.minDate = $scope.dt;
+        $scope.initDate = new Date();
         $scope.cal.active_date = $scope.dt;
 
         // Get the first 5 events.
@@ -47,6 +45,7 @@ angular.module('cropApp')
                 startDate = Date.parse(newValue);
                 endDate = Date.parse(newValue).moveToLastDayOfMonth();
                 $scope.cal.range = [startDate,endDate];
+                $scope.dt = null;
                 $scope.get_events();
             }
             
