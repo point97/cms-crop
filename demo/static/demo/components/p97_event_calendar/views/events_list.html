@@ -11,9 +11,10 @@
         <div ng-hide="events">No events for this time period</div>
     </div>
     <div ng-show="events" class="events-control" >
-        {{(events.meta.offset) + 1}} - {{ (events.meta.offset) + events.length}} of {{events.meta.total_count}}
-        <button ng-disabled="!events.meta.previous" ng-click="prevBtnCallback()"><--</button>
-        <button ng-disabled="!events.meta.next" ng-click="nextBtnCallback()">--></button>
+        <span ng-disabled="!events.meta.previous" ng-click="prevBtnCallback()"><i class="glyphicon glyphicon-chevron-left"></i></span>
+        <strong>{{(events.meta.offset) + 1}} - {{ (events.meta.offset) + events.length}} of {{events.meta.total_count}}
+        </strong>
+        <span ng-disabled="!events.meta.next" ng-click="nextBtnCallback()"><i class="glyphicon glyphicon-chevron-right"></i></span>
     </div>
 
     

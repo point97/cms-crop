@@ -2,6 +2,12 @@
 Event Calendar Styles
 ************************************************/
 
+
+.faux-link:hover {
+    cursor:pointer;
+    color:$crop-blue;
+}
+
 .event-calendar {
     @extend .padding-left;
     @extend .padding-top;
@@ -58,5 +64,16 @@ Event Calendar Styles
 
         }
     }
+    .events-control {
+        color:$crop-green;
+        i {
+            @extend .faux-link;
+            color:$crop-green;
+            font-size : 1.0em;
+        }
+
+    }
+
+
 }
 
