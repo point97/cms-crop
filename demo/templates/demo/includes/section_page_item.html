@@ -1,4 +1,4 @@
-{% load pageurl image_tags %}
+{% load pageurl image_tags static %}
 
 {# Individual section - used on homepage for sections #}
 
@@ -65,7 +65,7 @@
         </div>
     {% elif section.slug == 'learn' %}
 
-        <div event-calendar></div>
+        </div><img src="{% static "demo/images/info_graphic.png" %}" width="250"></div>
 
     {% endif %}
 
