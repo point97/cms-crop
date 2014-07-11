@@ -261,6 +261,28 @@ LangRootPage.promote_panels = [
 
 
 #
+# Generic content page (used for About us and Contact)
+#
+
+class GenericContentPage(MultiLingualPage):
+    body = RichTextField()
+
+    class Meta:
+        verbose_name = "Generic Content Page"
+
+GenericContentPage.content_panels = [
+    FieldPanel('title', classname="full title"),
+    FieldPanel('body', classname=""),
+
+]
+
+GenericContentPage.promote_panels = [
+    FieldPanel('spanish_link', classname="spanish link"),
+    MultiFieldPanel(COMMON_PANELS, "Common page configuration"),
+]
+
+
+#
 # Sectioned Page - acts as an index for any SectionPage that
 # is a direct child.
 #
@@ -319,7 +341,7 @@ class EnglishHomePageCarouselItem(Orderable, CarouselItem):
 
 class EnglishHomePage(SectionedPage):
     search_name = "Home"
-    subpage_types = ['demo.SectionPage', 'demo.ExploreSectionPage']
+    subpage_types = ['demo.SectionPage', 'demo.ExploreSectionPage', 'demo.GenericContentPage']
 
     class Meta:
         verbose_name = "English Home Page"
@@ -345,7 +367,7 @@ class SpanishHomePageCarouselItem(Orderable, CarouselItem):
 
 class SpanishHomePage(SectionedPage):
     search_name = u"Pagina Principal"
-    subpage_types = ['demo.SectionPage', 'demo.ExploreSectionPage']
+    subpage_types = ['demo.SectionPage', 'demo.ExploreSectionPage', 'demo.GenericContentPage']
 
     class Meta:
         verbose_name = "Spanish Home Page"

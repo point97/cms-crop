@@ -1,0 +1,8 @@
+{% extends "demo/base.html" %}
+{% load demo_tags image_tags pageurl %}
+
+{% block content %}
+    <h4>{{self.title}}</h4>
+    <div>{{self.body|safe}}</div>
+
+{% endblock %}
