@@ -221,6 +221,11 @@ class MultiLingualPage(Page):
     # class Meta:
     #     abstract = True
 
+MultiLingualPage.promote_panels = [
+    FieldPanel('spanish_link', classname="spanish link"),
+    MultiFieldPanel(COMMON_PANELS, "Common page configuration"),
+]
+
 
 #
 # Lang Root Page
@@ -500,6 +505,11 @@ class ExplorePageIndex(MultiLingualPage):
     class Meta:
         verbose_name = "Explore Page Indexes - DO NOT USE"
 
+ExplorePageIndex.promote_panels = [
+    FieldPanel('spanish_link', classname="spanish link"),
+    MultiFieldPanel(Page.promote_panels, "Common page configuration"),
+    
+]
 
 class ExploreCarouselItem(Orderable, CarouselItem):
     page = ParentalKey('demo.ExploreSectionPage', related_name='carousel_items')
@@ -511,10 +521,10 @@ class ExploreSectionPage(ExplorePageIndex):
         verbose_name = "Explore Section Page"
 
 ExploreSectionPage.content_panels = [
-        FieldPanel('title'),
-        FieldPanel('body'),
-        FieldPanel('sidebar_title'),
-    ]
+    FieldPanel('title'),
+    FieldPanel('body'),
+    FieldPanel('sidebar_title'),
+]
 
 
 class ExploreTopic(MultiLingualPage):
@@ -757,13 +767,14 @@ EventPage.content_panels = [
     FieldPanel('time_to'),
     FieldPanel('location'),
     FieldPanel('cost'),
-    #FieldPanel('signup_link'),
+    FieldPanel('signup_link'),
     #InlinePanel(EventPage, 'carousel_items', label="Carousel items"),
     #InlinePanel(EventPage, 'speakers', label="Speakers"),
-    InlinePanel(EventPage, 'related_links', label="Related links"),
+    #InlinePanel(EventPage, 'related_links', label="Related links"),
 ]
 
 EventPage.promote_panels = [
+    FieldPanel('spanish_link', classname="spanish link"),
     MultiFieldPanel(Page.promote_panels, "Common page configuration"),
     ImageChooserPanel('feed_image'),
     FieldPanel('spanish_link', classname="spanish link"),
