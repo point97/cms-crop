@@ -5,33 +5,35 @@
 
 body {
   font-family: $font-stack;
-  color: $primary-color;
+  color: $body-background-color;
   background-color:$crop-background-blue;
-  
 }
 
 h1 {
-    font-size:26px;
-    color:$crop-med-blue;
+    font-size: 26px;
+    line-height: 36px;
+    color: $crop-med-blue;
+    font-family: $h1-font-stack;
 }
 
 .blue {
     @extend h1;
-    color:$crop-blue;
+    color: $crop-blue;
 }
 .green {
     @extend h1;
-    color:$crop-green;
+    color: $crop-green;
 }
 
 .white {
     @extend h1;
-    color:$crop-green;
+    color: white;
 }
 
 
 h2 {
     font-size:17px;
+    line-height: 22px;
     color:$crop-blue;
     text-transform:uppercase;
 }
@@ -50,7 +52,7 @@ h2 {
         padding-top: 20px;
         height: 140px;
 
-        @media (max-width: 991px) {
+        @media (max-width: $sm-max) {
             height: 110px;
             img {
                 width: 450px;
@@ -115,8 +117,9 @@ h2 {
         text-decoration: none;
 
         .hamburger-char {
-            font-size: 55px;
-            line-height: 60px;
+            font-weight: 100;
+            font-size: 40px;
+            line-height: 55px;
             padding-left:10px;
             padding-right: 10px;
         }
@@ -262,4 +265,6 @@ a.switchlang {
 
 
 @import 'crop';
+@import 'bx-slider-override';
+@import 'link-blocks';
 @import '../components/p97_event_calendar/styles.scss';

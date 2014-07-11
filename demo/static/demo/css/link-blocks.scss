@@ -1,0 +1,61 @@
+/***********************************************
+Link Block Styles
+************************************************/
+
+.link-block {
+    position: relative;
+    margin-bottom: 30px;
+    h1, p {
+        position: absolute;
+        left: 15;
+        margin: 0;
+        padding: 30px; padding-right: 45px;
+
+        color: white;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+    }
+
+    h1 {
+        top: 0;
+    }
+
+    p {
+        bottom: 0;
+        font-size: 22px;
+        line-height: 30px;
+    }
+
+    &:hover {
+        h1, p { color: $crop-cyan; }
+    }
+
+    @media (max-width: $md-max) {
+        h1, p { padding: 20px; padding-right: 35px; }
+        h1 { font-size: 22px; line-height: 30px; }
+        p { font-size: 16px; line-height: 20px; }
+    }
+    @media (max-width: $sm-max) {
+        h1, p { padding: 15px; padding-right: 25px; }
+        h1 { font-size: 16px; line-height: 22px; }
+        p { font-size: 14px; line-height: 18px; }
+    }
+    @media (max-width: $xs-max) {
+        // Override bootsrap's col-xs-12 for wider portion of the
+        // xs range. This keeps the link blocks side by side...
+        width: 49% !important;
+        display: inline-block !important;
+        h1, p { padding: 20px; padding-right: 35px; }
+        h1 { font-size: 22px; line-height: 30px; }
+        p { font-size: 16px; line-height: 20px; }
+    }
+    @media (max-width: 500px) {
+        // ...and then on the thinner end of the col-xs-12 range,
+        // stack the blocks vertically.
+        width: 100%  !important;
+        display: block !important;
+
+        h1, p { padding: 30px; padding-right: 45px; }
+        h1 { font-size: 24px; line-height: 32px; }
+        p { font-size: 16px; line-height: 20px; }
+    }
+}

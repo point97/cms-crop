@@ -5,18 +5,18 @@
 
 {% block content %}
     <div ng-controller="HomePageCtrl">
-        <!-- <div class="row">
+        <div class="row section-margin">
 
-            <div class="col-md-9 col-sm-9 main-content">
-            {% include "demo/includes/carousel.html" with carousel_items=self.carousel_items.all only %}
+            <div class="col-md-8 col-sm-8 main-content not-explore-carousel">
+                {% include "demo/includes/carousel.html" with carousel_items=self.carousel_items.all only %}
 
-            {% include "demo/includes/link_blocks.html" %}
+                {% include "demo/includes/link_blocks.html" %}
             </div>
-            <div class="col-md-3 col-sm-3 sidebar">
+            <div class="col-md-4 col-sm-4 hidden-xs sidebar">
                 Sidebar goes here
             </div>
 
-        </div> -->
+        </div>
 
 
     {% include "demo/includes/page_sections.html" %}
