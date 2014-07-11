@@ -26,7 +26,7 @@ angular.module('cropApp')
                 scope.$emit('slideChange', newIndex)
             },
             onSlidePrev : function(slideElement, oldIndex, newIndex){
-                scope.$emit('sdlideChange', newIndex)
+                scope.$emit('slideChange', newIndex)
             }
         });
 

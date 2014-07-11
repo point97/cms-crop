@@ -20,7 +20,11 @@ angular.module('cropApp')
 
         $scope.$on('slideChange', function(rs, index){
             var topic_slug = angular.element(".topic-menu-item").eq(index).attr("id");
-            $scope.setTopic(topic_slug);
+            $scope.$apply(function () {
+                // Without $apply() this changed variable doesn't trigger a $watch()
+                // needed to keep the UI in sync.
+                $scope.setTopic(topic_slug);
+            });
         });
 
         // $scope.$watch('topics.activeTopic', function(newValue){
