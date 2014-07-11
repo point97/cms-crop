@@ -9,37 +9,22 @@ angular.module('cropApp')
             captions: false,
             nextText: '<i class="fa fa-angle-right"></i>',
             prevText: '<i class="fa fa-angle-left"></i>',
-            onSliderLoad: function(){
-                console.log("Slider loaded");
-                scope.nextBtn = elt.find(".bx-next");
-                scope.prevBtn = elt.find(".bx-prev");
 
-                scope.nextBtn.bind('click', function(e){
-                    console.log('hello from', scope.nextBtn);
-                });
-
-                scope.prevBtn.bind('click', function(e){
-                    console.log('hello from', scope.prevBtn);
-                });
-            },
-            onSlideNext : function(slideElement, oldIndex, newIndex){
+            onSlideNext: function(slideElement, oldIndex, newIndex){
                 scope.$emit('slideChange', newIndex)
             },
-            onSlidePrev : function(slideElement, oldIndex, newIndex){
+
+            onSlidePrev: function(slideElement, oldIndex, newIndex){
                 scope.$emit('slideChange', newIndex)
             }
         });
 
-
+        /* Keep slider in sync with sidebar. */
         scope.$watch('topics.active', function(newValue){
-
             if (newValue){
-                console.log("Active topic changed "+newValue);
                 var index = _.indexOf(scope.topics.slugs, newValue);
-                console.log("Changing to slide "+index);
                 window.slider.goToSlide(index);
             }
-
         });
     };
 
