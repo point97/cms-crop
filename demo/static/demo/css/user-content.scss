@@ -1,0 +1,48 @@
+.section-title {
+
+}
+
+.section-body {
+
+    h1,h2,h3,h4,h5 {
+        max-width: 500px;
+    }
+    h2 {
+        font-size: 17px;
+        line-height: 22px;
+        color: $crop-med-blue;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+    h3 {
+        font-size: 17px;
+        line-height: 22px;
+    }
+    h4 {
+        font-size: 15px;
+        line-height: 22px;
+    }
+    h5 {
+        font-size: 13px;
+        line-height: 19px;
+        color: $crop-gray;
+    }
+
+    p {
+        font-size: 15px;
+        line-height: 22px;
+        color: $crop-gray;
+        max-width: 790px;
+    }
+
+    a {
+        cursor: pointer;
+    }
+
+    hr {
+        height: 2px;
+        width: 100%;
+        background: white;
+    }
+}
+
