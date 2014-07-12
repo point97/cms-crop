@@ -409,7 +409,10 @@ class SectionPage(MultiLingualPage):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+'
+        related_name='+',
+        help_text="""A sinlge image to display. If there are 
+                        images defined in the carousel, a Carousel will be display
+                        and this image will be ignored."""
     )
 
     subpage_types = ['demo.ExploreSectionPage']
@@ -428,7 +431,14 @@ SectionPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('body', classname="full"),
     ImageChooserPanel('image'),
-    InlinePanel(SpanishHomePage, 'carousel_items', label="Carousel items"),
+
+    InlinePanel(SpanishHomePage, 'carousel_items', 
+                                label="Carousel items", 
+                                help_text="""If you add images to the Carousel,
+                                it will be show instead of a single image defined 
+                                in the image field, that image will be ignored."""
+
+                                ),
 ]
 
 SectionPage.promote_panels = [
