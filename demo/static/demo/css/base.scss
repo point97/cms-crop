@@ -1,5 +1,3 @@
-
-
 @import 'variables';
 
 
@@ -7,6 +5,10 @@ body {
   font-family: $font-stack;
   color: $body-background-color;
   background-color:$crop-background-blue;
+}
+
+#wagtail-userbar{
+   top:0;
 }
 
 h1 {
@@ -268,4 +270,3 @@ a.switchlang {
 @import 'bx-slider-override';
 @import 'link-blocks';
 @import '../components/p97_event_calendar/styles.scss';
-@import 'user-content';
