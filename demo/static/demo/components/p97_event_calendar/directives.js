@@ -32,8 +32,6 @@ angular.module('cropApp')
 
         // Get the first 5 events.
         $scope.events = [];
-
-        
         $scope.get_events('');
 
         // Add watcher for month change and update cal.range to the slected month
@@ -45,8 +43,8 @@ angular.module('cropApp')
                 startDate = Date.parse(newValue);
                 endDate = Date.parse(newValue).moveToLastDayOfMonth();
                 $scope.cal.range = [startDate,endDate];
-                $scope.dt = null;
                 $scope.get_events();
+                
             }
             
         });

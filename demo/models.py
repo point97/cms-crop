@@ -296,7 +296,13 @@ class SectionedPage(MultiLingualPage):
     @property
     def sections(self):
         # Get list of live SectionPages that are descendants of this page
-        sections = SectionPage.objects.live().descendant_of(self)
+        sections = list(SectionPage.objects.live().descendant_of(self))
+
+        explore_sections = ExploreSectionPage.objects.live().descendant_of(self)
+        if explore_sections:
+            explore_section = explore_sections[0]
+            sections.insert(1, explore_section)
+
         # Order by most recent date first
         #sections = sections.order_by('order')
         return sections

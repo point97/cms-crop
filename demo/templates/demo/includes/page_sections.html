@@ -1,21 +1,8 @@
-{% for section in sections %}
-    
-    {# This is a hack to get the explore_section bewtween the Learn and Navigate section #}
-    {% if forloop.counter == 1 %}
-        {% for section in explore_sections %}
-            <div class="row section-margin">
-                {% include "demo/includes/section_page_item.html" %}
-            </div>
-        {% empty %}
-            No sections found
-        {% endfor %}
-    {% else %}
-        <div class="row section-margin">
-            {% include "demo/includes/section_page_item.html" %}
-        </div>
-
-    {% endif %}
-
+{{sections}}
+{% for section in sections %}  
+    <div class="row section-margin">
+        {% include "demo/includes/section_page_item.html" %}
+    </div>
 {% empty %}
     No sections found
 {% endfor %}

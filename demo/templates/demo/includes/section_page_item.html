@@ -5,11 +5,10 @@
 <div class="col-md-8 col-sm-8 main-content">
     
     <div id="{{section.slug}}" name="{{section.slug}}">
-
         {% if section.topic_pics %}
             {# Used on the Explore page #}
             <div class="explore-carousel" explore-carousel topics='topics.active'>{% include "demo/includes/carousel.html" with carousel_items=section.topic_pics %}</div>
-        {% elif section.carousel_items %}
+        {% elif section.carousel_items.all %}
             {# Used on the Learn page #}
             <div class="not-explore-carousel">
             {% include "demo/includes/carousel.html" with carousel_items=section.carousel_items.all only %}
@@ -25,7 +24,7 @@
         <div class="margin-left">
             <!-- <h1 class="section-title">{{ section.title }}</h1> -->
 
-            <div ng-hide='topics.active' class="section-body">{{ section.body|safe}}</div>
+            <div class="section-body">{{ section.body|safe}}</div>
 
             {% if section.data_catalogs %}
                 <h1 ng-show="topics.active" class="blue" ng-click="showDataCatalogs = (showDataCatalogs === false); ">
@@ -68,7 +67,7 @@
         </div>
     {% elif section.slug == 'learn' %}
 
-        </div><img src="{% static "demo/images/info_graphic.png" %}" width="250"></div>
+        <div><img src="{% static "demo/images/info_graphic.png" %}" width="250"></div>
 
     {% endif %}
 
