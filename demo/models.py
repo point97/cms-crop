@@ -27,7 +27,7 @@ from taggit.models import Tag, TaggedItemBase
 from south.signals import post_migrate
 
 from demo.utils import export_event
-from demo.snippets import LinkBlock
+from demo.snippets import LinkBlock, SectionPageLinkBlockPlacement
 
 
 EVENT_AUDIENCE_CHOICES = (
@@ -430,21 +430,21 @@ class SectionPage(MultiLingualPage):
 SectionPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('body', classname="full"),
+
     ImageChooserPanel('image'),
-
-    InlinePanel(SpanishHomePage, 'carousel_items', 
-                                label="Carousel items", 
-                                help_text="""If you add images to the Carousel,
-                                it will be show instead of a single image defined 
-                                in the image field, that image will be ignored."""
-
-                                ),
+    #InlinePanel(SectionPage, 'linkblock_placements', label="Link blocks"),
+    #SnippetChooserPanel('linkblock_placements', SectionPageLinkBlockPlacement),
+    InlinePanel(SectionPage, 'carousel_items',
+        label = "Carousel items",
+        help_text = """If you add images to the Carousel,
+        it will be show instead of a single image defined 
+        in the image field, that image will be ignored."""
+    ),
 ]
 
 SectionPage.promote_panels = [
     FieldPanel('spanish_link', classname="spanish link"),
     MultiFieldPanel(Page.promote_panels, "Common page configuration"),
-    
 ]
 
 

@@ -22,6 +22,10 @@
             {% endif %}
         {% endif %}
 
+        {% with section.linkblock_placements.all as linkblocks %}
+        {% include "demo/includes/link_blocks2.html" %}
+        {% endwith %}
+
         <div class="section-body">{{ section.body|safe}}</div>
 
 
