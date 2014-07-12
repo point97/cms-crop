@@ -21,29 +21,27 @@
                 <img src="http://placehold.it/790x440" width="100%">
             {% endif %}
         {% endif %}
-        <div class="margin-left">
-            <!-- <h1 class="section-title">{{ section.title }}</h1> -->
 
-            <div class="section-body">{{ section.body|safe}}</div>
+        <div class="section-body">{{ section.body|safe}}</div>
 
-            {% if section.data_catalogs %}
-                <h1 ng-show="topics.active" class="blue" ng-click="showDataCatalogs = (showDataCatalogs === false); ">
-                    Preview Data Catalogs <i ng-class="{'fa fa-angle-right':!showDataCatalogs, 'fa fa-angle-down':showDataCatalogs}"></i>
-                </h1>
-                {% for obj in section.data_catalogs %}
-                    {% include "demo/includes/topic_catalog_list.html" %}
-                {% endfor %}
-            {% endif %}
 
-            {% if section.data_priorities %}
-                <h1 ng-show="topics.active" class="green" ng-click="showDataPriorities = (showDataPriorities === false); " >
-                    See Data Priorities <i ng-class="{'fa fa-angle-right':!showDataPriorities, 'fa fa-angle-down':showDataPriorities}"></i>
-                </h1>
-                {% for obj in section.data_priorities %}
-                    {% include "demo/includes/topic_priority_list.html" %}
-                {% endfor %}
-            {% endif %}
-        </div>
+        {% if section.data_catalogs %}
+            <h1 ng-show="topics.active" class="blue" ng-click="showDataCatalogs = (showDataCatalogs === false); ">
+                Preview Data Catalogs <i ng-class="{'fa fa-angle-right':!showDataCatalogs, 'fa fa-angle-down':showDataCatalogs}"></i>
+            </h1>
+            {% for obj in section.data_catalogs %}
+                {% include "demo/includes/topic_catalog_list.html" %}
+            {% endfor %}
+        {% endif %}
+
+        {% if section.data_priorities %}
+            <h1 ng-show="topics.active" class="green" ng-click="showDataPriorities = (showDataPriorities === false); " >
+                See Data Priorities <i ng-class="{'fa fa-angle-right':!showDataPriorities, 'fa fa-angle-down':showDataPriorities}"></i>
+            </h1>
+            {% for obj in section.data_priorities %}
+                {% include "demo/includes/topic_priority_list.html" %}
+            {% endfor %}
+        {% endif %}
     </div>
 </div>
     

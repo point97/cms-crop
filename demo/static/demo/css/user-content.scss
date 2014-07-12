@@ -1,31 +1,39 @@
-.section-title {
-
+.content-title {
+    font-size: 26px;
+    line-height: 36px;
+    color: $crop-med-blue;
+    font-weight: bold;
 }
 
-.section-body {
+.section-body,
+.content-body {
+    padding: $gutter;
+    padding-top: 0;
 
     h1,h2,h3,h4,h5 {
         max-width: 500px;
     }
-    h2 {
+    h1, h2 {
+        font-size: 26px;
+        line-height: 36px;
+        color: $crop-med-blue;
+        font-weight: bold;
+        text-transform: none;
+    }
+    h3 {
         font-size: 17px;
         line-height: 22px;
         color: $crop-med-blue;
         text-transform: uppercase;
         font-weight: bold;
     }
-    h3 {
+    h4 {
         font-size: 17px;
         line-height: 22px;
     }
-    h4 {
+    h5 {
         font-size: 15px;
         line-height: 22px;
-    }
-    h5 {
-        font-size: 13px;
-        line-height: 19px;
-        color: $crop-gray;
     }
 
     p {
