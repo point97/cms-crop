@@ -2,7 +2,8 @@
 {% load demo_tags image_tags pageurl %}
 
 {% block content %}
-    <h4>{{self.title}}</h4>
-    <div>{{self.body|safe}}</div>
-
+    <div>
+        <h1 class="content-title">{{self.title}}</h1>
+        <div class="content-body">{{self.body|safe}}</div>
+    </div>
 {% endblock %}
