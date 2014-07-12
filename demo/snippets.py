@@ -8,6 +8,11 @@ from wagtail.wagtailsnippets.models import register_snippet
 
 from modelcluster.fields import ParentalKey
 
+POSITION_CHOICES = (
+    ('content-bottom', 'Bottom of the content'),
+    ('sidebar-bottom', 'Bottom of sidebar')
+)
+
 
 class LinkBlock(models.Model):
     title = models.CharField(max_length=255)
@@ -70,6 +75,7 @@ class SpanishLinkBlockPlacement(models.Model):
     panels = [
         PageChooserPanel('page', 'demo.SpanishHomePage'),
         SnippetChooserPanel('linkBlock', LinkBlock),
+
     ]
 
     def __unicode__(self):
@@ -82,6 +88,8 @@ register_snippet(SpanishLinkBlockPlacement)
 class SectionPageLinkBlockPlacement(models.Model):
     page = ParentalKey('demo.SectionPage', related_name='linkblock_placements')
     linkBlock = models.ForeignKey('demo.LinkBlock', related_name='+')
+    position = models.CharField(max_length=45, default="content-bottom", 
+        choices=POSITION_CHOICES, help_text="""Determines the postion of the link on the page or section.""")
 
     class Meta:
         verbose_name = "Section Page link placement"
@@ -90,6 +98,7 @@ class SectionPageLinkBlockPlacement(models.Model):
     panels = [
         PageChooserPanel('page', 'demo.SectionPage'),
         SnippetChooserPanel('linkBlock', LinkBlock),
+        FieldPanel('position'),
     ]
 
     def __unicode__(self):

@@ -1,4 +1,4 @@
-{% load pageurl image_tags static %}
+{% load pageurl image_tags static demo_tags %}
 
 {# Individual section - used on homepage for sections #}
 
@@ -22,9 +22,8 @@
             {% endif %}
         {% endif %}
 
-        {% with section.linkblock_placements.all as linkblocks %}
-        {% include "demo/includes/link_blocks2.html" %}
-        {% endwith %}
+
+        {% link_blocks section 'content-bottom' %}
 
         <div class="section-body">{{ section.body|safe}}</div>
 
@@ -72,5 +71,7 @@
         <div><img src="{% static "demo/images/info_graphic.png" %}" width="250"></div>
 
     {% endif %}
+
+    {% link_blocks section 'sidebar-bottom' %}
 
 </div>

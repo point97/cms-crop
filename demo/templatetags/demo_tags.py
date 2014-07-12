@@ -7,14 +7,27 @@ register = template.Library()
 
 
 
-# LinkBlock snippets
-@register.inclusion_tag('crop/tags/link_block.html', takes_context=True)
-def linkBlocks(context):
-  return {
-    'linkBlocks': LinkBlock.objects.all(),
-    'request': context['request'],
-  }
-  
+@register.inclusion_tag('demo/tags/link_blocks.html', takes_context=True)
+def link_blocks(context, page, position):
+    """
+    LinkBlock snippets
+
+    Usage:
+
+    {% linkblock_placements 'content-bottom' %}
+
+    linkblock_placements is a list, each member contains a linkBlock object
+
+    """
+
+    try:
+        linkblock_placements = page.linkblock_placements.filter(position=position)
+    except AttributeError:
+        linkblock_placements = []
+    return {
+        'linkblock_placements': linkblock_placements,
+        'request': context['request'],
+    }
 
 
 # settings value
