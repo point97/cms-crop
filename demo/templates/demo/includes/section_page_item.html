@@ -23,10 +23,9 @@
         {% endif %}
 
 
-        {% link_blocks section 'content-bottom' %}
+        {% link_blocks section 'carousel-bottom' %}
 
         <div class="section-body">{{ section.body|safe}}</div>
-
 
         {% if section.data_catalogs %}
             <h1 ng-show="topics.active" class="blue" ng-click="showDataCatalogs = (showDataCatalogs === false); ">
@@ -45,32 +44,35 @@
                 {% include "demo/includes/topic_priority_list.html" %}
             {% endfor %}
         {% endif %}
+
+        {% link_blocks section 'content-bottom' %}
+
     </div>
 </div>
     
 
 <div class="col-md-4 col-sm-4 sidebar">
     
-    {% if section.topics %}
-        <div class="header">{{ section.sidebar_title }}</div>
+    <div class="sidebar-content" >
+        {% if section.topics %}
+            <div class="header">{{ section.sidebar_title }}</div>
 
-        <div class="content">
-            {% for topic in section.topics %}    
-            <div id="{{topic.slug}}" 
-                class="topic-menu-item" 
-                ng-click="setTopic('{{topic.slug}}')" 
-                ng-class="{'active':topics.active === '{{topic.slug}}'}">
-                <i class="fa fa-angle-right active-arrow" ng-show="topics.active === '{{ topic.slug }}' " ></i>
-                <h2>{{topic.title}}</h2>
-                <p>{{topic.short_description|safe}}</p>
+            <div class="content">
+                {% for topic in section.topics %}    
+                <div id="{{topic.slug}}" 
+                    class="topic-menu-item" 
+                    ng-click="setTopic('{{topic.slug}}')" 
+                    ng-class="{'active':topics.active === '{{topic.slug}}'}">
+                    <i class="fa fa-angle-right active-arrow" ng-show="topics.active === '{{ topic.slug }}' " ></i>
+                    <h2>{{topic.title}}</h2>
+                    <p>{{topic.short_description|safe}}</p>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-        </div>
-    {% elif section.slug == 'learn' %}
-
-        <div><img src="{% static "demo/images/info_graphic.png" %}" width="250"></div>
-
-    {% endif %}
+        {% elif section.slug == 'learn' %}
+            <img src="{% static "demo/images/info_graphic.png" %}" width="250">
+        {% endif %}
+    </div>
 
     {% link_blocks section 'sidebar-bottom' %}
 

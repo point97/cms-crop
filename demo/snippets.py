@@ -1,6 +1,6 @@
 from django.db import models
 
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, PageChooserPanel
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, PageChooserPanel, InlinePanel
 from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
@@ -9,7 +9,8 @@ from wagtail.wagtailsnippets.models import register_snippet
 from modelcluster.fields import ParentalKey
 
 POSITION_CHOICES = (
-    ('content-bottom', 'Bottom of the content'),
+    ('content-bottom', 'Below main content'),
+    ('carousel-bottom', 'Below carousel'),
     ('sidebar-bottom', 'Bottom of sidebar')
 )
 
@@ -34,8 +35,8 @@ class LinkBlock(models.Model):
     ]
 
     class Meta:
-        verbose_name = "Link"
-        verbose_name_plural = "Links"
+        verbose_name = "LINK - put all your links here first. Then you can add them to pages or sections."
+        verbose_name_plural = "LINKS - put all your links here first. Then you can add them to pages or sections."
 
     def __unicode__(self):
         return self.title
@@ -47,26 +48,34 @@ register_snippet(LinkBlock)
 class EnglishLinkBlockPlacement(models.Model):
     page = ParentalKey('demo.EnglishHomePage', related_name='linkblock_placements')
     linkBlock = models.ForeignKey('demo.LinkBlock', related_name='+')
+    position = models.CharField(max_length=45, default="content-bottom", 
+        choices=POSITION_CHOICES, help_text="""Determines the postion of the link on the page or section.""")
+
 
     class Meta:
         verbose_name = "English Home Page link"
         verbose_name_plural = "English Home Page links"
-
     panels = [
-        #PageChooserPanel('page', 'demo.EnglishHomePage'),
+        PageChooserPanel('page', 'demo.EnglishHomePage'),
+        #InlinePanel(self, 'page', label="Page"),
         SnippetChooserPanel('linkBlock', LinkBlock),
+        FieldPanel('position'),
     ]
 
     def __unicode__(self):
-        return self.page.title + " -> " + self.linkBlock.text
+        return ("%s - %s -> %s") %(self.page.title, self.get_position_display(), self.linkBlock.text)
 
 register_snippet(EnglishLinkBlockPlacement)
+
 
 
 
 class SpanishLinkBlockPlacement(models.Model):
     page = ParentalKey('demo.SpanishHomePage', related_name='linkblock_placements')
     linkBlock = models.ForeignKey('demo.LinkBlock', related_name='+')
+    position = models.CharField(max_length=45, default="content-bottom", 
+        choices=POSITION_CHOICES, help_text="""Determines the postion of the link on the page or section.""")
+
 
     class Meta:
         verbose_name = "Spanish Home Page link"
@@ -75,11 +84,11 @@ class SpanishLinkBlockPlacement(models.Model):
     panels = [
         PageChooserPanel('page', 'demo.SpanishHomePage'),
         SnippetChooserPanel('linkBlock', LinkBlock),
-
+        FieldPanel('position'),
     ]
 
     def __unicode__(self):
-        return self.page.title + " -> " + self.linkBlock.text
+        return ("%s - %s -> %s") %(self.page.title, self.get_position_display(), self.linkBlock.text)
 
 register_snippet(SpanishLinkBlockPlacement)
 
@@ -102,6 +111,30 @@ class SectionPageLinkBlockPlacement(models.Model):
     ]
 
     def __unicode__(self):
-        return self.page.title + " -> " + self.linkBlock.text
+        return ("%s - %s -> %s") %(self.page.title, self.get_position_display(), self.linkBlock.text)
 
 register_snippet(SectionPageLinkBlockPlacement)
+
+
+class ExplorePageLinkBlockPlacement(models.Model):
+    page = ParentalKey('demo.ExploreSectionPage', related_name='linkblock_placements')
+    linkBlock = models.ForeignKey('demo.LinkBlock', related_name='+')
+    position = models.CharField(max_length=45, default="content-bottom", 
+        choices=POSITION_CHOICES, help_text="""Determines the position of the link on the page or section.""")
+
+    class Meta:
+        verbose_name = "Explore section link placement"
+        verbose_name_plural = "Explore section link placements"
+
+    panels = [
+        PageChooserPanel('page', 'demo.ExploreSectionPage'),
+        SnippetChooserPanel('linkBlock', LinkBlock),
+        FieldPanel('position'),
+    ]
+
+    def __unicode__(self):
+        return ("%s - %s -> %s") %(self.page.title, self.get_position_display(), self.linkBlock.text)
+
+register_snippet(ExplorePageLinkBlockPlacement)
+
+

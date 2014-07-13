@@ -9,11 +9,15 @@
 
             <div class="col-md-8 col-sm-8 main-content not-explore-carousel">
                 {% include "demo/includes/carousel.html" with carousel_items=self.carousel_items.all only %}
-
-                {% include "demo/includes/link_blocks.html" %}
+                {% link_blocks self 'carousel-bottom' %}
+                {% link_blocks self 'content-bottom' %}
             </div>
+            
             <div class="col-md-4 col-sm-4 hidden-xs sidebar">
-                <div event-calendar></div>
+                <div class="sidebar-content">
+                    <div event-calendar></div>
+                </div>
+                {% link_blocks self 'sidebar-bottom' %}
             </div>
 
         </div>

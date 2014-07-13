@@ -18,6 +18,10 @@ Surgical Classes
     margin-top:$gutter;
 }
 
+.padding-right {
+    padding-right:$gutter;
+}
+
 .padding-left {
     padding-left:$gutter;
 }
@@ -43,8 +47,7 @@ Explore Sidebar Styles
 ************************************************/
 
 .sidebar {
-    background-color: #fff;
-
+    
     // Positioning of arrow for active item.
     .topic-menu-item {
         position: relative;
@@ -74,6 +77,10 @@ Explore Sidebar Styles
     }
 }
 
+.sidebar-content {
+    background-color:white;
+}
+
 .sidebar .header {
     background-color:$crop-green;
     color:#FFF;
@@ -81,8 +88,8 @@ Explore Sidebar Styles
     text-transform:uppercase;
     padding: ($gutter / 2);
     padding-left: $gutter;
-    margin-left: -($gutter/2);
-    margin-right: -($gutter/2);
+    /*margin-left: -($gutter/2);
+    margin-right: -($gutter/2);*/
 }
 .sidebar .content {
     background-color:#FFF;

@@ -4,7 +4,15 @@
   {% for linkblock in linkblock_placements %}
     <!-- <div class="col-md-6 col-sm-6"> -->
         {% with linkblock.linkBlock as obj %}
+            
+            {% if position == 'sidebar-bottom' %}
+            {# We want it to be the full width of the side bar #}
+            <div class="link-block col-md-12 col-sm-12 col-xs-12">
+            
+            {% else %}
+            {# we want half width #}
             <div class="link-block col-md-6 col-sm-6 col-xs-12">
+            {% endif %}
               <a href="{{ obj.url }}">
 
                 <div class="hidden-xs">

@@ -27,6 +27,7 @@ def link_blocks(context, page, position):
     return {
         'linkblock_placements': linkblock_placements,
         'request': context['request'],
+        'position': position
     }
 
 
