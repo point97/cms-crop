@@ -25,6 +25,9 @@
 
         {% link_blocks section 'carousel-bottom' %}
         
+        {% if section.slug != 'explore' %}
+        <div class="section-body">{{ section.body|safe}}</div>
+        {% endif %}
 
         {% for topic in section.topics %}    
             <div class="topic-description {{topic.slug}}" 
