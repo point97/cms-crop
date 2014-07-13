@@ -29,7 +29,6 @@
         {% for topic in section.topics %}    
             <div class="topic-description {{topic.slug}}" 
                 ng-show="topics.active === '{{ topic.slug }}' " ></i>
-                <h2>{{topic.title}}</h2>
                 <p>{{topic.long_description|safe}}</p>
             </div>
         {% endfor %}
