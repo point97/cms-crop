@@ -359,7 +359,7 @@ class EnglishHomePage(SectionedPage):
 
 EnglishHomePage.content_panels = [
     FieldPanel('title', classname="full title"),
-    InlinePanel(EnglishHomePage, 'linkblock_placements', label="Link blocks"),
+    #InlinePanel(EnglishHomePage, 'linkblock_placements', label="Link blocks"),
     InlinePanel(EnglishHomePage, 'carousel_items', label="Carousel items"),
 
 ]
@@ -385,7 +385,7 @@ class SpanishHomePage(SectionedPage):
 
 SpanishHomePage.content_panels = [
     FieldPanel('title', classname="full title"),
-    InlinePanel(SpanishHomePage, 'linkblock_placements', label="Link blocks"),
+    #InlinePanel(SpanishHomePage, 'linkblock_placements', label="Link blocks"),
     InlinePanel(SpanishHomePage, 'carousel_items', label="Carousel items"),
 ]
 

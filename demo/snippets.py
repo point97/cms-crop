@@ -53,8 +53,8 @@ class EnglishLinkBlockPlacement(models.Model):
 
 
     class Meta:
-        verbose_name = "English Home Page link"
-        verbose_name_plural = "English Home Page links"
+        verbose_name = "English Home Page Link"
+        verbose_name_plural = "English Home Page Links"
     panels = [
         PageChooserPanel('page', 'demo.EnglishHomePage'),
         #InlinePanel(self, 'page', label="Page"),
@@ -78,8 +78,8 @@ class SpanishLinkBlockPlacement(models.Model):
 
 
     class Meta:
-        verbose_name = "Spanish Home Page link"
-        verbose_name_plural = "Spanish Home Page links"
+        verbose_name = "Spanish Home Page Link"
+        verbose_name_plural = "Spanish Home Page Links"
 
     panels = [
         PageChooserPanel('page', 'demo.SpanishHomePage'),
@@ -101,8 +101,8 @@ class SectionPageLinkBlockPlacement(models.Model):
         choices=POSITION_CHOICES, help_text="""Determines the postion of the link on the page or section.""")
 
     class Meta:
-        verbose_name = "Section Page link placement"
-        verbose_name_plural = "Section Page link placements"
+        verbose_name = "Learn or Navigate Section Link"
+        verbose_name_plural = "Learn and Navigate Section Links"
 
     panels = [
         PageChooserPanel('page', 'demo.SectionPage'),
@@ -123,8 +123,8 @@ class ExplorePageLinkBlockPlacement(models.Model):
         choices=POSITION_CHOICES, help_text="""Determines the position of the link on the page or section.""")
 
     class Meta:
-        verbose_name = "Explore section link placement"
-        verbose_name_plural = "Explore section link placements"
+        verbose_name = "Explore Section Link"
+        verbose_name_plural = "Explore Section Links"
 
     panels = [
         PageChooserPanel('page', 'demo.ExploreSectionPage'),
