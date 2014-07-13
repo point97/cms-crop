@@ -467,7 +467,9 @@ class ExplorePageIndex(MultiLingualPage):
     @property
     def topics(self):
         # Get list of live ExploreTopic pages that are descendants of this page
-        topics = ExploreTopic.objects.live().descendant_of(self)
+        #topics = ExploreTopic.objects.live().descendant_of(self)
+        topics = ExploreTopic.objects.live().descendant_of(self)#.order_by("title")
+        
         # Order by most recent date first
         # topics = topics.order_by('order')
         return topics
@@ -479,7 +481,8 @@ class ExplorePageIndex(MultiLingualPage):
             obj = {'image':topic.image,
                    'link':"#", 
                    'caption':topic.title,
-
+                   'text':topic.short_description,
+                   'topic_slug':topic.slug
                    }
             pics.append(obj)
         return pics

@@ -52,9 +52,8 @@ Overrides of bxSlider carousel
 
 // Font layout
 .bx-wrapper {
+    
     h1, p {
-        position: absolute;
-        left: 15;
         margin: 0;
         padding: 30px; padding-right: 45px;
 
@@ -64,16 +63,15 @@ Overrides of bxSlider carousel
     }
 
     h1 {
-        top: 0;
         font-size: 50px;
         line-height: 68px;
     }
 
     p {
-        bottom: 0;
         font-size: 22px;
         line-height: 30px;
     }
+
 
     &:hover {
         h1, p { color: $crop-cyan; }
@@ -106,5 +104,38 @@ Overrides of bxSlider carousel
         h1, p { padding: 20px; padding-right: 35px; }
         h1 { font-size: 24px; line-height: 32px; }
         p { font-size: 16px; line-height: 20px; }
+    }
+
+    .not-explore-carousel {
+        h1, p {
+            position: absolute;
+            left: 15;
+        }
+
+        h1 {
+            top: 0;
+        }
+
+        p {
+            bottom: 0;
+        }
+    }
+}
+
+
+.explore-carousel .bx-wrapper {
+    .carousel-text {
+        position:absolute;
+        width:100%;
+        top:50%;
+        text-align:center;
+
+        h1 {
+            padding:0;
+        }
+        p {
+            padding:0;
+            padding-top:$small-gutter;
+        }
     }
 }

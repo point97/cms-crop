@@ -1,7 +1,7 @@
 angular.module('cropApp')
     .controller('HomePageCtrl', [  '$scope', '$http', function ($scope, $http) {
         $scope.topics = {};
-        $scope.topics.active = '';
+        $scope.topics.active = 'explore';
         $scope.topics.slugs = _.map(angular.element(".topic-menu-item"), function(el){
             return $(el).attr("id");
         });

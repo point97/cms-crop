@@ -19,8 +19,13 @@
                             title="{{ carousel_item.caption }}" />
                     {% endif %}
                 </a>
-                <h1>{{ carousel_item.caption }}</h1>
-                <!-- <p>{{ carousel_item.text }}</p> -->
+                <div class="carousel-text">
+                    <h1>{{ carousel_item.caption }}</h1>
+                    {% if carousel_item.topic_slug == 'explore' %}
+                    <p>{{ carousel_item.text }}</p>
+                    {% endif %}
+                </div>
+                
             </li>
         {% endfor %}
     </ul>
