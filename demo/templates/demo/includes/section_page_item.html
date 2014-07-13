@@ -25,7 +25,17 @@
 
         {% link_blocks section 'carousel-bottom' %}
 
-        <div class="section-body">{{ section.body|safe}}</div>
+        <div ng-hide="topics.active" class="section-body">{{ section.body|safe}}</div>
+
+        {% for topic in section.topics %}    
+            <div id="{{topic.slug}}" 
+                class="topic-description" 
+                ng-show="topics.active === '{{ topic.slug }}' " ></i>
+                <h2>{{topic.title}}</h2>
+                <p>{{topic.long_description|safe}}</p>
+            </div>
+        {% endfor %}
+
 
         {% if section.data_catalogs %}
             <h1 ng-show="topics.active" class="blue" ng-click="showDataCatalogs = (showDataCatalogs === false); ">

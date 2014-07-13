@@ -540,6 +540,7 @@ ExploreSectionPage.content_panels = [
     FieldPanel('title'),
     FieldPanel('body'),
     FieldPanel('sidebar_title'),
+    #InlinePanel(ExploreSectionPage, 'carousel_items', label="Carousel items"),
 ]
 
 
