@@ -18,7 +18,7 @@ POSITION_CHOICES = (
 class LinkBlock(models.Model):
     title = models.CharField(max_length=255)
     url = models.URLField(null=True, blank=True)
-    text = models.CharField(max_length=255)
+    text = models.CharField(max_length=255, blank=True)
     image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -35,8 +35,8 @@ class LinkBlock(models.Model):
     ]
 
     class Meta:
-        verbose_name = "LINK - put all your links here first. Then you can add them to pages or sections."
-        verbose_name_plural = "LINKS - put all your links here first. Then you can add them to pages or sections."
+        verbose_name = "LINK BLOCK- A link with an image."
+        verbose_name_plural = "LINK BLOCKS - put your links here first. Then you can add them to pages or sections."
 
     def __unicode__(self):
         return self.title
