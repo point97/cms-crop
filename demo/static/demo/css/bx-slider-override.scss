@@ -106,19 +106,13 @@ Overrides of bxSlider carousel
         p { font-size: 16px; line-height: 20px; }
     }
 
-    .not-explore-carousel {
-        h1, p {
-            position: absolute;
-            left: 15;
-        }
+}
 
-        h1 {
-            top: 0;
-        }
-
-        p {
-            bottom: 0;
-        }
+.not-explore-carousel {
+    .carousel-text {
+        position: absolute;
+        left: 15;
+        top:15px;
     }
 }
 
@@ -132,10 +126,13 @@ Overrides of bxSlider carousel
 
         h1 {
             padding:0;
+            margin-top:-34px;
         }
         p {
             padding:0;
             padding-top:$small-gutter;
+            width:50%;
+            margin:auto;
         }
     }
 }
