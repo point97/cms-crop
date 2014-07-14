@@ -461,7 +461,7 @@ class ExplorePageIndex(MultiLingualPage):
     Acts as an index life SectionedPage for English and
     Spanish HomePage's
     """
-    body = RichTextField(blank=True, null=True)
+    body = RichTextField(blank=True, null=True, help_text="THIS IS NOT USED AND NEEDS TO BE REMOVED. use the short and long descriptions in the Explore subpage instead.")
     sidebar_title = models.CharField(max_length=255, null=True, blank=True)
 
     @property
