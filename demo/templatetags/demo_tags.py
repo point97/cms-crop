@@ -73,7 +73,11 @@ def top_menu(context, parent, calling_page=None):
 
 @register.inclusion_tag('demo/tags/hamburger_menu.html', takes_context=True)
 def hamburger_menu(context, parent=None, calling_page=None):
-    
+    """
+    This is a a multilingual hamburger menu link gnerator. It is used in the header
+    nav bard.
+
+    """
     
     lang = translation.get_language()
     
@@ -118,6 +122,11 @@ def hamburger_menu(context, parent=None, calling_page=None):
         # required by the pageurl tag that we want to use within this template
         'request': context['request'],
     }
+
+
+@register.inclusion_tag('demo/tags/sections_menu.html', takes_context=True)
+def sections_menu(context):
+    pass
 
 
 
