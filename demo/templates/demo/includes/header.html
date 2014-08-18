@@ -1,4 +1,4 @@
-{% load static i18n crop_tags %}
+{% load static i18n demo_tags %}
 <div id="header">
     <div class="container">
         <div class="row">
@@ -82,28 +82,8 @@
                         <li><a animate-scroll-to="navigate" href="{% home_url %}/#navigate">NAVIGATE</a></li>
                         <li class="hidden-sm"><a href="http://crop.apps.pointnineseven.com/visualize/#login=true">SIGN UP / LOGIN</a></li>
                     </ul>
-                    <div id="cropDropdownMenuWrapper" class="dropdown">
-                        <a  id="cropDropdownMenuLink"
-                            class="dropdown-toggle"
-                            href="javascript:void(0)">
-                            <span class="sr-only">Toggle Navigation</span>
-                            <span class="hamburger-char">&#9776;</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                            <li><a href="{% home_url %}/about">ABOUT US</a></li>
-                            <li><a href="{% home_url %}/contact">CONTACT US</a></li>
-                            <li><a animate-scroll-to="learn" href="{% home_url %}/#learn">LEARN</a></li>
-                            <li><a animate-scroll-to="explore" href="{% home_url %}/#explore">EXPLORE</a></li>
-                            <li><a animate-scroll-to="navigate" href="{% home_url %}/#navigate">NAVIGATE</a></li>
-                            <li><a href="#">DATA</a></li>
-                            <li><a href="{% home_url %}/calendar">CALENDAR</a></li>
-                            <li><a href="{% home_url %}/news">NEWS</a></li>
-                            <li><a href="{% home_url %}/search">SEARCH</a></li>
-                            <li><a href="http://crop.apps.pointnineseven.com/visualize/#login=true">SIGN UP / LOGIN</a></li>
-                            <li><a href="#">SITE MAP</a></li>
-                        </ul>
-                    </div>
-
+                    
+                    {% hamburger_menu %}
                 </div>
             </div>
         </div>
