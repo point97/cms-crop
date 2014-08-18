@@ -49,10 +49,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-3 col-xs-3 language-toggle menu">
+                    Slug {{ self.slug}}
                     <form id="switchlang-en" action="/switchlang/en" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="requesting_page_id" value="{{self.id}}">
-                        <a class="switchlang"
+                        <a class="switchlang {% if self.slug == 'en' %}active{% endif %}"
                             href="javascript:document.getElementById('switchlang-en').submit();">
                             <svg class="switchlang-circle">
                                 <circle cx="9" cy="12" r="6"/>
@@ -63,15 +64,18 @@
                     <form id="switchlang-es" action="/switchlang/es" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="requesting_page_id" value="{{self.id}}">
-                        <a class="switchlang"
+                        <a class="switchlang {% if self.slug == 'es' %}active{% endif %}"
                             href="javascript:document.getElementById('switchlang-es').submit();">
-                            <svg class="switchlang-circle">
+                            <svg class="switchlang-circle" >
                                 <circle cx="9" cy="12" r="6"/>
                             </svg>
                             Español
                         </a>
                     </form>
+
                 </div>
+
+                
                 <div class="col-sm-9 col-sm-offset-0    col-xs-2 col-xs-offset-7   menu-right">
                     <ul class="menu hidden-xs list-unstyled list-inline">
                         <li><a animate-scroll-to="learn" href="{% home_url %}/#learn">LEARN</a></li>
