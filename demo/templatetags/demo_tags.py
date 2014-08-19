@@ -100,9 +100,10 @@ def hamburger_menu(context, parent=None, calling_page=None):
     for page in section_pages:
         menuitems.append({'href':"/%s/#%s" %(lang, page.slug) , 'verbose':page.title, 'section_page':True})
 
-    menuitems.append({'href':"/%s/#%s" %(lang, page.slug) , 'verbose':explore_page.title, 'section_page':True})
+    # Split the title on white space and grab first word.
+    menuitems.append({'href':"/%s/#%s" %(lang, explore_page.slug) , 'verbose':explore_page.title.split(" ")[0], 'section_page':True})
 
-
+    # TODO These need to be filled in
     others = [
         {'href':'', 'verbose':'(%s) DATA' %(lang)},
         {'href':'', 'verbose':'(%s) CALENDAR' %(lang)},
@@ -126,8 +127,32 @@ def hamburger_menu(context, parent=None, calling_page=None):
 
 @register.inclusion_tag('demo/tags/sections_menu.html', takes_context=True)
 def sections_menu(context):
-    pass
+    """
+    These are for the explore, learn, and navigate page sections in the header
+    """
+    lang = translation.get_language()
+    if lang == 'es':
+        home_page = SpanishHomePage.objects.all()[0]
+    elif lang == 'en':
+        home_page = EnglishHomePage.objects.all()[0]
+    else:
+        raise Exception("You must have an EnglishHomePage or a SpanishHomePage defined")
 
+    section_pages = home_page.get_children().type(SectionPage)
+    explore_page = home_page.get_children().type(ExploreSectionPage)[0]
+
+    menuitems = []
+    for page in section_pages:
+        menuitems.append({'href':"/%s/#%s" %(lang, page.slug) , 'verbose':page.title, 'section_page':True})
+    
+    # Split the title on white space and grab first word.
+    menuitems.insert(1, {'href':"/%s/#%s" %(lang, explore_page.slug) , 'verbose':explore_page.title.split(" ")[0], 'section_page':True})
+
+    return {
+        'menuitems': menuitems,
+        # required by the pageurl tag that we want to use within this template
+        'request': context['request'],
+    }
 
 
 # Retrieves the children of the top menu items for the drop downs
