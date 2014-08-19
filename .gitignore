@@ -9,3 +9,4 @@ backups
 logs
 *.dump
 .DS_Store
+load_db.sh

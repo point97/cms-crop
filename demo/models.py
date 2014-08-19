@@ -378,7 +378,7 @@ class SpanishHomePageCarouselItem(Orderable, CarouselItem):
 
 class SpanishHomePage(SectionedPage):
     search_name = u"Pagina Principal"
-    subpage_types = ['demo.SectionPage', 'demo.ExploreSectionPage', 'demo.GenericContentPage']
+    subpage_types = ['demo.SectionPage', 'demo.ExploreSectionPage', 'demo.GenericContentPage', 'demo.EventPage']
 
     class Meta:
         verbose_name = "Spanish Home Page"

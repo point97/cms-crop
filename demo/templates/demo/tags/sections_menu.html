@@ -1,0 +1,8 @@
+<ul class="menu hidden-xs list-unstyled list-inline">
+    {% for item in menuitems %}    
+    <li><a {% if item.section_page %}animate-scroll-to="{{item.slug}}"{% endif %}href="{{item.href}}">{{item.verbose}}</a></li>
+
+    {% endfor %}
+
+    <li class="hidden-sm"><a href="http://crop.apps.pointnineseven.com/visualize/#login=true">SIGN UP / LOGIN</a></li>
+</ul>

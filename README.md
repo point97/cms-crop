@@ -3,6 +3,8 @@ CROP based on Wagtail demo
 
 ## Dumping live database to local
 
+Use can use the `etc/load_db_template.sh` to create your own local `load_db.sh` script, just edit `DEVOPS_DIR` and `PROJECT_DIR` to point at you appropriate directories then run `etc/load_db.sh cms-crop`. Or you can use the commands below.
+
 To dump the live databse and load into a vagrant dev site
 
 * go to devops and use the nornal ansible commands. This will dump the database to devops/backup

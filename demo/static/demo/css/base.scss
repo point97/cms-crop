@@ -177,6 +177,10 @@ a.switchlang {
     &:hover svg.switchlang-circle circle {
         fill: $crop-blue;
     }
+
+    &.active svg.switchlang-circle circle {
+        fill: $crop-blue;
+    }
 }
 
 

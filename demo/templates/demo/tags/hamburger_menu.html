@@ -1,0 +1,17 @@
+{% load static i18n demo_tags %}
+
+<div id="cropDropdownMenuWrapper" class="dropdown">
+    <a  id="cropDropdownMenuLink"
+        class="dropdown-toggle"
+        href="javascript:void(0)">
+        <span class="sr-only">Toggle Navigation</span>
+        <span class="hamburger-char">&#9776;</span>
+    </a>
+
+    <ul switch-lang class="dropdown-menu dropdown-menu-right" role="menu">
+        {% for item in menuitems %}
+            <li><a {% if item.section_page %}animate-scroll-to="{{item.slug}}"{% endif %}href="{{item.href}}">{{item.verbose}}</a></li>
+        {% endfor %}
+    </ul>
+
+</div>

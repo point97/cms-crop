@@ -1,5 +1,6 @@
 from django import template
 from django.conf import settings
+from django.utils import translation
 
 from demo.models import *
 
@@ -64,6 +65,90 @@ def top_menu(context, parent, calling_page=None):
         menuitem.show_dropdown = has_menu_children(menuitem)
     return {
         'calling_page': calling_page,
+        'menuitems': menuitems,
+        # required by the pageurl tag that we want to use within this template
+        'request': context['request'],
+    }
+
+
+@register.inclusion_tag('demo/tags/hamburger_menu.html', takes_context=True)
+def hamburger_menu(context, parent=None, calling_page=None):
+    """
+    This is a a multilingual hamburger menu link gnerator. It is used in the header
+    nav bard.
+
+    """
+    
+    lang = translation.get_language()
+    
+
+    if lang == 'es':
+        home_page = SpanishHomePage.objects.all()[0]
+    elif lang == 'en':
+        home_page = EnglishHomePage.objects.all()[0]
+    else:
+        raise Exception("You must have an EnglishHomePage or a SpanishHomePage defined")
+
+    generic_pages = home_page.get_children().type(GenericContentPage)
+    section_pages = home_page.get_children().type(SectionPage)
+    explore_page = home_page.get_children().type(ExploreSectionPage)[0]
+
+    menuitems = []
+    for page in generic_pages:
+        menuitems.append({'href':page.url, 'verbose':page.title})
+
+    for page in section_pages:
+        menuitems.append({'href':"/%s/#%s" %(lang, page.slug) , 'verbose':page.title, 'section_page':True})
+
+    # Split the title on white space and grab first word.
+    menuitems.append({'href':"/%s/#%s" %(lang, explore_page.slug) , 'verbose':explore_page.title.split(" ")[0], 'section_page':True})
+
+    # TODO These need to be filled in
+    others = [
+        {'href':'', 'verbose':'(%s) DATA' %(lang)},
+        {'href':'', 'verbose':'(%s) CALENDAR' %(lang)},
+        {'href':'', 'verbose':'(%s) NEWS' %(lang)},
+        {'href':'', 'verbose':'(%s) SEARCH' %(lang)},
+        {'href':'http://crop.apps.pointnineseven.com/visualize/#login=true', 'verbose':'(%s) SIGNUP/LOGIN' %(lang)},
+        {'href':'', 'verbose':'(%s) SITEMAP' %(lang)},
+    ]
+
+    for page in others:
+        menuitems.append({'href':page['href'], 'verbose':page['verbose']})
+
+
+    return {
+        'calling_page': calling_page,
+        'menuitems': menuitems,
+        # required by the pageurl tag that we want to use within this template
+        'request': context['request'],
+    }
+
+
+@register.inclusion_tag('demo/tags/sections_menu.html', takes_context=True)
+def sections_menu(context):
+    """
+    These are for the explore, learn, and navigate page sections in the header
+    """
+    lang = translation.get_language()
+    if lang == 'es':
+        home_page = SpanishHomePage.objects.all()[0]
+    elif lang == 'en':
+        home_page = EnglishHomePage.objects.all()[0]
+    else:
+        raise Exception("You must have an EnglishHomePage or a SpanishHomePage defined")
+
+    section_pages = home_page.get_children().type(SectionPage)
+    explore_page = home_page.get_children().type(ExploreSectionPage)[0]
+
+    menuitems = []
+    for page in section_pages:
+        menuitems.append({'href':"/%s/#%s" %(lang, page.slug) , 'verbose':page.title, 'section_page':True})
+    
+    # Split the title on white space and grab first word.
+    menuitems.insert(1, {'href':"/%s/#%s" %(lang, explore_page.slug) , 'verbose':explore_page.title.split(" ")[0], 'section_page':True})
+
+    return {
         'menuitems': menuitems,
         # required by the pageurl tag that we want to use within this template
         'request': context['request'],
@@ -175,6 +260,12 @@ def adverts(context):
         'adverts': Advert.objects.all(),
         'request': context['request'],
     }
+
+@register.simple_tag()
+def home_url():
+    # provide root url for the current language
+    return '/' + translation.get_language()
+
 
 
 # Format times e.g. on event page
