@@ -38,7 +38,7 @@
 
 
         {% if section.data_catalogs %}
-            <h1 ng-show="topics.active && topics.active != 'explore' " class="blue" ng-click="showDataCatalogs = (showDataCatalogs === false); ">
+            <h1 ng-show="topics.active && topics.active != topics.default_topic " class="blue" ng-click="showDataCatalogs = (showDataCatalogs === false); ">
                 Preview Data Catalogs <i ng-class="{'fa fa-angle-right':!showDataCatalogs, 'fa fa-angle-down':showDataCatalogs}"></i>
             </h1>
             {% for obj in section.data_catalogs %}
@@ -47,7 +47,7 @@
         {% endif %}
 
         {% if section.data_priorities %}
-            <h1 ng-show="topics.active && topics.active != 'explore' " class="green" ng-click="showDataPriorities = (showDataPriorities === false); " >
+            <h1 ng-show="topics.active && topics.active != topics.default_topic " class="green" ng-click="showDataPriorities = (showDataPriorities === false); " >
                 See Data Priorities <i ng-class="{'fa fa-angle-right':!showDataPriorities, 'fa fa-angle-down':showDataPriorities}"></i>
             </h1>
             {% for obj in section.data_priorities %}
@@ -71,9 +71,9 @@
                 {% for topic in section.topics %}
                     
                     <div id="{{topic.slug}}" 
-                        class="topic-menu-item" 
+                        class="topic-menu-item {% if topic.default_topic %}default-topic{% endif %}" 
                         ng-click="setTopic('{{topic.slug}}')" 
-                        ng-hide="'{{topic.slug}}' === 'explore'"
+                        ng-hide="'{{topic.slug}}' === topics.default_topic"
                         ng-class="{'active':topics.active === '{{topic.slug}}'}">
                         <i class="fa fa-angle-right active-arrow" ng-show="topics.active === '{{ topic.slug }}' " ></i>
                         <h2>{{topic.title}}</h2>
