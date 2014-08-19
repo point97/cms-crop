@@ -1,14 +1,20 @@
 angular.module('cropApp')
     .controller('HomePageCtrl', [  '$scope', '$http', function ($scope, $http) {
         $scope.topics = {};
-        $scope.topics.active = 'explore';
+        
+
+        // Get a list of explore topics and the dfault topic from the topic menu li
+        // Then set the active topic to the default topic.
         $scope.topics.slugs = _.map(angular.element(".topic-menu-item"), function(el){
             return $(el).attr("id");
         });
-
+        $scope.topics.default_topic = angular.element(".topic-menu-item.default-topic").attr("id");
+        $scope.topics.active = $scope.topics.default_topic;
         $scope.showDataCatalogs = false;
         $scope.showDataPriorities = false;
 
+
+        
         $scope.setTopic = function(topic){
             $scope.topics.active = topic;
             console.log("Set topic to " + $scope.topics.active);

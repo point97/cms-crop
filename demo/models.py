@@ -43,8 +43,7 @@ COMMON_PANELS = (
     FieldPanel('search_description'),
 )
 
-
-
+ 
 class LinkFields(models.Model):
     """
     A link field that acts as a base class to the Carousel Item.
@@ -550,6 +549,11 @@ ExploreSectionPage.content_panels = [
 class ExploreTopic(MultiLingualPage):
     short_description = models.CharField(max_length=255, null=True, blank=True)
     long_description = RichTextField(null=True, blank=True)
+    default_topic = models.BooleanField(default=False, 
+        help_text="""If checked, this topic's content and image will be used as the default for the 
+                    Explore Section and it will not show up in the sidebar menu. You should only 
+                    check this on one topic for English one topic for Spanish.
+                """)
     image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -591,6 +595,7 @@ ExploreTopic.content_panels = [
     FieldPanel('title'),
     FieldPanel('short_description'),
     FieldPanel('long_description'),
+    FieldPanel('default_topic'),
     ImageChooserPanel('image'),
 
 ]
