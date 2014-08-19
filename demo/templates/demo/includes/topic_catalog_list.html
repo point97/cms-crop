@@ -2,7 +2,7 @@
 <div id="{{obj.topic.slug}}-catalog-list" ng-show="(topics.active === '{{obj.topic.slug}}' && showDataCatalogs)">
     {% for catalog in obj.catalogs %}
         <div class="catalog-item padding-left padding-right">
-            <h2>{{catalog.title}}<small>{{obj.topic.title}}</small></h2>
+            <h2>{{catalog.title}}</h2>
             <p>{{catalog.body|safe}}</p>
             <div class="row">
                 <div class="col-md-2 col-sm-2"><a href="">Map</a></div>

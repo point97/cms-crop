@@ -460,7 +460,7 @@ class ExplorePageIndex(MultiLingualPage):
     Acts as an index life SectionedPage for English and
     Spanish HomePage's
     """
-    body = RichTextField(blank=True, null=True, editable=True,
+    body = RichTextField(blank=True, null=True, editable=False,
         help_text="THIS IS NOT USED AND NEEDS TO BE REMOVED. use the short and long descriptions in the Explore subpage instead.")
     sidebar_title = models.CharField(max_length=255, null=True, blank=True)
 
@@ -541,7 +541,7 @@ class ExploreSectionPage(ExplorePageIndex):
 
 ExploreSectionPage.content_panels = [
     FieldPanel('title'),
-    FieldPanel('body'),
+    #FieldPanel('body'),
     FieldPanel('sidebar_title'),
     #InlinePanel(ExploreSectionPage, 'carousel_items', label="Carousel items"),
 ]
