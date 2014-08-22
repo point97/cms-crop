@@ -104,14 +104,25 @@ def hamburger_menu(context, parent=None, calling_page=None):
     menuitems.append({'href':"/%s/#%s" %(lang, explore_page.slug) , 'verbose':explore_page.title.split(" ")[0], 'section_page':True})
 
     # TODO These need to be filled in
-    others = [
-        {'href':'', 'verbose':'(%s) DATA' %(lang)},
-        {'href':'', 'verbose':'(%s) CALENDAR' %(lang)},
-        {'href':'', 'verbose':'(%s) NEWS' %(lang)},
-        {'href':'', 'verbose':'(%s) SEARCH' %(lang)},
-        {'href':'http://crop.apps.pointnineseven.com/visualize/#login=true', 'verbose':'(%s) SIGNUP/LOGIN' %(lang)},
-        {'href':'', 'verbose':'(%s) SITEMAP' %(lang)},
-    ]
+    
+    if lang == 'en':
+        others = [
+            {'href':'', 'verbose':'DATA' %(lang)},
+            {'href':'', 'verbose':'CALENDAR' %(lang)},
+            {'href':'', 'verbose':'NEWS' %(lang)},
+            {'href':'http://crop.apps.pointnineseven.com/visualize/#login=true', 'verbose':'SIGNUP/LOGIN' %(lang)},
+            {'href':'', 'verbose':'SITEMAP' %(lang)},
+        ]
+
+    elif lang == 'es':
+        others = [
+            {'href':'', 'verbose':'DATOS' %(lang)},
+            {'href':'', 'verbose':'CALENDARIO' %(lang)},
+            {'href':'', 'verbose':'NOTICIAS' %(lang)},
+            {'href':'http://crop.apps.pointnineseven.com/visualize/#login=true', 'verbose':'REGÍSTRATE' %(lang)},
+            {'href':'', 'verbose':'MAPA' %(lang)},
+        ]        
+
 
     for page in others:
         menuitems.append({'href':page['href'], 'verbose':page['verbose']})
