@@ -21,7 +21,7 @@
                 </a>
                 <div class="carousel-text">
                     <h1>{{ carousel_item.caption }}</h1>
-                    {% if carousel_item.topic_slug == 'explore' %}
+                    {% if carousel_item.default_topic %}
                     <p>{{ carousel_item.text }}</p>
                     {% endif %}
                 </div>

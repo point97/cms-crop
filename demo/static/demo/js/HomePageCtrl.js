@@ -13,6 +13,12 @@ angular.module('cropApp')
         $scope.showDataCatalogs = false;
         $scope.showDataPriorities = false;
 
+        // Get lang 
+        if (location.pathname.search('^/es/') >= 0 ) {
+            $scope.lang = 'es';
+        }  else {
+            $scope.lang = 'en';
+        }
 
         
         $scope.setTopic = function(topic){
@@ -32,6 +38,8 @@ angular.module('cropApp')
         $scope.get_events = function(date, offset_url) {
 
             var url = '/api/v1/event/?format=json&limit=5';
+            url += '&url_path__contains=langroot/'+$scope.lang;
+            
             if (typeof(offset_url) !== 'undefined') {
                 url = offset_url;
             } else if ($scope.cal.range[0] && $scope.cal.range[1]) {

@@ -351,7 +351,7 @@ class EnglishHomePageCarouselItem(Orderable, CarouselItem):
 
 class EnglishHomePage(SectionedPage):
     search_name = "Home"
-    subpage_types = ['demo.SectionPage', 'demo.ExploreSectionPage', 'demo.GenericContentPage']
+    subpage_types = ['demo.SectionPage', 'demo.GenericContentPage']
 
     class Meta:
         verbose_name = "English Home Page"
@@ -377,7 +377,9 @@ class SpanishHomePageCarouselItem(Orderable, CarouselItem):
 
 class SpanishHomePage(SectionedPage):
     search_name = u"Pagina Principal"
-    subpage_types = ['demo.SectionPage', 'demo.ExploreSectionPage', 'demo.GenericContentPage', 'demo.EventPage']
+    subpage_types = ['demo.SectionPage', 
+                     'demo.GenericContentPage', 
+                     'demo.EventIndexPage']
 
     class Meta:
         verbose_name = "Spanish Home Page"
