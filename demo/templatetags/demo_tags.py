@@ -107,20 +107,20 @@ def hamburger_menu(context, parent=None, calling_page=None):
     
     if lang == 'en':
         others = [
-            {'href':'', 'verbose':'DATA' %(lang)},
-            {'href':'', 'verbose':'CALENDAR' %(lang)},
-            {'href':'', 'verbose':'NEWS' %(lang)},
-            {'href':'http://crop.apps.pointnineseven.com/visualize/#login=true', 'verbose':'SIGNUP/LOGIN' %(lang)},
-            {'href':'', 'verbose':'SITEMAP' %(lang)},
+            {'href':'', 'verbose':'DATA'},
+            {'href':'', 'verbose':'CALENDAR'},
+            {'href':'', 'verbose':'NEWS'},
+            {'href':'http://crop.apps.pointnineseven.com/visualize/#login=true', 'verbose':'SIGNUP/LOGIN'},
+            {'href':'', 'verbose':'SITEMAP'},
         ]
 
     elif lang == 'es':
         others = [
-            {'href':'', 'verbose':'DATOS' %(lang)},
-            {'href':'', 'verbose':'CALENDARIO' %(lang)},
-            {'href':'', 'verbose':'NOTICIAS' %(lang)},
-            {'href':'http://crop.apps.pointnineseven.com/visualize/#login=true', 'verbose':'REGÍSTRATE' %(lang)},
-            {'href':'', 'verbose':'MAPA' %(lang)},
+            {'href':'', 'verbose':'DATOS'},
+            {'href':'', 'verbose':'CALENDARIO'},
+            {'href':'', 'verbose':'NOTICIAS'},
+            {'href':'http://crop.apps.pointnineseven.com/visualize/#login=true', 'verbose':'REGISTRATE'},
+            {'href':'', 'verbose':'MAPA'},
         ]        
 
 
