@@ -557,6 +557,7 @@ class ExploreTopic(MultiLingualPage):
                     Explore Section and it will not show up in the sidebar menu. You should only 
                     check this on one topic for English one topic for Spanish. This topic must also be the first Explore Topic.
                 """)
+    mp_id = models.IntegerField(null=True, blank=True, help_text="The Marine Planner Data Catalog ID")
     image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -599,6 +600,7 @@ ExploreTopic.content_panels = [
     FieldPanel('short_description'),
     FieldPanel('long_description'),
     FieldPanel('default_topic'),
+    FieldPanel('mp_id'),
     ImageChooserPanel('image'),
 
 ]

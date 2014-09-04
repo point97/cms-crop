@@ -17,6 +17,7 @@ from wagtail.wagtailusers import urls as wagtailusers_urls
 from wagtail.wagtailredirects import urls as wagtailredirects_urls
 
 from demo import urls as demo_urls
+from demo.views import webhook
 
 from tastypie.api import Api
 from demo.api import EventPageResource
@@ -55,6 +56,7 @@ urlpatterns = patterns('',
     (r'^switchlang/', include(demo_urls)),
     (r'^i18n/', include('django.conf.urls.i18n')),
     (r'^api/', include(v1_api.urls)),
+    url(r'webhook/?$', webhook, name='webhook'),
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's serving mechanism
     url(r'', include(wagtail_urls)),
