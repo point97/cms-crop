@@ -104,7 +104,6 @@ def webhook(request):
                         topic.long_description = rendered
                         #catalogs = DataCatalogPage.objects.live().descendant_of(topic)
 
-                        import pdb; pdb.set_trace()
                         topic.save()
 
                     elif not topic.default_topic:
