@@ -34,6 +34,53 @@ ansible-playbook -i hosts.ini provisioning/playbook.yml  -l cms-crop.apps.pointn
 ```
 
 
+
+## Data Catalogs
+
+Data catalogs (Themes and layers) are pulled from crop.apps.pointnineseven.com
+
+JSON Object (with themes controlled by MP)
+
+- themes : [  // Themes shouldbe shorted in alphabetical order by english name.
+        {
+            id: 27,
+            name : "Administrative & Regulatory",
+            short_description: "A short description",
+            description : "A long description",
+
+            spanish_name : "Espanol name",
+            spanish_short_description: "Espanol short description",
+            spanish_description: "Espanol description",
+
+            layers: [ // Layers should be sorted in alphabetical order by name.
+                {
+                    id : 370,
+                    name : "200NM EZ and Maritime Boundaries",
+                    description : "This layer contains the US 200nm EEZ as...",
+                    map_link : "",
+                    kml_link : "",
+                    data_link : "",
+                    tiles_link : "",
+                    meta_link : ""
+                }, {
+                    id : 371,
+                    name : "",
+                    description : "",
+                    map_link : "",
+                    kml_link : "",
+                    data_link : "",
+                    tiles_link : "",
+                    meta_link : ""
+                }
+            ]
+        },
+    ]
+
+
+
+
+
+
 [Wagtail](http://wagtail.io) is distributed as a Python package, to be incorporated into a Django project via the INSTALLED_APPS setting. To get you up and running quickly, we provide a demo site with all the configuration in place, including a set of example page types.
 
 Setup (with Vagrant - recommended)
