@@ -1,5 +1,5 @@
 # Django settings for wagtaildemo project.
-
+print "I am settings base.py"
 import os
 
 PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '..', '..')
