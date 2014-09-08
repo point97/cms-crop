@@ -33,7 +33,22 @@ cd into devops and run
 ansible-playbook -i hosts.ini provisioning/playbook.yml  -l cms-crop.apps.pointnineseven.com --ask-vault-pass
 ```
 
+## Copying user uploaded images
 
+You can use rsync for this. 
+
+```
+# Copying from staging to local vagrant
+rsync -avz apps.pointnineseven.com:/usr/local/apps/cms-crop/media /Users/wilblack/django-projects/cms-crop
+
+
+# Copying from staging to production
+# First copy to local machine
+rsync -avz apps.pointnineseven.com:/usr/local/apps/cms-crop/media /Users/wilblack/django-projects/cms-crop
+
+# Then copy to proudction site. (You may need to change file permissions)
+rsync -avz /Users/wilblack/django-projects/cms-crop/media caribbean-mp.org:/usr/local/apps/cms-crop-live
+```
 
 ## Data Catalogs
 
