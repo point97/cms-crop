@@ -46,7 +46,7 @@ def _switch_to_lang(request, dest_lang):
 def webhook(request):
     """
     Usage:
-        Send a GET request to the /webhook/?token=XXXXXXX&action=update-catalog
+        Send a GET request to the /webhook/?token=a5680aa0-3473-11e4-8c21-0800200c9a66&action=update-catalog
         If token passes validation then the appropriate action
     Params:
 
@@ -56,7 +56,10 @@ def webhook(request):
 
     Data catalog
 
-    themes -- > ExploreTopics
+    themes
+        id
+        layers : []
+
     """
 
     if request.method == 'GET':
@@ -67,55 +70,45 @@ def webhook(request):
 
         if token == 'a5680aa0-3473-11e4-8c21-0800200c9a66':
             if action == 'update-catalog':
-                url = "http://crop.apps.pointnineseven.com/data_manager/get_json/"
+                url = "http://crop.apps.pointnineseven.com/data_manager/get_catalog_json/"
 
                 print "Updating catalog"
                 response = urllib2.urlopen(url)
                 raw = response.read()
                 data = json.loads(raw)
-                
-                # Get themese and layers
+
+                # Get themes and layers from the JSON object
                 themes = data['themes']
-                theme_ids = map(lambda x: x['id'], themes)
-                all_layers = data['layers']
 
-                # Get current Explore Topics from DB
-                home_page = EnglishHomePage.objects.all()[0]
-                exp_page = home_page.get_descendants().type(ExploreSectionPage)[0]
-                # index = home_page.get_descendants().type(ExplorePageIndex)
-                topics = ExploreTopic.objects.live().descendant_of(exp_page)
-
-                # Loop over current topics and either update or delete them
-                for topic in topics:
-                    if topic.mp_id in theme_ids:
-                        # update the info
-
-                        # get the theme and its layers
-                        theme = filter(lambda x: int(x['id']) == topic.mp_id, themes)[0]
-                        layers = []
-                        for layer_id in theme['layers']:
-                            obj = filter(lambda x: int(x['id']) == layer_id, all_layers)[0] 
-                            layers.append(obj)
-
-                        rendered = render_to_string('demo/data_catalog.html', {'layers': layers})
-
-                        topic.title = theme['display_name']
-                        topic.short_description = theme['description']
-                        topic.long_description = rendered
-                        #catalogs = DataCatalogPage.objects.live().descendant_of(topic)
-
-                        topic.save()
-
-                    elif not topic.default_topic:
-                        # delete the topic if it is not the default topic
-                        print 'Deleting topic %s' %(topic)
-
+                update_data_topics(themes)
 
                 return HttpResponse('Got it. Cool beans.')
 
-    
+
     res = HttpResponse('Unauthorized')
     res.status_code = 401
     return res
 
 
+def update_data_topics(themes):
+    """
+    Updates the data topics if they match a theme ID.
+    """
+
+    for theme in themes:
+        # Get Explore Topics from DB
+        home_page = EnglishHomePage.objects.all()[0]
+        exp_page = home_page.get_descendants().type(ExploreSectionPage)[0]
+        # topics = ExploreTopic.objects.live().descendant_of(exp_page).filter(mp_id=theme['id'])
+        topics = ExploreTopic.objects.live().filter(mp_id=theme['id'])
+        for topic in topics:
+            for layer in theme['layers']:
+                if not layer['description'] and 'web_services_url' in layer.keys() and layer['web_services_url']:
+                    # get the json object
+                    response = urllib2.urlopen(layer['web_services_url'] + "?f=pjson")
+                    raw = response.read()
+                    data = json.loads(raw)
+                    layer['description'] = data['description']
+
+            topic.catalog = theme
+            topic.save()

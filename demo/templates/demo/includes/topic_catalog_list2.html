@@ -1,0 +1,17 @@
+<div id="{{obj.topic.slug}}-catalog-list" ng-show="(topics.active === '{{obj.topic.slug}}' && showDataCatalogs)">
+
+    {% for layer in obj.topic.catalog.layers %}
+        <div class="catalog-item padding-left padding-right">
+            <h2>{{layer.name}}</h2>
+            <p>{{layer.description|safe}}</p>
+            <div class="row">
+                {% if layer.map_link %}<div class="col-md-2 col-sm-2"><a href="{{layer.map_link}}">Map</a></div>{% endif %}
+                {% if layer.data_link %}<div class="col-md-2 col-sm-2"><a href="{{layer.data_link}}">Data</a></div>{% endif %}
+                {% if layer.tiles_link %}<div class="col-md-2 col-sm-2"><a href="{{layer.tiles_link}}">Tiles</a></div>{% endif %}
+                {% if layer.meta_link %}<div class="col-md-2 col-sm-2"><a href="{{layer.meta_link}}">Meta</a></div>{% endif %}
+            </div>
+
+        </div>
+    {% endfor %}
+
+</div>

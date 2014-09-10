@@ -26,8 +26,11 @@ from modelcluster.tags import ClusterTaggableManager
 from taggit.models import Tag, TaggedItemBase
 from south.signals import post_migrate
 
+
 from demo.utils import export_event
 from demo.snippets import LinkBlock, SectionPageLinkBlockPlacement
+
+from jsonfield import JSONField
 
 
 EVENT_AUDIENCE_CHOICES = (
@@ -558,6 +561,8 @@ class ExploreTopic(MultiLingualPage):
                     check this on one topic for English one topic for Spanish. This topic must also be the first Explore Topic.
                 """)
     mp_id = models.IntegerField(null=True, blank=True, help_text="The Marine Planner Data Catalog ID")
+    catalog = JSONField(null=True, blank=True)
+     
     image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
