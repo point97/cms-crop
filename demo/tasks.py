@@ -16,7 +16,6 @@ def update_data_topics(themes):
     """
     Updates the data topics if they match a theme ID.
     """
-    return themes
     for theme in themes:
         # Get Explore Topics from DB
         home_page = EnglishHomePage.objects.all()[0]
