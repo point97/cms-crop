@@ -6,13 +6,13 @@ PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '..', '..')
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-ADMINS = (
+ADMINS = [
     ('Wil Black', 'wil@pointnineseven.com'),
     ('Tim Glaser', 'tim.glaser@pointnineseven.com'),
     ('Scott Fletcher', 'scott@pointnineseven.com'),
-)
+]
 
-MANAGERS = ADMINS
+MANAGERS = ADMINS + [('Dan Crowther', 'dan@pointnineseven')] 
 
 DATABASES = {
     'default': {

@@ -2,7 +2,7 @@ from __future__ import absolute_import
 
 import urllib2, json
 
-from django.core.mail import mail_admins
+from django.core.mail import mail_managers
 
 from demo.models import EnglishHomePage, SpanishHomePage, ExploreTopic, ExploreSectionPage
 
@@ -38,4 +38,4 @@ def update_data_topics(themes):
             topic.save()
             email_body += "(%s) %s\n" %(topic.mp_id, topic.title)
 
-    mail_admins('CROP Data Catallog Updated', email_body, fail_silently=True)
+    mail_managers('CROP Data Catalog Updated', email_body, fail_silently=True)
