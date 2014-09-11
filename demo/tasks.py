@@ -1,5 +1,7 @@
 from __future__ import absolute_import
 
+import urllib2, json
+
 from demo.models import EnglishHomePage, SpanishHomePage, ExploreTopic, ExploreSectionPage
 
 from celery import shared_task

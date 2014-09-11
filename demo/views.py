@@ -64,9 +64,6 @@ def webhook(request):
 
     if request.method == 'GET':
 
-        add.delay(3,4)
-
-
         qd = request.GET
         token = qd['token']
         action = qd['action']
