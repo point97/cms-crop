@@ -6,7 +6,7 @@ from django.template.loader import render_to_string
 
 from demo.models import MultiLingualPage, EnglishHomePage, ExploreSectionPage, ExploreTopic
 
-
+from tasks import add, update_data_topics
 
 def switch_to_en(request):
     return _switch_to_lang(request, 'en')
@@ -64,6 +64,9 @@ def webhook(request):
 
     if request.method == 'GET':
 
+        add.delay(3,4)
+
+
         qd = request.GET
         token = qd['token']
         action = qd['action']
@@ -80,7 +83,7 @@ def webhook(request):
                 # Get themes and layers from the JSON object
                 themes = data['themes']
 
-                update_data_topics(themes)
+                update_data_topics.delay(themes)
 
                 return HttpResponse('Got it. Cool beans.')
 
@@ -90,25 +93,4 @@ def webhook(request):
     return res
 
 
-def update_data_topics(themes):
-    """
-    Updates the data topics if they match a theme ID.
-    """
 
-    for theme in themes:
-        # Get Explore Topics from DB
-        home_page = EnglishHomePage.objects.all()[0]
-        exp_page = home_page.get_descendants().type(ExploreSectionPage)[0]
-        # topics = ExploreTopic.objects.live().descendant_of(exp_page).filter(mp_id=theme['id'])
-        topics = ExploreTopic.objects.live().filter(mp_id=theme['id'])
-        for topic in topics:
-            for layer in theme['layers']:
-                if not layer['description'] and 'web_services_url' in layer.keys() and layer['web_services_url']:
-                    # get the json object
-                    response = urllib2.urlopen(layer['web_services_url'] + "?f=pjson")
-                    raw = response.read()
-                    data = json.loads(raw)
-                    layer['description'] = data['description']
-
-            topic.catalog = theme
-            topic.save()

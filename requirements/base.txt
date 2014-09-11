@@ -13,3 +13,5 @@ django-angular==0.7.3
 django-tastypie==0.9.16
 django-extensions==1.1.1
 jsonfield==0.9.20
+celery==3.1.14
+redis==2.10.3

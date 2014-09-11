@@ -53,6 +53,14 @@ rsync -avz /Users/wilblack/django-projects/cms-crop/media caribbean-mp.org:/usr/
 ## Data Catalogs
 
 Data catalogs (Themes and layers) are pulled from crop.apps.pointnineseven.com
+To trigger this send a GET to /webhook/?token=a5680aa0-3473-11e4-8c21-0800200c9a66&action=update-catalog
+This will run the update_data_topics in the background using Celery.
+
+You need to have the celery worker running. In vagrant you can start the Celery worker with
+
+```
+celery -A wagtaildemo  worker -l info
+```
 
 JSON Object (with themes controlled by MP)
 
