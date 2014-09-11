@@ -570,7 +570,7 @@ class ExploreTopic(MultiLingualPage):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-    subpage_types = ['demo.DataCatalogPage', 'demo.DataPriorityPage']
+    subpage_types = ['demo.DataPriorityPage']
 
     @property
     def topic_index(self):

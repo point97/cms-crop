@@ -8,7 +8,8 @@ TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     ('Wil Black', 'wil@pointnineseven.com'),
-    ('Tim Glaser', 'time.glaser@pointnineseven.com'),
+    ('Tim Glaser', 'tim.glaser@pointnineseven.com'),
+    ('Scott Fletcher', 'scott@pointnineseven.com'),
 )
 
 MANAGERS = ADMINS
@@ -169,7 +170,7 @@ INSTALLED_APPS = (
     'tastypie'
 )
 
-EMAIL_SUBJECT_PREFIX = '[wagtaildemo] '
+EMAIL_SUBJECT_PREFIX = '[CROP PORTAL] '
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
@@ -216,7 +217,7 @@ LOGGING = {
 
 # WAGTAIL SETTINGS
 
-WAGTAIL_SITE_NAME = 'wagtaildemo'
+WAGTAIL_SITE_NAME = 'Caribbean Regional Ocean Partnership'
 
 # Override the search results template for wagtailsearch
 WAGTAILSEARCH_RESULTS_TEMPLATE = 'demo/search_results.html'

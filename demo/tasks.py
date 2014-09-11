@@ -2,6 +2,8 @@ from __future__ import absolute_import
 
 import urllib2, json
 
+from django.core.mail import mail_admins
+
 from demo.models import EnglishHomePage, SpanishHomePage, ExploreTopic, ExploreSectionPage
 
 from celery import shared_task
@@ -18,12 +20,11 @@ def update_data_topics(themes):
     """
     Updates the data topics if they match a theme ID.
     """
+    email_body = "The following Data Topics where updated\n\n"
     for theme in themes:
         # Get Explore Topics from DB
-        home_page = EnglishHomePage.objects.all()[0]
-        exp_page = home_page.get_descendants().type(ExploreSectionPage)[0]
-        # topics = ExploreTopic.objects.live().descendant_of(exp_page).filter(mp_id=theme['id'])
         topics = ExploreTopic.objects.live().filter(mp_id=theme['id'])
+
         for topic in topics:
             for layer in theme['layers']:
                 if not layer['description'] and 'web_services_url' in layer.keys() and layer['web_services_url']:
@@ -35,3 +36,6 @@ def update_data_topics(themes):
 
             topic.catalog = theme
             topic.save()
+            email_body += "(%s) %s\n" %(topic.mp_id, topic.title)
+
+    mail_admins('CROP Data Catallog Updated', email_body)
