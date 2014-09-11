@@ -38,4 +38,4 @@ def update_data_topics(themes):
             topic.save()
             email_body += "(%s) %s\n" %(topic.mp_id, topic.title)
 
-    mail_admins('CROP Data Catallog Updated', email_body)
+    mail_admins('CROP Data Catallog Updated', email_body, fail_silently=True)
