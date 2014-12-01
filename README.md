@@ -64,41 +64,42 @@ celery -A wagtaildemo  worker -l info
 
 JSON Object (with themes controlled by MP)
 
-- themes : [  // Themes shouldbe shorted in alphabetical order by english name.
+```
+themes : [  // Themes shouldbe shorted in alphabetical order by english name.
+{
+    id: 27,
+    name : "Administrative & Regulatory",
+    short_description: "A short description",
+    description : "A long description",
+
+    spanish_name : "Espanol name",
+    spanish_short_description: "Espanol short description",
+    spanish_description: "Espanol description",
+
+    layers: [ // Layers should be sorted in alphabetical order by name.
         {
-            id: 27,
-            name : "Administrative & Regulatory",
-            short_description: "A short description",
-            description : "A long description",
-
-            spanish_name : "Espanol name",
-            spanish_short_description: "Espanol short description",
-            spanish_description: "Espanol description",
-
-            layers: [ // Layers should be sorted in alphabetical order by name.
-                {
-                    id : 370,
-                    name : "200NM EZ and Maritime Boundaries",
-                    description : "This layer contains the US 200nm EEZ as...",
-                    map_link : "",
-                    kml_link : "",
-                    data_link : "",
-                    tiles_link : "",
-                    meta_link : ""
-                }, {
-                    id : 371,
-                    name : "",
-                    description : "",
-                    map_link : "",
-                    kml_link : "",
-                    data_link : "",
-                    tiles_link : "",
-                    meta_link : ""
-                }
-            ]
-        },
+            id : 370,
+            name : "200NM EZ and Maritime Boundaries",
+            description : "This layer contains the US 200nm EEZ as...",
+            map_link : "",
+            kml_link : "",
+            data_link : "",
+            tiles_link : "",
+            meta_link : ""
+        }, {
+            id : 371,
+            name : "",
+            description : "",
+            map_link : "",
+            kml_link : "",
+            data_link : "",
+            tiles_link : "",
+            meta_link : ""
+        }
     ]
-
+},
+]
+```
 
 
 
