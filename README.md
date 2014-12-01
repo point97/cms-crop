@@ -1,6 +1,14 @@
 CROP based on Wagtail demo
 =======================
 
+## Starting the dev site (after initial set-up, see below).
+This will start the pythin dev server and make the site available on `localhost:8111`
+```
+vagrant up
+fab vagrant runserver
+```
+
+
 ## Dumping live database to local
 
 Use can use the `etc/load_db_template.sh` to create your own local `load_db.sh` script, just edit `DEVOPS_DIR` and `PROJECT_DIR` to point at you appropriate directories then run `etc/load_db.sh cms-crop`. Or you can use the commands below.
