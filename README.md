@@ -53,8 +53,8 @@ rsync -avz /Users/wilblack/django-projects/cms-crop/media caribbean-mp.org:/usr/
 ## Data Catalogs
 
 Data catalogs (Themes and layers) are pulled from crop.apps.pointnineseven.com
-To trigger this send a GET to /webhook/?token=a5680aa0-3473-11e4-8c21-0800200c9a66&action=update-catalog
-This will run the update_data_topics in the background using Celery.
+To trigger this send a GET to `/webhook/?token=a5680aa0-3473-11e4-8c21-0800200c9a66&action=update-catalog`
+This will run the `update_data_topics` in the background using Celery.
 
 You need to have the celery worker running. In vagrant you can start the Celery worker with
 
@@ -102,8 +102,7 @@ themes : [  // Themes shouldbe shorted in alphabetical order by english name.
 ```
 
 
-
-
+# Wagtail Docs
 
 [Wagtail](http://wagtail.io) is distributed as a Python package, to be incorporated into a Django project via the INSTALLED_APPS setting. To get you up and running quickly, we provide a demo site with all the configuration in place, including a set of example page types.
 
