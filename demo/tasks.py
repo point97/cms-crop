@@ -24,11 +24,11 @@ def update_data_topics():
 
     email_body += "Got %s themes. \n" % len(themes)
 
-    email_body += "The following Data Topics where updated\n\n"
+    email_body += "The following Data Topics (Themes) where updated\n\n"
     for theme in themes:
         # Get Explore Topics from DB
         topics = ExploreTopic.objects.live().filter(mp_id=theme['id'])
-        email_body += "Processing theme (%s) %s" %( theme['id'], theme['name'])
+        email_body += "Processing MP Theme (%s) %s\n" %( theme['id'], theme['name'])
 
         for topic in topics:
             for layer in theme['layers']:
@@ -41,6 +41,6 @@ def update_data_topics():
 
             topic.catalog = theme
             topic.save()
-            email_body += "(%s) %s\n" %(topic.mp_id, topic.title)
+            email_body += "- updated CMS topic (%s) %s\n" %(topic.mp_id, topic.title)
     print email_body
     mail_managers('CROP Data Catalog Updated', email_body, fail_silently=True)
