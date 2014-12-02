@@ -8,22 +8,15 @@ from demo.models import EnglishHomePage, SpanishHomePage, ExploreTopic, ExploreS
 
 from celery import shared_task
 
-
-
 @shared_task
-def add(x, y):
-    return x + y
-
-
-@shared_task
-def update_data_topics(themes):
+def update_data_topics():
     """
     Updates the data topics if they match a theme ID.
     """
     # First get the updated data catalog from Marine Portal.
     email_body = "Attempting to update the CROP Data Catalog.\n\nFetching new catalog.\n"
     url = "http://crop.apps.pointnineseven.com/data_manager/get_catalog_json/"
-    
+
     response = urllib2.urlopen(url)
     raw = response.read()
     data = json.loads(raw)
@@ -35,6 +28,7 @@ def update_data_topics(themes):
     for theme in themes:
         # Get Explore Topics from DB
         topics = ExploreTopic.objects.live().filter(mp_id=theme['id'])
+        email.body += "Processing theme (%s) %s" %( theme['id'], theme['name'])
 
         for topic in topics:
             for layer in theme['layers']:

@@ -6,7 +6,7 @@ from django.template.loader import render_to_string
 
 from demo.models import MultiLingualPage, EnglishHomePage, ExploreSectionPage, ExploreTopic
 
-from tasks import add, update_data_topics
+from tasks import update_data_topics
 
 def switch_to_en(request):
     return _switch_to_lang(request, 'en')
@@ -63,27 +63,13 @@ def webhook(request):
     """
 
     if request.method == 'GET':
-
         qd = request.GET
         token = qd['token']
         action = qd['action']
 
-        if token == 'a5680aa0-3473-11e4-8c21-0800200c9a66':
-            if action == 'update-catalog':
-                url = "http://crop.apps.pointnineseven.com/data_manager/get_catalog_json/"
-
-                print "Updating catalog"
-                response = urllib2.urlopen(url)
-                raw = response.read()
-                data = json.loads(raw)
-
-                # Get themes and layers from the JSON object
-                themes = data['themes']
-
-                update_data_topics.delay(themes)
-
-                return HttpResponse('Got it. Cool beans.')
-
+        if token == 'a5680aa0-3473-11e4-8c21-0800200c9a66' and action == 'update-catalog':
+            update_data_topics.delay()
+            return HttpResponse('Got it. Cool beans.')
 
     res = HttpResponse('Unauthorized')
     res.status_code = 401
