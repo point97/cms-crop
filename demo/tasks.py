@@ -28,7 +28,7 @@ def update_data_topics():
     for theme in themes:
         # Get Explore Topics from DB
         topics = ExploreTopic.objects.live().filter(mp_id=theme['id'])
-        email.body += "Processing theme (%s) %s" %( theme['id'], theme['name'])
+        email_body += "Processing theme (%s) %s" %( theme['id'], theme['name'])
 
         for topic in topics:
             for layer in theme['layers']:
