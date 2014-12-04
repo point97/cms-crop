@@ -110,7 +110,7 @@ def hamburger_menu(context, parent=None, calling_page=None):
             {'href':'', 'verbose':'DATA'},
             {'href':'', 'verbose':'CALENDAR'},
             {'href':'', 'verbose':'NEWS'},
-            {'href':'http://crop.apps.pointnineseven.com/visualize/#login=true', 'verbose':'SIGNUP/LOGIN'},
+            {'href':'http://planner.caribbean-mp.org/visualize/#login=true', 'verbose':'SIGNUP/LOGIN'},
             {'href':'', 'verbose':'SITEMAP'},
         ]
 
@@ -119,7 +119,7 @@ def hamburger_menu(context, parent=None, calling_page=None):
             {'href':'', 'verbose':'DATOS'},
             {'href':'', 'verbose':'CALENDARIO'},
             {'href':'', 'verbose':'NOTICIAS'},
-            {'href':'http://crop.apps.pointnineseven.com/visualize/#login=true', 'verbose':'REGISTRATE'},
+            {'href':'http://planner.caribbean-mp.org/visualize/#login=true', 'verbose':'REGISTRATE'},
             {'href':'', 'verbose':'MAPA'},
         ]        
 

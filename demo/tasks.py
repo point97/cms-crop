@@ -15,7 +15,7 @@ def update_data_topics():
     """
     # First get the updated data catalog from Marine Portal.
     email_body = "Attempting to update the CROP Data Catalog.\n\nFetching new catalog.\n"
-    url = "http://crop.apps.pointnineseven.com/data_manager/get_catalog_json/"
+    url = "http://planner.caribbean-mp.org/data_manager/get_catalog_json/"
 
     response = urllib2.urlopen(url)
     raw = response.read()
