@@ -20,3 +20,4 @@ redis==2.10.3
 kombu
 billiard
 BeautifulSoup
+pytz
