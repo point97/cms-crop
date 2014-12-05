@@ -40,6 +40,13 @@ h2 {
     text-transform:uppercase;
 }
 
+.anchor {
+    margin-top: -120px;        
+    padding-bottom: 120px;
+    position: relative;
+    display: block; 
+
+}
 
 //
 // h e a d e r  /  f o o t e r
@@ -108,7 +115,6 @@ h2 {
     top: 0;
     bottom: 0;
     margin-top: 0;
-    padding-bottom: 5px;
     width: 100%;
     z-index: 10000;
 }
