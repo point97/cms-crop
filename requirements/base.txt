@@ -8,7 +8,7 @@ django-modelcluster==0.1
 -e git://github.com/torchbox/wagtail.git@stable/0.4.x#egg=wagtail
 
 django-taggit==0.11.2
-libsass=0.5.1
+libsass==0.5.1
 django-libsass==0.2
 django-angular==0.7.3
 django-tastypie==0.9.16
