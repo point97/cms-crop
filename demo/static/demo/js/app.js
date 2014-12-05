@@ -1,4 +1,4 @@
-angular.module('cropApp', ['ngRoute', 'ui.bootstrap'] )
+angular.module('cropApp', ['ngRoute', 'ui.bootstrap', 'ngScrollSpy'] )
     .config(function($httpProvider, $routeProvider, $locationProvider) {
         $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     
