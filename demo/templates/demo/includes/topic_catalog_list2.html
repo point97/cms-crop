@@ -5,10 +5,21 @@
             <h2>{{layer.name}}</h2>
             <p>{{layer.description|safe}}</p>
             <div class="row">
-                {% if layer.map_link %}<div class="col-md-2 col-sm-2"><a href="{{layer.map_link}}">Map</a></div>{% endif %}
-                {% if layer.data_link %}<div class="col-md-2 col-sm-2"><a href="{{layer.data_link}}">Data</a></div>{% endif %}
-                {% if layer.tiles_link %}<div class="col-md-2 col-sm-2"><a href="{{layer.tiles_link}}">Tiles</a></div>{% endif %}
-                {% if layer.meta_link %}<div class="col-md-2 col-sm-2"><a href="{{layer.meta_link}}">Meta</a></div>{% endif %}
+                {% if layer.map_link %}
+                    <div class="col-md-2 col-sm-2"><a href="{{layer.map_link}}">Map</a></div>
+                {% endif %}
+                {% if layer.data_link %}{% if user.is_staff %}
+                    <div class="col-md-2 col-sm-2"><a href="{{layer.data_link}}">Data</a></div>
+                {% endif %}{% endif %}
+                {% if layer.tiles_link %}{% if user.is_staff %}
+                    <div class="col-md-2 col-sm-2"><a href="{{layer.tiles_link}}">Tiles</a></div>
+                {% endif %}{% endif %}
+                {% if layer.meta_link %}
+                    <div class="col-md-2 col-sm-2"><a href="{{layer.meta_link}}">Meta</a></div>
+                {% endif %}
+                {% if layer.source_link %}
+                    <div class="col-md-2 col-sm-2"><a href="{{layer.source_link}}">Source</a></div>
+                {% endif %}
             </div>
 
         </div>
