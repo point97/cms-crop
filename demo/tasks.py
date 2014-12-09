@@ -37,7 +37,10 @@ def update_data_topics():
                     response = urllib2.urlopen(layer['web_services_url'] + "?f=pjson")
                     raw = response.read()
                     data = json.loads(raw)
-                    layer['description'] = data['description']
+                    try:
+                        layer['description'] = data['description']
+                    except KeyError:
+                        mail_managers("update_data_topics() - could not find description for %s." % layer['name'], "Web Service Url: %s" % layer['web_services_url'])
 
             topic.catalog = theme
             topic.save()
