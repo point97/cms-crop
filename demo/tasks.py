@@ -40,7 +40,7 @@ def update_data_topics():
                     try:
                         layer['description'] = data['description']
                     except KeyError:
-                        mail_managers('%s Notification' % layer['web_services_url'], 'KeyError: %s has failed' % data['description'])
+                        mail_managers("update_data_topics() - could not find description for %s." % layer['name'], "Web Service Url: %s" % layer['web_services_url'])
 
             topic.catalog = theme
             topic.save()
