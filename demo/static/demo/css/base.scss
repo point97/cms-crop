@@ -41,12 +41,21 @@ h2 {
 }
 
 .anchor {
-    margin-top: -120px;        
-    padding-bottom: 120px;
+    margin-top: -92px;        
+    padding-bottom: 92px;
     position: relative;
     display: block; 
-
 }
+
+.arrow-down {
+    text-align: center;
+    display: inline;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 500;
+}
+
 
 //
 // h e a d e r  /  f o o t e r

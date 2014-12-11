@@ -5,6 +5,13 @@
 <div class="col-md-8 col-sm-8 main-content">
     
     <div id="{{section.slug}}" name="{{section.slug}}">
+
+        <div class="arrow-down">
+            <a animate-scroll-to="{{section.slug}}">
+                <i class="fa fa-angle-down fa-5x" style="color: #F47A00;"></i>
+            </a>
+        </div>
+
         <span class="anchor"></span>
         {% if section.topic_pics %}
             {# Used on the Explore page #}
