@@ -54,14 +54,14 @@
             {% endfor %}
         {% endif %}
 
-        {% if section.data_priorities %}
+        <!-- {% if section.data_priorities %}
             <h1 ng-show="topics.active && topics.active != topics.default_topic " class="green" ng-click="showDataPriorities = (showDataPriorities === false); " >
                 See Data Priorities <i ng-class="{'fa fa-angle-right':!showDataPriorities, 'fa fa-angle-down':showDataPriorities}"></i>
             </h1>
             {% for obj in section.data_priorities %}
                 {% include "demo/includes/topic_priority_list.html" %}
             {% endfor %}
-        {% endif %}
+        {% endif %} -->
 
         {% link_blocks section 'content-bottom' %}
 
