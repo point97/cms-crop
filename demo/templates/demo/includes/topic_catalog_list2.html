@@ -8,40 +8,40 @@
                 {% if layer.map_link %}
                     <div class="col-md-2 col-sm-2">
                         <a href="{{layer.map_link}}">
-                            <i class="fa fa-globe" style="color: #F47A00"></i> 
-                            &nbsp;Map
+                            <i class="fa fa-globe fa-2x" style="color:#0387FF"></i> 
+                            &nbsp;<span class="icon-text">MAP</span>
                         </a>
                     </div>
                 {% endif %}
                 {% if layer.data_link %}{% if user.is_staff %}
                     <div class="col-md-2 col-sm-2">
                         <a href="{{layer.data_link}}">
-                            <i class="fa fa-bars" stlye="color: #1519FF"></i>
-                            &nbsp;Data
+                            <i class="fa fa-bars fa-2x" stlye="color:#2D30FF"></i>
+                            &nbsp;<span class="icon-text">DATA</span>
                         </a>
                     </div>
                 {% endif %}{% endif %}
                 {% if layer.tiles_link %}{% if user.is_staff %}
                     <div class="col-md-2 col-sm-2">
                         <a href="{{layer.tiles_link}}">
-                            <i class="fa fa-cubes" style="color: #F47A00"></i>
-                            &nbsp;Tiles
+                            <i class="fa fa-cubes fa-2x" style="color:#0387FF"></i>
+                            &nbsp;<span class="icon-text">TILES</span>
                         </a>
                     </div>
                 {% endif %}{% endif %}
                 {% if layer.meta_link %}
                     <div class="col-md-2 col-sm-2">
                         <a href="{{layer.meta_link}}">
-                            <i class="fa fa-files-o" style="color: #0080FF"></i> 
-                            &nbsp;Meta
+                            <i class="fa fa-files-o fa-2x" style="color:#F37900"></i> 
+                            &nbsp;<span class="icon-text">META</span>
                         </a>
                     </div>
                 {% endif %}
                 {% if layer.source_link %}
                     <div class="col-md-2 col-sm-2">
                         <a href="{{layer.source_link}}">
-                            <i class="fa fa-folder-open" style="color: #019101"></i>
-                            &nbsp;Source
+                            <i class="fa fa-folder-open fa-2x" style="color:#009000"></i>
+                            &nbsp;<span class="icon-text">SOURCE</span>
                         </a>
                     </div>
                 {% endif %}

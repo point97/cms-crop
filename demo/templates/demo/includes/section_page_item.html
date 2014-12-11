@@ -8,7 +8,7 @@
 
         <div class="arrow-down">
             <a animate-scroll-to="{{section.slug}}">
-                <i class="fa fa-angle-down fa-5x" style="color: #F47A00;"></i>
+                <i class="fa fa-angle-down fa-5x" style="color: #F37900;"></i>
             </a>
         </div>
 
@@ -47,7 +47,7 @@
 
         {% if section.data_catalogs %}
             <h1 ng-show="topics.active && topics.active != topics.default_topic " class="blue" ng-click="showDataCatalogs = (showDataCatalogs === false); ">
-                Preview Data Catalogs <i ng-class="{'fa fa-angle-right':!showDataCatalogs, 'fa fa-angle-down':showDataCatalogs}"></i>
+                <span ng-show="!showDataCatalogs">Preview</span> Data Catalogs <i ng-class="{'fa fa-angle-right':!showDataCatalogs, 'fa fa-angle-down':showDataCatalogs}"></i>
             </h1>
             {% for obj in section.data_catalogs %}
                 {% include "demo/includes/topic_catalog_list2.html" %}
@@ -90,7 +90,7 @@
                 {% endfor %}
             </div>
         {% elif section.slug == 'learn' %}
-            <img src="{% static "demo/images/info_graphic.png" %}" width="250">
+            <img src="{% static "demo/images/info_graphic.png" %}" width="250" style="display:block; margin:auto;">
         {% endif %}
     </div>
 
