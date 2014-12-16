@@ -10,3 +10,16 @@ logs
 *.dump
 .DS_Store
 load_db.sh
+
+cms_crop_datadump_2014_12_04.sql
+
+wagtaildemo/local.py
+
+wagtaildemo/settings-old
+
+wagtaildemo/settings-old/__init__.py
+
+wagtaildemo/settings-old/local.py.example
+
+wagtaildemo/settings.py
+
