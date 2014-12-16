@@ -1,3 +1,2 @@
 -r base.txt
 bpython
-celery==3.1.14

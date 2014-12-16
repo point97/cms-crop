@@ -34,7 +34,7 @@ DROP DATABASE wagtaildemo;
 createdb -Upostgres wagtaildemo
 ```
 
-## Deploy to cms-crop.apps.pointnineseven.com
+## Deploy to cms-crop.apps.pointnineseven.com (Digital Ocean - 107.170.246.103)
 cd into devops and run
 
 ```

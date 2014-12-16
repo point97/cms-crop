@@ -1,7 +1,8 @@
-{% for section in sections %}  
+{% for section in sections %} 
     <div class="row section-margin">
-        {% include "demo/includes/section_page_item.html" %}
+	    {% include "demo/includes/section_page_item.html" %}
     </div>
+
 {% empty %}
     No sections found
 {% endfor %}

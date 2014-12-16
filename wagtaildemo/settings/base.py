@@ -7,12 +7,10 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = [
-    ('Wil Black', 'wil@pointnineseven.com'),
-    ('Tim Glaser', 'tim.glaser@pointnineseven.com'),
-    ('Scott Fletcher', 'scott@pointnineseven.com'),
+    ('P97 Dev Team', 'developers@pointnineseven.com'),
 ]
 
-MANAGERS = ADMINS + [('Dan Crowther', 'dan@pointnineseven')] 
+MANAGERS = ADMINS + [('Dan Crowther', 'dan@pointnineseven.com')] 
 
 DATABASES = {
     'default': {

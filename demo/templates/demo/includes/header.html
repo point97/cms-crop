@@ -45,10 +45,9 @@
         </div>
     </div>
 
-    <div class="menu-bar"> {# menu-bar spans the full width of the browser #}
-        <div class="container">
+    <div class="menu-bar" affix="top"> {# menu-bar spans the full width of the browser #}
+        <div class="container affix">
             <div class="row">
-
                 <div switch-lang class="col-sm-3 col-xs-3 language-toggle menu">
                     <form id="switchlang-en" action="/switchlang/en" method="post">
                         {% csrf_token %}

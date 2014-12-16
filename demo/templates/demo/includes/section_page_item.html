@@ -5,6 +5,14 @@
 <div class="col-md-8 col-sm-8 main-content">
     
     <div id="{{section.slug}}" name="{{section.slug}}">
+
+        <div class="arrow-down">
+            <a animate-scroll-to="{{section.slug}}">
+                <i class="fa fa-angle-down fa-5x" style="color: #F37900;"></i>
+            </a>
+        </div>
+
+        <span class="anchor"></span>
         {% if section.topic_pics %}
             {# Used on the Explore page #}
             <div class="explore-carousel" explore-carousel topics='topics'>{% include "demo/includes/carousel.html" with carousel_items=section.topic_pics %}</div>
@@ -39,21 +47,21 @@
 
         {% if section.data_catalogs %}
             <h1 ng-show="topics.active && topics.active != topics.default_topic " class="blue" ng-click="showDataCatalogs = (showDataCatalogs === false); ">
-                Preview Data Catalogs <i ng-class="{'fa fa-angle-right':!showDataCatalogs, 'fa fa-angle-down':showDataCatalogs}"></i>
+                <span ng-show="!showDataCatalogs">Preview</span> Data Catalogs <i ng-class="{'fa fa-angle-right':!showDataCatalogs, 'fa fa-angle-down':showDataCatalogs}"></i>
             </h1>
             {% for obj in section.data_catalogs %}
                 {% include "demo/includes/topic_catalog_list2.html" %}
             {% endfor %}
         {% endif %}
 
-        {% if section.data_priorities %}
+        <!-- {% if section.data_priorities %}
             <h1 ng-show="topics.active && topics.active != topics.default_topic " class="green" ng-click="showDataPriorities = (showDataPriorities === false); " >
                 See Data Priorities <i ng-class="{'fa fa-angle-right':!showDataPriorities, 'fa fa-angle-down':showDataPriorities}"></i>
             </h1>
             {% for obj in section.data_priorities %}
                 {% include "demo/includes/topic_priority_list.html" %}
             {% endfor %}
-        {% endif %}
+        {% endif %} -->
 
         {% link_blocks section 'content-bottom' %}
 
@@ -82,7 +90,7 @@
                 {% endfor %}
             </div>
         {% elif section.slug == 'learn' %}
-            <img src="{% static "demo/images/info_graphic.png" %}" width="250">
+            <img src="{% static "demo/images/info_graphic.png" %}" width="250" style="display:block; margin:auto;">
         {% endif %}
     </div>
 

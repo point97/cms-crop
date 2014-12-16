@@ -49,6 +49,10 @@ Overrides of bxSlider carousel
     }
 }
 
+.one-item-carousel .bx-controls {
+    display: none;
+}
+
 
 // Font layout
 .bx-wrapper {
@@ -115,7 +119,6 @@ Overrides of bxSlider carousel
         top:15px;
     }
 }
-
 
 .explore-carousel .bx-wrapper {
     .carousel-text {
