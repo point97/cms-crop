@@ -107,20 +107,14 @@ def hamburger_menu(context, parent=None, calling_page=None):
     
     if lang == 'en':
         others = [
-            {'href':'', 'verbose':'DATA'},
-            {'href':'', 'verbose':'CALENDAR'},
-            {'href':'', 'verbose':'NEWS'},
-            {'href':'http://planner.caribbean-mp.org/visualize/#login=true', 'verbose':'SIGNUP/LOGIN'},
-            {'href':'', 'verbose':'SITEMAP'},
+            {'href':'events', 'verbose':'EVENTS'},
+            {'href':'http://planner.caribbean-mp.org/visualize/#login=true', 'verbose':'SIGNUP/LOGIN'}
         ]
 
     elif lang == 'es':
         others = [
-            {'href':'', 'verbose':'DATOS'},
-            {'href':'', 'verbose':'CALENDARIO'},
-            {'href':'', 'verbose':'NOTICIAS'},
-            {'href':'http://planner.caribbean-mp.org/visualize/#login=true', 'verbose':'REGISTRATE'},
-            {'href':'', 'verbose':'MAPA'},
+            {'href':'eventos', 'verbose':'EVENTOS'},
+            {'href':'http://planner.caribbean-mp.org/visualize/#login=true', 'verbose':'REGISTRATE'}
         ]        
 
 
