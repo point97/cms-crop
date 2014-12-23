@@ -31,7 +31,10 @@ $(document).ready(function(){
     $('.not-explore-carousel .bxslider').bxSlider({
         captions: false,
         nextText: '<i class="fa fa-angle-right"></i>',
-        prevText: '<i class="fa fa-angle-left"></i>'
+        prevText: '<i class="fa fa-angle-left"></i>',
+        autoHidePager: true,
+        auto: true,
+        pause: 3000
     });
 });
 
