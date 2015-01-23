@@ -107,13 +107,13 @@ def hamburger_menu(context, parent=None, calling_page=None):
     
     if lang == 'en':
         others = [
-            {'href':'events', 'verbose':'EVENTS'},
+            {'href':'http://caribbean-mp.org/en/events/', 'verbose':'EVENTS'},
             {'href':'http://planner.caribbean-mp.org/visualize/#login=true', 'verbose':'SIGNUP/LOGIN'}
         ]
 
     elif lang == 'es':
         others = [
-            {'href':'eventos', 'verbose':'EVENTOS'},
+            {'href':'http://caribbean-mp.org/es/eventos/', 'verbose':'EVENTOS'},
             {'href':'http://planner.caribbean-mp.org/visualize/#login=true', 'verbose':'REGISTRATE'}
         ]        
 
